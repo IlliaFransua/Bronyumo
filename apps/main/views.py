@@ -5,4 +5,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 def home(request):
-    return HttpResponse("main app")
+    context = {
+        "items": ["one", "two", "three"],
+    }
+    return render(request, "main/home.html", context)
