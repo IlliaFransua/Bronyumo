@@ -5,5 +5,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 def home(request):
-    return HttpResponse("accounts app")
+    context = {
+        'items': ['one', 'two', 'three'],
+    }
+    return render(request, 'accounts/home.html', context=context)
 

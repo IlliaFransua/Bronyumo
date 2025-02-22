@@ -1,0 +1,20 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'accounts/css/style.css' %}">
+    <script src="{% static 'accounts/js/script.js' %}"></script>
+</head>
+<body>
+<h1>Accounts</h1>
+<ul>
+    {% for item in items %}
+        <li>{{ item }}</li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>

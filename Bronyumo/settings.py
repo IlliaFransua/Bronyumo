@@ -19,8 +19,9 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 import sys
 import os
+from pathlib import Path
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = Path(__file__).resolve().parent.parent
 sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
 
 
@@ -64,7 +65,7 @@ ROOT_URLCONF = 'Bronyumo.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -125,7 +126,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / 'static']
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
