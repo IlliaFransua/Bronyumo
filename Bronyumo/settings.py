@@ -20,7 +20,6 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 import sys
 import os
 from pathlib import Path
-import shutil
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -39,9 +38,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-INTERNAL_IPS = [
-    "127.0.0.1",
-]
 
 # Application definition
 
@@ -52,10 +48,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    'tailwind',
-    'theme',
-    'django_browser_reload',
 
     'apps.main',
     'apps.accounts'
@@ -69,13 +61,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django_browser_reload.middleware.BrowserReloadMiddleware',
 ]
 
 ROOT_URLCONF = 'Bronyumo.urls'
 
-TAILWIND_APP_NAME = 'theme'
-NPM_BIN_PATH = shutil.which('npm')
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
