@@ -21,7 +21,7 @@ import sys
 import os
 from pathlib import Path
 from dotenv import load_dotenv
-load_dotenv()
+load_dotenv('.env.dist')
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
@@ -50,7 +50,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'apps.main',
-    'apps.accounts'
+    'apps.accounts',
+    'apps.bookings'
 ]
 
 MIDDLEWARE = [
