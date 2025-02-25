@@ -1,3 +1,5 @@
+[**All labels**](https://github.com/IlliaFransua/Bronyumo/labels)
+
 1. **Backlog**  
    - Description: Tasks that are planned but not yet started.  
    - Color: (Green)
