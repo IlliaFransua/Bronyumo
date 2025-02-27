@@ -1,80 +1,58 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-:root {
-    --primary-color: #007BFF;
-    --primary-color-hover: #0056b3;
-    --text-color: #333;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    font-size: 16px;
-    color: var(--text-color);
-}
-
-h1, h2, h3, h4, h5, h6 {
-    margin-bottom: 0.5em;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-ul, ol {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+.wrapper {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #fff;
 }
 
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
-img {
-    max-width: 100%;
-    height: auto;
+header {
+  text-align: center;
 }
 
-button {
-    padding: 10px 20px;
-    background-color: var(--primary-color);
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+.content {
+  padding: 25px;
+  line-height: 1.6;
+  margin-bottom: 20px;
 }
 
-button:hover {
-    background-color: var(--primary-color-hover);
+footer {
+  text-align: center;
+  padding: 15px 20px;
+  font-size: 0.9em;
 }
 
-input, textarea, select {
-    font-family: inherit;
-    font-size: inherit;
-    border: 1px solid #ccc;
-    padding: 5px;
-    outline: none;
+.modal {
+  display: none; /* Скрыто по умолчанию */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  z-index: 1001;
 }
 
-@media (max-width: 768px) {
-    body {
-        font-size: 14px;
-    }
-
-    .container {
-        padding: 0 10px;
-    }
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
 }
