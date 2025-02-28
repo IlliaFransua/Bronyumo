@@ -1,0 +1,28 @@
+.container {
+    display: flex;
+    align-items: center;  
+    justify-content: space-between;
+    background-color: #f5f5f5;
+}
+
+.entrepreneurs-button {
+    background: black;
+    color: white;
+    border-radius:  7px;;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); 
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.entrepreneurs-button:hover {
+    box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.3);
+}
+
+img{
+    max-width: 30px;
+    height: auto;
+    object-fit: contain;
+    vertical-align: middle;
+}
