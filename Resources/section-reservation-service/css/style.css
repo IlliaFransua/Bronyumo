@@ -1,0 +1,44 @@
+.reservation-service {
+  background-color: var(--bg-secondary-color);
+  padding: 60px 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reservation-service__content {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  max-width: 50%;
+}
+
+.reservation-service__title {
+  font-size: 2rem;
+  font-weight: bold;
+  font-style: italic;
+  margin-bottom: 10px;
+  width: 50%;
+}
+
+.reservation-service__list {
+  list-style-type: disc;
+  padding-left: 20px;
+  width: 60%;
+}
+
+.reservation-service__item {
+  margin-top: 5px;
+}
+
+.reservation-service__image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 300px;
+}
+
+.reservation-service__image img {
+  width: 100%;
+  border-radius: 5px;
+}
