@@ -25,6 +25,7 @@ body {
 :root {
   --bg-color: #fff;
   --bg-secondary-color: #f5f4fa;
+  --text-color-grey: #828282;
 }
 
 .wrapper {
