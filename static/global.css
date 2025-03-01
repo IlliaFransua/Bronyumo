@@ -26,6 +26,13 @@ body {
   --bg-color: #fff;
   --bg-secondary-color: #f5f4fa;
   --text-color-grey: #828282;
+  --text-color-white: #ffffff;
+  --main-color-black: #000;
+  --accent-pink: #ff3fcf;
+  --accent-purple: #04006d;
+  --accent-light-purple: #6c2eb9;
+  --accent-grey: #ddd;
+  --logo-color-grey: #afb1b8;
 }
 
 .wrapper {
