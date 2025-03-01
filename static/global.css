@@ -1,13 +1,30 @@
-*, *::before, *::after {
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+:root {
+  --bg-color: #fff;
+  --bg-secondary-color: #f5f4fa;
+  --text-color-grey: #828282;
+  --text-color-white: #ffffff;
+  --main-color-black: #000;
+  --accent-pink: #ff3fcf;
+  --accent-purple: #04006d;
+  --accent-light-purple: #6c2eb9;
+  --accent-grey: #ddd;
+  --logo-color-grey: #afb1b8;
+}
+
 .wrapper {
   width: 100%;
   min-height: 100vh;
-  background-color: #fff;
+  background-color: var(--bg-color);
 }
 
 .container {
@@ -18,6 +35,10 @@
 
 header {
   text-align: center;
+}
+
+body {
+  font-family: "Inter", sans-serif;
 }
 
 .content {
@@ -33,12 +54,12 @@ footer {
 }
 
 .modal {
-  display: none; /* Скрыто по умолчанию */
+  display: none;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: white;
+  background: var(--bg-color);
   border: 1px solid #ccc;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
