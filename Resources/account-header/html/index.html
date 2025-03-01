@@ -10,8 +10,33 @@
 <body>
   <div class="wrapper">
       <header>
-        <div class="container">
-            <!-- Header content will be here -->
+        <div class="container"
+             style="padding: 0 !important; margin: 0 !important;
+                    max-width: 100% !important;">
+            <div class="account-header">
+                <div>
+                    <a href="http://google.com"><h1 style="font-weight: normal;">Bronyumo.ua</h1></a>
+                </div>
+                <div class="account-nav">
+                    <button class="button-sm" style="border: none; height: 1.9rem">
+                    <img style="height: 1.9rem;"
+                         src="../assets/images/flag-icon.png"
+                         alt="flag-icon">
+                    </button>
+                    <button class="button-sm">
+                        <img src="../assets/images/bell-icon.svg" alt="user-icon">
+                        <img src="../assets/images/red-circle-icon.png"
+                             alt="red-circle-icon"
+                             style="width: 0.75rem; height: 0.75rem;
+                             position: absolute; right: 0.2rem; top: 0.1rem;">
+                    </button>
+                    <button class="button-md">
+                        <img style="width: 1.56rem; border-radius: 2px" src="../assets/images/restaurant-thumb-sm.png" alt="restaurant-thumbnail">
+                        Normal
+                        <img style="width: 1.56rem;" src="../assets/images/dropdown-icon.png" alt="dropdown-icon">
+                    </button>
+                </div>
+            </div>
         </div>
       </header>
 
@@ -34,6 +59,7 @@
   <button onclick="closeModal();">Close</button>
 </div>
 
+<script src="../js/dropdown.js"></script>
 <script src="../js/script.js"></script>
 
 </body>

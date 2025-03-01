@@ -1,8 +1,22 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
-*,
-*::before,
-*::after {
+@font-face {
+    font-family: 'Inter';
+    src: url('fonts/Inter-VariableFont_opsz.wght.ttf') format('truetype');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('fonts/Inter-Italic-VariableFont_opsz.wght.ttf') format('truetype');
+    font-style: italic;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+*, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -46,7 +60,7 @@ footer {
 }
 
 .modal {
-  display: none; /* Скрыто по умолчанию */
+  display: none;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -68,4 +82,31 @@ footer {
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
   z-index: 1000;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+h1{
+  font-size: 26px;
+}
+
+.button-sm {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.5rem;
+  border-color: #E9ECEF;
+  border-style: solid;
+  background-color: white;
+}
+
+.button-md {
+  width: 8rem;
+  height: 2.5rem;
+  border-radius: 0.5rem;
+  border-color: #E9ECEF;
+  border-style: solid;
+  background-color: white;
 }
