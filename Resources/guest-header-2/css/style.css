@@ -20,11 +20,14 @@
   gap: 10px;
 }
 
+.header__controls > *:not(:first-child) {
+    margin-left: 10px;
+}
+
 .header__language {
   width: 40px;
   border-radius: 3px;
   height: auto;
-  margin-right: 15px;
   object-fit: contain;
   vertical-align: middle;
 }
@@ -32,14 +35,14 @@
 .header__button {
   background: var(--main-color-black);
   color: var(--text-color-white);
-  border-radius: 5px;
   border: none;
-  padding: 7px 15px;
+  border-radius: 5px;
+  padding: 10px 20px;
   cursor: pointer;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
   transition: box-shadow 0.3s ease-in-out;
-  width: 80px;
-  margin-left: 10px;
+  text-decoration: none;
+  font-size: 14px;
 }
 
 .header__button:hover {

@@ -54,7 +54,7 @@ footer {
 }
 
 .modal {
-  display: none; /* Скрыто по умолчанию */
+  display: none;
   position: fixed;
   top: 50%;
   left: 50%;
