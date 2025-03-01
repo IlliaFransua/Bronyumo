@@ -1,0 +1,84 @@
+.faq {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.faq__title {
+  font-size: 1.75rem;
+  font-style: italic;
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: 600;
+}
+
+.faq__list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.faq__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 15px;
+  border-radius: 8px;
+  position: relative;
+}
+
+.faq__number {
+  width: 45px;
+  height: 45px;
+  border-radius: 30%;
+  background-color: var(--bg-secondary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.faq__content {
+  flex: 1;
+}
+
+.faq__question {
+  cursor: pointer;
+  font-size: 1.2rem;
+  position: relative;
+  font-weight: 500;
+}
+
+.faq__question::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  background-image: url("data:image/svg+xml,%3Csvg%20width%3D%22100%22%20height%3D%22100%22%20viewBox%3D%220%200%20100%20100%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpolyline%20points%3D%2220%2C30%2050%2C60%2080%2C30%22%20stroke%3D%22black%22%20stroke-width%3D%2210%22%20fill%3D%22none%22%2F%3E%3C%2Fsvg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  transition: transform 0.3s ease;
+}
+
+.faq__item.active .faq__question::after {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.faq__answer {
+  font-size: 1.1rem;
+  color: var(--text-color-grey);
+  max-height: 0;
+  overflow: hidden;
+  margin-top: 20px;
+  transition: max-height 0.3s ease-in-out, opacity 0.3s ease;
+  opacity: 0;
+}
+
+.faq__item.active .faq__answer {
+  max-height: 1000px;
+  opacity: 1;
+}
