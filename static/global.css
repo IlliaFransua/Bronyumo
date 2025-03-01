@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
 *, *::before, *::after {
   margin: 0;
   padding: 0;
@@ -8,6 +10,19 @@
   width: 100%;
   min-height: 100vh;
   background-color: #fff;
+}
+
+:root {
+  --bg-color: #fff;
+  --bg-secondary-color: #f5f4fa;
+  --text-color-grey: #828282;
+  --text-color-white: #ffffff;
+  --main-color-black: #000;
+  --accent-pink: #ff3fcf;
+  --accent-purple: #04006d;
+  --accent-light-purple: #6c2eb9;
+  --accent-grey: #ddd;
+  --logo-color-grey: #afb1b8;
 }
 
 .container {
