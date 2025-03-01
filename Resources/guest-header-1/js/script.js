@@ -9,3 +9,11 @@ function closeModal() {
 }
 
 setTimeout(showModal, 2000);
+
+//Натискання кнопки в guest-header1 -> переходимо на Entreprenuer Page
+document.addEventListener("DOMContentLoaded", function() {
+  const button = document.querySelector(".entrepreneurs-button");
+  button.addEventListener("click", function() {
+      window.location.href = "#"; // Замініть # на шлях до потрібного файлу
+  });
+});
