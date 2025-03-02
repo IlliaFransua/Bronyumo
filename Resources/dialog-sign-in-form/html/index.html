@@ -8,30 +8,16 @@
   <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-  <div class="wrapper">
-      <header>
-        <div class="container">
-            <!-- Header content will be here -->
-        </div>
-      </header>
+  <div id="modalOverlay" class="modal-overlay"></div>
+  <div id="modalDialog" class="modal">
+    <form>
+    <h3>Email Address</h3>
+      <input class="dialog-sign-in-form" id="Email Address" name="Address" placeholder="lilacake@gmail.com" required>
 
-      <section class="content">
-          <div class="container">
-                <!-- Section content will be here -->
-          </div>
-      </section>
-
-      <footer>
-          <div class="container">
-                <!-- Footer content will be here -->
-          </div>
-      </footer>
-  </div>
-
-<div id="modalOverlay" class="modal-overlay"></div>
-<div id="modalDialog" class="modal">
-  <!-- Dialog content will be here -->
-  <button onclick="closeModal();">Close</button>
+      <h3>Password</h3>
+      <input class="dialog-sign-in-form" type="text" id="Password" name="Password" placeholder="**********" required>
+  </form>
+  <button class="dialog-sign-in-form__button" onclick="closeModal();">Log in</button>
 </div>
 
 <script src="../js/script.js"></script>
