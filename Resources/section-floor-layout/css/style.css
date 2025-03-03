@@ -3,6 +3,7 @@
     width: 70%;
     height: 95vh;
     padding: 1rem;
+    justify-self: center;
 }
 
 .section-floor-layout-floor-image{
