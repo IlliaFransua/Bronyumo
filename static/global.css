@@ -33,8 +33,11 @@ body {
   --accent-light-purple: #6c2eb9;
   --accent-grey: #ddd;
   --logo-color-grey: #afb1b8;
+<<<<<<< HEAD
   --accent-pink: #ff3fcf;
   --accent-purple: #04006d;
+=======
+>>>>>>> origin/feauture/alert-error-message
 }
 
 .wrapper {
