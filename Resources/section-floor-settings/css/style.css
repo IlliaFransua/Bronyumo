@@ -1,0 +1,14 @@
+.container {
+    max-width: 100% !important;
+}
+
+.section-floor-settings {
+    width: 90rem;
+    height: 4.75rem;
+    justify-self: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+

@@ -131,6 +131,14 @@ h1{
   background-color: white;
 }
 
+.button-sm:hover {
+  cursor: pointer;
+}
+
+.buttom-sm:active {
+  background-color: rgb(0, 0, 0, 0.02);
+}
+
 .button-md {
   width: 8rem;
   height: 2.5rem;
@@ -138,4 +146,39 @@ h1{
   border-color: #E9ECEF;
   border-style: solid;
   background-color: white;
+  font-size: 14px;
+}
+
+.button-md:hover {
+  cursor: pointer;
+}
+
+.button-md:active {
+  background-color: rgb(0, 0, 0, 0.02);
+}
+
+.button-lg {
+  width: 14rem;
+  height: 2.5rem;
+  border-radius: 0.5rem;
+  border-color: #E9ECEF;
+  border-style: solid;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-lg img{
+  width: 14px;
+  height: 14px;
+  margin-right: 8px;
+}
+
+.button-lg:hover {
+  cursor: pointer;
+}
+
+.button-lg:active {
+  background-color: rgb(0, 0, 0, 0.02);
 }
