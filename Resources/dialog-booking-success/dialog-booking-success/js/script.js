@@ -8,4 +8,4 @@ function closeModal() {
   document.getElementById('modalDialog').style.display = 'none';
 }
 
-setTimeout(showModal, 2000);
+setTimeout(showModal, 0);

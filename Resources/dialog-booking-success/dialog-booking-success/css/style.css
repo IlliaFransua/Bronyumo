@@ -1,0 +1,35 @@
+.modal-inner_wrapper {
+    height: 149px;
+    width: 356px;
+
+    text-align: center;
+    font-size: 24px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+.close-button {
+    background-color: rgb(21,25, 29);
+
+    height: 45px;
+    width: 225px;
+
+    padding: 16px 32px 16px 32px;
+    border-radius: 8px;
+
+    color: #FFFFFF;
+    font-size: 13px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.close-button:hover {
+    cursor: pointer;
+
+    color: #cacaca;
+
+    background-color: rgb(10, 10, 10);
+}
