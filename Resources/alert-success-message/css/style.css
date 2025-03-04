@@ -1,0 +1,28 @@
+.modal h2 {
+    color: var(--main-color-black);
+    font-size: 1.5em;
+    margin-bottom: 2%;
+  }
+  
+  .modal p {
+    color: var(--text-color-grey);
+    font-size: 1em;
+  }
+
+  .modal-content {
+    display: flex;
+    align-items: center;
+  }
+  
+  .modal-image {
+    margin-right: 20px; 
+  }
+  
+  .modal-image img {
+    width: 50px;
+    height: auto;
+  }
+  
+  .modal-text {
+    flex: 1; 
+  }
