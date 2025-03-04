@@ -1,0 +1,29 @@
+.Dialog-no-available-options__button{
+  background: var(--main-color-black);
+  color: var(--text-color-white);
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  text-decoration: none;
+  font-size: 14px;
+  width: 50%;
+  margin-top: 10%;
+}
+
+.Dialog-no-available-options__modal {
+    display: none; 
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    z-index: 1001;
+    text-align: center;
+    max-width: 17%;
+  }
