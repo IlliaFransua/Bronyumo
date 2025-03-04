@@ -12,8 +12,8 @@ function setupDropdownMenu() {
 
   // Create menu items
   const menuItems = [
-    { text: 'Settings', icon: '../assets/images/settings-icon.png' },
-    { text: 'Logout', icon: '../assets/images/logout-icon.png' }
+    { text: 'Settings', icon: '../../../static/account-header/assets/images/settings-icon.png' },
+    { text: 'Logout', icon: '../../../static/account-header/assets/images/logout-icon.png' }
   ];
 
   // Add menu items to dropdown
