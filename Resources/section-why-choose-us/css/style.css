@@ -1,0 +1,44 @@
+.First_page_container {
+    background-color: var(--bg-color); 
+    margin: 0;
+}
+
+.Why-choose-us__container{
+    display: flex;
+    justify-content: space-between;
+    background-color:  var(--accent-grey);
+    width: 100%;
+    padding: 3% 10%;
+    align-items: center;
+}
+
+.Why-choose-us__logo{
+    font-size: 2.25rem;
+    font-weight: bold;
+    color: var(--text-color-black);
+    object-fit: contain;
+    max-width: 50%; 
+    line-height: 1.2; 
+    word-wrap: break-word;
+}
+
+.Why-choose-us__button{
+  object-fit: contain;
+  background: var(--main-color-black);
+  color: var(--text-color-white);
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.3s ease-in-out;
+  text-decoration: none;
+  font-size: 17px;
+  max-height: 5vb;
+  min-width: 20%;
+  text-align: center;
+}
+
+.Why-choose-us__button:hover {
+    box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.3);
+  }
