@@ -1,40 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="../../../static/global.css">
-  <link rel="stylesheet" href="../css/style.css">
-</head>
-<body>
-  <div class="wrapper">
-      <header>
-        <div class="container">
-            <!-- Header content will be here -->
-        </div>
-      </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-      <section class="content">
-          <div class="container">
-                <!-- Section content will be here -->
-          </div>
-      </section>
-
-      <footer>
-          <div class="container">
-                <!-- Footer content will be here -->
-          </div>
-      </footer>
-  </div>
-
-<div id="modalOverlay" class="modal-overlay"></div>
-<div id="modalDialog" class="modal">
-  <!-- Dialog content will be here -->
-  <button onclick="closeModal();">Close</button>
-</div>
-
-<script src="../js/script.js"></script>
-
-</body>
+    <link rel="stylesheet" href="../../../static/global.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body>
+    <div class="modal">
+      <div class="modal__content">
+        <p class="modal__text">Are you sure you want to delete this entry?</p>
+        <button class="modal__button modal__button--confirm">
+          Yes, delete it
+        </button>
+        <button class="modal__button modal__button--cancel">
+          Don’t delete
+        </button>
+      </div>
+    </div>
+    <script src="../js/script.js"></script>
+  </body>
 </html>
