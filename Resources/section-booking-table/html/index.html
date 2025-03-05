@@ -1,40 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="../../../static/global.css">
-  <link rel="stylesheet" href="../css/style.css">
-</head>
-<body>
-  <div class="wrapper">
-      <header>
-        <div class="container">
-            <!-- Header content will be here -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../../../static/global.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body>
+    <section class="container">
+      <table class="table">
+        <thead class="table__header">
+          <tr class="table__header-row">
+            <th class="table__header-item">#</th>
+            <th class="table__header-item">
+              <span class="table__header-item-line">
+                Fullname
+                <span class="table__header-item-group">
+                  <button class="table__header-item-group-button">
+                    <img
+                      src="../../../static/section-booking-table/sort.svg"
+                      alt="sort"
+                    />
+                  </button>
+                  <button class="table__header-item-group-button">
+                    <img
+                      src="../../../static/section-booking-table/filter.svg"
+                      alt="filter"
+                    />
+                  </button>
+                </span>
+              </span>
+            </th>
+            <th class="table__header-item">
+              <span class="table__header-item-line">
+                E-Mail
+                <span class="table__header-item-group">
+                  <button class="table__header-item-group-button">
+                    <img
+                      src="../../../static/section-booking-table/sort.svg"
+                      alt="sort"
+                    />
+                  </button>
+                </span>
+              </span>
+            </th>
+            <th class="table__header-item">
+              <span class="table__header-item-line">
+                Date
+                <span class="table__header-item-group">
+                  <button class="table__header-item-group-button">
+                    <img
+                      src="../../../static/section-booking-table/sort.svg"
+                      alt="sort"
+                    />
+                  </button>
+                </span>
+              </span>
+            </th>
+            <th class="table__header-item">
+              <span class="table__header-item-line">
+                Start time
+                <span class="table__header-item-group">
+                  <button class="table__header-item-group-button">
+                    <img
+                      src="../../../static/section-booking-table/sort.svg"
+                      alt="sort"
+                    />
+                  </button>
+                </span>
+              </span>
+            </th>
+            <th class="table__header-item">
+              <span class="table__header-item-line">
+                End time
+                <span class="table__header-item-group">
+                  <button class="table__header-item-group-button">
+                    <img
+                      src="../../../static/section-booking-table/sort.svg"
+                      alt="sort"
+                    />
+                  </button>
+                </span>
+              </span>
+            </th>
+            <th class="table__header-item"></th>
+          </tr>
+        </thead>
+        <tbody class="table__body" id="tableBody"></tbody>
+      </table>
+      <section class="pagination">
+        <div class="pagination__group">
+          <button
+            class="pagination__button pagination__button--prev pagination__button--disabled"
+          >
+            <svg
+              width="5"
+              height="8"
+              viewBox="0 0 5 8"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              style="transform: rotate(-180deg)"
+            >
+              <path
+                d="M1.45837 1.2915L4.37504 3.99984L1.45837 6.70817"
+                stroke="#212529"
+                stroke-width="1.25"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+          <button class="pagination__button">1</button>
+          <button class="pagination__button">2</button>
+          <button class="pagination__button">3</button>
+          <button class="pagination__button">4</button>
+          <button class="pagination__button pagination__button--next">
+            <svg
+              width="5"
+              height="8"
+              viewBox="0 0 5 8"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M1.45837 1.2915L4.37504 3.99984L1.45837 6.70817"
+                stroke="#212529"
+                stroke-width="1.25"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
         </div>
-      </header>
-
-      <section class="content">
-          <div class="container">
-                <!-- Section content will be here -->
+        <div class="pagination__selector">
+          <div class="pagination__selector-dropdown">
+            <span class="pagination__selector-dropdown-text">10</span>
+            <svg
+              width="5"
+              height="8"
+              viewBox="0 0 5 8"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              style="transform: rotate(-90deg)"
+            >
+              <path
+                d="M1.45837 1.2915L4.37504 3.99984L1.45837 6.70817"
+                stroke="#212529"
+                stroke-width="1.25"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
           </div>
+          <p class="pagination__selector-text">/Page</p>
+        </div>
       </section>
+    </section>
 
-      <footer>
-          <div class="container">
-                <!-- Footer content will be here -->
-          </div>
-      </footer>
-  </div>
-
-<div id="modalOverlay" class="modal-overlay"></div>
-<div id="modalDialog" class="modal">
-  <!-- Dialog content will be here -->
-  <button onclick="closeModal();">Close</button>
-</div>
-
-<script src="../js/script.js"></script>
-
-</body>
+    <script src="../js/script.js"></script>
+  </body>
 </html>
