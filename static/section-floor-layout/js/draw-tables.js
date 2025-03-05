@@ -1,19 +1,3 @@
-function getNormalizedCoordinates(element, x, y) {
-    const rect = element.getBoundingClientRect();
-    return {
-        x: (x - rect.left) / rect.width,
-        y: (y - rect.top) / rect.height
-    };
-}
-
-function getAbsoluteCoordinates(element, normalizedX, normalizedY) {
-    const rect = element.getBoundingClientRect();
-    return {
-        x: normalizedX * rect.width + rect.left,
-        y: normalizedY * rect.height + rect.top
-    };
-}
-
 class TableLayoutManager {
     constructor() {
         this.floorImage = document.querySelector('.section-floor-layout-floor-image');
@@ -256,9 +240,10 @@ class TableLayoutManager {
     }
 
     repositionTables() {
+        const imageRect = this.floorImage.getBoundingClientRect();
+
         this.tables.forEach(table => {
             const normalizedCoords = JSON.parse(table.dataset.normalizedCoords);
-            const imageRect = this.floorImage.getBoundingClientRect();
 
             const left = normalizedCoords.x1 * imageRect.width;
             const top = normalizedCoords.y1 * imageRect.height;
