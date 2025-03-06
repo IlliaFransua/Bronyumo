@@ -1,0 +1,34 @@
+.section-upload-floor-plan{
+    width: 100%;
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.section-upload-floor-plan__canvas{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    gap: 10px
+}
+
+.section-upload-floor-plan__canvas h1{
+    font-weight: normal;
+}
+
+.section-upload-floor-plan__canvas p{
+    font-size: 14px;
+}
+
+.section-upload-floor-plan__canvas button{
+    background-color: #0057FC;
+    color: white;
+}
+
+.button-lg:active {
+    background-color: #0000e4;
+}
