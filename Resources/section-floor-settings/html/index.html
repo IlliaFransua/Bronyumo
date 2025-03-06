@@ -17,7 +17,48 @@
 
       <section class="content">
           <div class="container">
-                <!-- Section content will be here -->
+              <div class="section-floor-settings">
+                  <button class="button-lg"
+                          style="border-color: #8E8E8E;
+                                color: dimgray;
+                                font-weight: bold"
+                          onclick="shareBookingLink">
+                      <img src="../assets/images/email-vector.png" alt="email-vector">
+                      SHARE BOOKING LINK
+                  </button>
+                  <button class="button-lg"
+                          style="border-color: #FF1F25;
+                                color: #FF1F25;
+                                font-weight: bold"
+                                onclick="deleteLayout">
+                      <img src="../assets/images/trashbin-vector.png" alt="email-vector">
+                      DELETE THE LAYOUT
+                  </button>
+                  <button class="button-lg"
+                          style="border-color: #206CFC;
+                                color: #206CFC;
+                                font-weight: bold"
+                                onclick="addForBooking">
+                      <img src="../assets/images/plus-vector.png" alt="email-vector">
+                      ADD FOR BOOKING
+                  </button>
+                  <button class="button-lg"
+                          style="border-color: #FF9D30;
+                                color: #FF9D30;
+                                font-weight: bold"
+                                onclick="removeFromBooking">
+                      <img src="../assets/images/cross-vector.png" alt="email-vector">
+                      REMOVE FROM BOOKING
+                  </button>
+                  <button class="button-lg"
+                          style="border-color: #56BA28;
+                                 color: #56BA28;
+                                 font-weight: bold"
+                                 onclick="saveChanges">
+                      <img src="../assets/images/accept-vector.png" alt="email-vector">
+                      SAVE
+                  </button>
+              </div>
           </div>
       </section>
 
@@ -35,6 +76,6 @@
 </div>
 
 <script src="../js/script.js"></script>
-
+<script src="../js/settings.js"></script>
 </body>
 </html>
