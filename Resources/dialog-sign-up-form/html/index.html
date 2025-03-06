@@ -18,6 +18,8 @@
       <section class="content">
           <div class="container">
                 <!-- Section content will be here -->
+                <!--приклад використання додати dlg-sign-up__data-modal-open-->
+                <button class="btn" type="button" dlg-sign-up__data-modal-open>Order Service</button>
           </div>
       </section>
 
@@ -28,11 +30,36 @@
       </footer>
   </div>
 
-<div id="modalOverlay" class="modal-overlay"></div>
-<div id="modalDialog" class="modal">
-  <!-- Dialog content will be here -->
-  <button onclick="closeModal();">Close</button>
-</div>
+  <div class="dlg-sign-up__backdrop dlg-sign-up__is-hidden" dlg-sign-up__data-modal>
+    <div class="dlg-sign-up__modal">
+      <button type="button" class="dlg-sign-up__close-btn" dlg-sign-up__data-modal-close>
+        <svg class="dlg-sign-up__close-btn-icon" width="8" height="8">
+          <use href="../assets/images/symbol-defs-close.svg#icon-close-modal"></use>
+        </svg>
+      </button>
+      <form>
+        <div class="dlg-sign-up__form-row">
+            <div class="dlg-sign-up__form-group dlg-sign-up__form-group-half">
+                <label for="company" class="dlg-sign-up__label">Company Name</label>
+                <input type="text" id="company" class="dlg-sign-up__input" placeholder="Lila Cake" pattern="[A-Za-z0-9 ]+" title="Only letters, numbers, and spaces allowed" required>
+            </div>
+            <div class="dlg-sign-up__form-group dlg-sign-up__form-group-half">
+                <label for="address" class="dlg-sign-up__label">Adress</label>
+                <input type="text" id="address" class="dlg-sign-up__input" placeholder="Київ, вул. Хмельницького, 40/25" pattern="[\w\s,./-]+" title="Allowed: letters, numbers, commas, periods, slashes, dashes" required>
+            </div>
+        </div>
+        <div class="dlg-sign-up__form-group">
+            <label for="email" class="dlg-sign-up__label">Email</label>
+            <input type="email" id="email" class="dlg-sign-up__input" placeholder="lilacake@someemail.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Please enter a valid email address" required>
+        </div>
+        <div class="dlg-sign-up__form-group">
+            <label for="password" class="dlg-sign-up__label">Password</label>
+            <input type="password" id="password" class="dlg-sign-up__input" placeholder="**********" pattern=".{8,}" title="Password must be at least 8 characters long" required>
+        </div>
+        <button type="submit" class="dlg-sign-up__Sbmt-Btn">Sign Up</button>
+    </form>
+    </div>
+  </div>
 
 <script src="../js/script.js"></script>
 

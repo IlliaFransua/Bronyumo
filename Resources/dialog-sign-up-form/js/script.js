@@ -1,11 +1,15 @@
-function showModal() {
-  document.getElementById('modalOverlay').style.display = 'block';
-  document.getElementById('modalDialog').style.display = 'block';
-}
+(() => {
+  const refs = {
+    openModalBtn: document.querySelector("[dlg-sign-up__data-modal-open]"),
+    closeModalBtn: document.querySelector("[dlg-sign-up__data-modal-close]"),
+    modal: document.querySelector("[dlg-sign-up__data-modal]"),
+  };
 
-function closeModal() {
-  document.getElementById('modalOverlay').style.display = 'none';
-  document.getElementById('modalDialog').style.display = 'none';
-}
+  refs.openModalBtn.addEventListener("click", toggleModal);
+  refs.closeModalBtn.addEventListener("click", toggleModal);
 
-setTimeout(showModal, 2000);
+  function toggleModal() {
+    refs.modal.classList.toggle("dlg-sign-up__is-hidden");
+    document.body.classList.toggle("dlg-sign-up__no-scroll");
+  }
+})();
