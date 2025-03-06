@@ -1,0 +1,150 @@
+:root {
+    --modal-color: #F5F4FA;
+    --title-color-new-layout-img: #212529;
+    --modal-close-btn-icon:#2E2F42;
+    --btn-color-new-layout-img:#393F44;
+    --acent-color-btn-new-Lyt-Img-Conf-Dlg: #939296;
+}
+
+/*Модальне вікно 1 Set New Layout Image Dialog */
+.new-layout-img__backdrop {
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(46, 47, 66, 0.4);
+    transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1), visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.new-layout-img__modal {
+    background: var(--modal-color);
+    border-radius: 10px;
+    padding: 43px 54px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.new-layout-img__text {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    display: flex;
+}
+
+.new-layout-img__title {
+    width: 275px;
+    text-align: center;
+    color: var(--title-color-new-layout-img);
+    line-height: 36px;
+    font-weight: 500;
+}
+
+.new-layout-img__title-up {
+    font-weight: 700;
+}
+
+.new-layout-img__btn {
+    padding: 10px;
+    background: var(--title-color-new-layout-img);
+    border-radius: 8px;
+    border-width: 0px;
+}
+
+.new-layout-img__btn:hover,
+.new-layout-img__btn:focus {
+    border-color: var(--btn-color-new-layout-img);
+    background-color: var(--btn-color-new-layout-img);
+}
+
+.new-layout-img__btn-text {
+    color: var(--text-color-white);
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.new-layout-img__close-btn {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1), background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.new-layout-img__close-btn:hover,
+.new-layout-img__close-btn:focus {
+    border-color: var(--title-color-new-layout-img);
+    background-color: var(--title-color-new-layout-img);
+}
+
+.new-layout-img__close-btn-icon {
+    fill: #2E2F42;
+    transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.new-layout-img__close-btn:hover .new-layout-img__close-btn-icon,
+.new-layout-img__close-btn:focus .new-layout-img__close-btn-icon {
+    fill: var(--bg-color);
+}
+
+.new-layout-img__is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.new-layout-img__no-scroll {
+    overflow: hidden;
+}
+
+/*Модальне вікно 2 Set New Layout Image Confirmation Dialog 1 */
+.new-Lyt-Img-Conf-Dlg__text{
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    display: flex;
+}
+.new-Lyt-Img-Conf-Dlg__btn1 {
+    width: 224px;
+    border-width: 0px;
+    padding: 10px 81px;
+    background: var(--acent-color-btn-new-Lyt-Img-Conf-Dlg);
+    border-radius: 8px;
+}
+
+.new-Lyt-Img-Conf-Dlg__btn1:hover,
+.new-Lyt-Img-Conf-Dlg__btn1:focus {
+    border-color: var(--btn-color-new-layout-img);
+    background-color: var(--btn-color-new-layout-img);
+}
+
+.new-Lyt-Img-Conf-Dlg__btn2 {
+    width: 224px;
+    border-width: 0px;
+    padding: 10px 81px;
+    background: var(--title-color-new-layout-img);
+    border-radius: 8px;
+}
+
+.new-Lyt-Img-Conf-Dlg__btn2:hover,
+.new-Lyt-Img-Conf-Dlg__btn2:focus {
+    border-color: var(--btn-color-new-layout-img);
+    background-color: var(--btn-color-new-layout-img);
+}
+
+/*Модальне вікно 3 Set New Layout Image Confirmation Dialog 2*/
+.new-layout-img__title3{
+    width: 290px;
+    text-align: center;
+    color: var(--title-color-new-layout-img);
+    line-height: 36px;
+    font-weight: 500;
+}
