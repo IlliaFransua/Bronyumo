@@ -89,7 +89,7 @@ WSGI_APPLICATION = 'Bronyumo.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-load_dotenv(BASE_DIR / '.env.db.config')
+load_dotenv(BASE_DIR / '../.env.db.config')
 
 DATABASES = {
     'default': {
