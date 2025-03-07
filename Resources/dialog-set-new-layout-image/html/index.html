@@ -9,32 +9,65 @@
 </head>
 <body>
   <div class="wrapper">
-      <header>
-        <div class="container">
-            <!-- Header content will be here -->
-        </div>
-      </header>
-
-      <section class="content">
-          <div class="container">
-                <!-- Section content will be here -->
-          </div>
-      </section>
-
-      <footer>
-          <div class="container">
-                <!-- Footer content will be here -->
-          </div>
-      </footer>
+    <button type="button" id="openModalBtn">Open Modal</button> <!-- кнопка відкриття діалогових вікон додати type="button" id="openModalBtn" -->
   </div>
 
-<div id="modalOverlay" class="modal-overlay"></div>
-<div id="modalDialog" class="modal">
-  <!-- Dialog content will be here -->
-  <button onclick="closeModal();">Close</button>
-</div>
+  <!-- Модальне вікно 1 Set New Layout Image Dialog-->
+  <div class="new-layout-img__backdrop new-layout-img__is-hidden" id="modal1">
+    <div class="new-layout-img__modal">
+      <button type="button" class="new-layout-img__close-btn" id="closeModal1">
+        <svg class="new-layout-img__close-btn-icon" width="8" height="8">
+          <use href="../icons/symbol-defs-close.svg#icon-close-modal"></use>
+        </svg>
+      </button>
+      <div class="new-layout-img__text">
+        <h2 class="new-layout-img__title"><span>Upload a new layout image </span><span class="new-layout-img__title-up">AND</span></h2>
+        <button class="new-layout-img__btn" id="openModal2Btn">
+          <div class="new-layout-img__btn-text">
+            Save the marked table boundaries
+          </div>
+        </button>
+        <button class="new-layout-img__btn" id="deleteAllBtn">
+          <div class="new-layout-img__btn-text">
+            Delete all marked table boundaries and future reservations for them
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
 
-<script src="../js/script.js"></script>
+  <!-- Модальне вікно 2 Set New Layout Image Confirmation Dialog 1-->
+  <div class="new-layout-img__backdrop new-layout-img__is-hidden" id="modal2">
+    <div class="new-layout-img__modal">
+      <div class="new-Lyt-Img-Conf-Dlg__text">
+        <h2 class="new-layout-img__title">Are you sure you want to upload a new layout image <strong>and</strong> save the marked table boundaries?</h2>
+        <button class="new-Lyt-Img-Conf-Dlg__btn1" id="option1Btn">
+          <div class="new-layout-img__btn-text">Confirm</div>
+        </button>
+        <button class="new-Lyt-Img-Conf-Dlg__btn2" id="cancelOptionBtn">
+          <div class="new-layout-img__btn-text">Cancel</div>
+        </button>
+      </div>
+    </div>
+  </div>
 
+  <!-- Модальне вікно 3 Set New Layout Image Confirmation Dialog 2-->
+  <div class="new-layout-img__backdrop new-layout-img__is-hidden" id="modal3">
+    <div class="new-layout-img__modal">
+      <div class="new-Lyt-Img-Conf-Dlg__text">
+        <h2 class="new-layout-img__title3">
+          Are you sure you want to upload a new layout image <strong>and </strong>delete all marked table boundaries and future reservations for them?
+        </h2>
+        <button class="new-Lyt-Img-Conf-Dlg__btn1" id="option1BtnModal3">
+          <div class="new-layout-img__btn-text">Confirm</div>
+        </button>
+        <button class="new-Lyt-Img-Conf-Dlg__btn2" id="cancelDeleteBtn">
+          <div class="new-layout-img__btn-text">Cancel</div>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/script.js"></script>
 </body>
 </html>

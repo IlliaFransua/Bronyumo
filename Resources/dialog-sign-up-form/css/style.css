@@ -1,0 +1,112 @@
+:root {
+    --btn-color-new-layout-img:#393F44;
+    --modal-color: #F5F4FA;
+    --title-color-new-layout-img: #212529;
+    --modal-close-btn-icon:#2E2F42;
+}
+.dlg-sign-up__is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.dlg-sign-up__no-scroll {
+    overflow: hidden;
+}
+
+.dlg-sign-up__backdrop {
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(46, 47, 66, 0.4);
+    transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1), visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dlg-sign-up__modal {
+    width: 697px;
+    background: var(--modal-color);
+    border-radius: 10px;
+    padding: 46px 35px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.dlg-sign-up__close-btn {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1), background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dlg-sign-up__close-btn:hover,
+.dlg-sign-up__close-btn:focus {
+    border-color: var(--title-color-new-layout-img);
+    background-color: var(--title-color-new-layout-img);
+}
+
+.dlg-sign-up__close-btn-icon {
+    fill: var(----modal-close-btn-icon);
+    transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dlg-sign-up__close-btn:hover .dlg-sign-up__close-btn-icon,
+.dlg-sign-up__close-btn:focus .dlg-sign-up__close-btn-icon {
+    fill: var(--bg-color);
+}
+.dlg-sign-up__form-group {
+    margin-bottom: 24px;
+}
+.dlg-sign-up__form-row {
+    display: flex;
+    gap: 32px;
+}
+.dlg-sign-up__form-group-half {
+    flex: 1;
+}
+.dlg-sign-up__label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--title-color-new-layout-img);
+    font-weight: 500;
+    line-height: 24px;
+}
+.dlg-sign-up__input {
+    width: 100%;
+    height: 48px;
+    padding: 12px 16px;
+    border: 1px #E0E0E0 solid;
+    border-radius: 8px;
+    box-sizing: border-box;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+}
+input::placeholder {
+    color: var(--text-color-grey) !important;
+    font-size: 14px !important;
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 500 !important;
+}
+
+.dlg-sign-up__Sbmt-Btn {
+    width: 100%;
+    padding: 16px 0px;
+    background-color: var(--title-color-new-layout-img);
+    color: var(--bg-color);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 24px;
+}
+.dlg-sign-up__Sbmt-Btn:hover {
+    background-color: var(--btn-color-new-layout-img);
+}
