@@ -120,15 +120,3 @@ class DjangoSession(models.Model):
     class Meta:
         managed = False
         db_table = 'django_session'
-
-
-class Persons(models.Model):
-    personid = models.IntegerField(blank=True, null=True)
-    lastname = models.CharField(max_length=255, blank=True, null=True)
-    firstname = models.CharField(max_length=255, blank=True, null=True)
-    address = models.CharField(max_length=255, blank=True, null=True)
-    city = models.CharField(max_length=255, blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'persons'

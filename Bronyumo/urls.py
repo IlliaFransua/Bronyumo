@@ -20,9 +20,26 @@ from django.urls import path, include
 from apps import bookings
 
 urlpatterns = [
-    path('accounts/', include('accounts.urls')),
-    path('', include('main.urls')),
-    path('bookings/', include('bookings.urls')),
+    path('', include([
+        path('', include('apps.main.urls.views_urls')),
+        path('api/', include('apps.main.urls.api_urls')),
+    ])),
+
+    path('accounts/', include([
+        path('', include('apps.accounts.urls.views_urls')),
+        path('api/', include('apps.accounts.urls.api_urls')),
+    ])),
+
+    path('bookings/', include([
+        path('', include('apps.bookings.urls.views_urls')),
+        path('api/', include('apps.bookings.urls.api_urls')),
+    ])),
+
+    path('utils/', include([
+        path('', include('apps.utils.urls.views_urls')),
+        path('api/', include('apps.utils.urls.api_urls')),
+    ])),
+
     path('admin/', admin.site.urls),
     path("__reload__/", include("django_browser_reload.urls")),
 ]
