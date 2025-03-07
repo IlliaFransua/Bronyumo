@@ -8,33 +8,25 @@
   <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-  <div class="wrapper">
-      <header>
+    <!-- After the file is uploaded, make a redirect -->
+    <section class="content">
         <div class="container">
-            <!-- Header content will be here -->
+            <div class="section-upload-floor-plan">
+                <div class="section-upload-floor-plan__canvas">
+                    <img src="../assets/images/test-floor.png" alt="floor-image"
+                    style="width: 45%; margin-bottom: 1rem;">
+                    <h1>Upload Your Floor Plan Here!</h1>
+                    <p>Please upload PNG or JPG files</p>
+                    <p>File maximum size should be <strong>50 MB</strong></p>
+                    <button class="button-lg" style="margin-top: 1rem">
+                        <img src="../assets/images/upload-icon.png" alt="upload-icon"
+                        style="width: 20px; height: 20px;">
+                        UPLOAD A FILE
+                    </button>
+                </div>
+            </div>
         </div>
-      </header>
-
-      <section class="content">
-          <div class="container">
-                <!-- Section content will be here -->
-          </div>
-      </section>
-
-      <footer>
-          <div class="container">
-                <!-- Footer content will be here -->
-          </div>
-      </footer>
-  </div>
-
-<div id="modalOverlay" class="modal-overlay"></div>
-<div id="modalDialog" class="modal">
-  <!-- Dialog content will be here -->
-  <button onclick="closeModal();">Close</button>
-</div>
-
-<script src="../js/script.js"></script>
-
+  </section>
 </body>
+<script src="../js/fileUpload.js"></script>
 </html>
