@@ -21,11 +21,11 @@ import sys
 import os
 from pathlib import Path
 from dotenv import load_dotenv
-load_dotenv('.env.dist')
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
 
+load_dotenv(BASE_DIR / '.env.dist')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -88,7 +88,8 @@ WSGI_APPLICATION = 'Bronyumo.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-load_dotenv('.env.db.config')
+load_dotenv(BASE_DIR / '.env.db.config')
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
