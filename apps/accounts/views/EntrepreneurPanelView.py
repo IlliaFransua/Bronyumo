@@ -7,16 +7,33 @@ from django.shortcuts import render
 
 
 class EntrepreneurPanelView(View):
-    @staticmethod
-    def get(request, *args, **kwargs):
-        """
-        Handle GET requests.
+    """
+    Данный класс обрабатывает HTTP-запросы, связанные со стартовой
+    панелью управления предпринимателя, когда карта ещё не загружена.
+    Использует метод GET для рендеринга HTML-шаблона с переданными параметрами.
 
-        This method processes GET requests and returns an HTML page
-        with a context containing a list of items.
+    Основные функции:
+    - Получение GET-запроса от клиента.
+    - Формирование контекста с данными.
+    - Генерация HTML-ответа с подготовленной информацией.
+
+    Метод `get()` работает в статическом режиме. Создание экземпляра класса не требуется.
+    """
+
+    @staticmethod
+    def get(request):
+        """
+        Ожидаемые параметры:
+            request (HttpRequest): HTTP-запрос, полученный от клиента.
+
+        Ожидаемый результат:
+            HTML-страница, содержащая переданный контекст.
+
+        В текущей версии передается список элементов в качестве примера.
+        Если необходимо отобразить страницу, предпочтительно использовать `render()`.
         """
         context = {
-            "items": ["one", "two", "three"],  # Example list of items
+            "items": ["one", "two", "three"],
         }
 
-        return render(request, "main/home.html", context)
+        return render(request, "accounts/home.html", context)

@@ -7,16 +7,32 @@ from django.shortcuts import render
 
 
 class HomePageView(View):
-    @staticmethod
-    def get(request, *args, **kwargs):
-        """
-        Handle GET requests.
+    """
+    Этот класс отвечает за обработку HTTP-запросов к главной странице приложения.
+    Использует метод GET для передачи данных и рендеринга HTML-шаблона.
 
-        This method processes GET requests and returns an HTML page
-        with a context containing a list of items.
+    Основные функции:
+    - Получение GET-запроса от клиента.
+    - Подготовка контекста с данными.
+    - Отображение HTML-шаблона с переданными параметрами.
+
+    Статический метод `get()` позволяет обработать запрос без создания экземпляра класса.
+    """
+
+    @staticmethod
+    def get(request):
+        """
+        Ожидаемые параметры:
+            request (HttpRequest): Входящий HTTP-запрос.
+
+        Ожидаемый результат:
+            HTML-страница с переданными данными.
+
+        В текущей версии передается список элементов в качестве примера.
+        Если необходимо отобразить страницу, предпочтительно использовать `render()`.
         """
         context = {
-            "items": ["one", "two", "three"],  # Example list of items
+            "items": ["one", "two", "three"],
         }
 
         return render(request, "main/home.html", context)

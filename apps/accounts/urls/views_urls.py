@@ -6,7 +6,7 @@ urlpatterns = [
          EntrepreneurPanelView.as_view(),
          name='entrepreneur-panel-view'),
 
-    path('edit-available-objects-panel/',
+    path('edit-available-objects-panel/<str:entity_hash>/<str:map_image_hash>/',
          EditAvailableObjectsPanelView.as_view(),
          name='edit-available-objects-panel-view'),
 

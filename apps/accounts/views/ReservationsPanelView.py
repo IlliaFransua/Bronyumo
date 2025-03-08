@@ -8,7 +8,7 @@ from django.shortcuts import render
 
 class ReservationsPanelView(View):
     @staticmethod
-    def get(request, *args, **kwargs):
+    def get(request, entity_hash, map_image_hash):
         """
         Handle GET requests.
 

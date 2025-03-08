@@ -1,7 +1,21 @@
 from abc import ABC, abstractmethod
 
+
 class BaseValidator(ABC):
+    """
+    Базовый абстрактный класс валидатора.
+
+    Этот класс определяет базовую структуру для всех валидаторов,
+    требуя реализации метода `validate()` в подклассах.
+    """
+
     @abstractmethod
     def validate(self, value):
-        """Checks the value and returns it if anything is ok or generates an error."""
+        """
+        Проверка входного значения.
+
+        Данный метод должен быть переопределен в наследниках.
+        Если значение проходит проверку, оно возвращается.
+        В противном случае выбрасывается исключение.
+        """
         pass

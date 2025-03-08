@@ -8,25 +8,41 @@ from apps.accounts.serializers import SignInSerializer
 
 class SignInAPI(APIView):
     """
-    API-endpoint for user authentication (sign-in).
+    Данный API-эндпоинт предназначен для обработки входа пользователя в систему.
+    Использует стандартные методы валидации и проверки данных.
+
+    Основные функции:
+    - Прием POST-запроса с учетными данными.
+    - Анализ и сверка переданных данных с базой данных.
+    - В случае подтверждения учетной записи — генерация и передача токена доступа.
+    - При несовпадении данных — формирование отчета об ошибке.
+
+    Метод post работает в статическом режиме. Создание дополнительного экземпляра не требуется. Оптимальная эффективность обеспечена.
     """
+
     @staticmethod
-    def post(request, format=None):
+    def post(request):
         """
-        Handle POST requests for user sign-in.
+        Параметры:
+            request (Request): Входные данные пользователя.
 
-        This method authenticates the user using the provided credentials.
-        If authentication is successful, it returns an authentication token.
-        Otherwise, it returns an error response.
+        Ожидаемый формат данных:
+            {
+                "username": <строка>,
+                "password": <строка>
+            }
 
-        Args:
-            request: The HTTP request object containing the login credentials.
-            format: Optional format for the response (default is None).
+        Ожидаемый результат при успешном входе:
+            {
+                "token": <строка>,     # Сгенерированный токен доступа.
+                "user_id": <число>,    # Уникальный идентификатор пользователя.
+                "expires": <строка>    # Время окончания действия токена (формат ISO 8601).
+            }
 
-        Returns:
-            Response: A JSON response indicating the result of authentication.
-                - On success: HTTP 200 OK with an authentication token.
-                - On failure: HTTP 400 Bad Request with an error message.
+        В случае ошибки аутентификации:
+            {
+                "error": <строка>      # Причина отказа. Например, "Неверные учетные данные".
+            }
         """
         serializer = SignInSerializer(data=request.data)
         if serializer.is_valid():
@@ -37,7 +53,7 @@ class SignInAPI(APIView):
             if user:
                 token, created = Token.objects.get_or_create(user=user)
                 return Response(
-                    {'message': 'Login successful', 'token': token.key},
+                    {'message': 'Login has been completed successfully.', 'token': token.key},
                     status=status.HTTP_200_OK
                 )
             return Response(
