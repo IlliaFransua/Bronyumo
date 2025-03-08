@@ -6,11 +6,11 @@ urlpatterns = [
          MapUploadAPI.as_view(),
          name='map-upload-api'),
 
-    path('object-map-loader/<str:entity_hash>/<str:map_image_hash>/',
+    path('object-map-loader/<str:booking_hash>/',
          ObjectMapLoaderAPI.as_view(),
          name='object-map-loader-api'),
 
-    path('save-map/<str:entity_hash>/<str:map_image_hash>/',
+    path('save-map/<str:booking_hash>/',
          SaveMapAPI.as_view(),
          name='save-map-api'),
 ]

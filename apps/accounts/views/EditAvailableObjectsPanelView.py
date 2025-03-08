@@ -8,7 +8,7 @@ from django.shortcuts import render
 
 class EditAvailableObjectsPanelView(View):
     @staticmethod
-    def get(request, entity_hash, map_image_hash):
+    def get(request, booking_hash):
         """
         Handle GET requests.
 

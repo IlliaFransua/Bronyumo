@@ -8,10 +8,10 @@ from django.shortcuts import render
 
 class ClientBookingPanelView(View):
     @staticmethod
-    def get(self, request, entity_hash, card_hash):
+    def get(request, booking_hash):
         """
         Handle GET requests.
 
         This method processes GET requests and returns an HTML page.
         """
-        return HttpResponse(f"Entity Hash: {entity_hash}, Card Hash: {card_hash}")
+        return HttpResponse(f"Booking Hash: {booking_hash}")

@@ -8,5 +8,5 @@ from django.shortcuts import render
 
 class SaveMapAPI(View):
     @staticmethod
-    def get(request, *args, **kwargs):
+    def get(request, booking_hash):
         pass

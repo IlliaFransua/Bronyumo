@@ -7,13 +7,12 @@ from rest_framework.response import Response
 
 class CreateBookingAPI(APIView):
     @staticmethod
-    def get(self, request, entity_hash, map_image_hash, *args, **kwargs):
+    def get(request, booking_hash):
         # Create booking logic
         availability_data = {
             "available": True,
             "message": "Booking is created.",
-            "entity_hash": entity_hash,
-            "map_image_hash": map_image_hash
+            "booking_hash": booking_hash,
         }
 
         return Response(availability_data)

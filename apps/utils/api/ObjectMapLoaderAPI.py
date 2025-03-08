@@ -8,5 +8,5 @@ from django.shortcuts import render
 
 class ObjectMapLoaderAPI(View):
     @staticmethod
-    def get(request, entity_hash, map_image_hash, *args, **kwargs):
+    def get(request, booking_hash):
         pass
