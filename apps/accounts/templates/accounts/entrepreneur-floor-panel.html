@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Restaurant Management Panel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'account-header/css/style.css' %}">
+</head>
+<body>
+    <header>
+        {% include 'account-header/html/index.html' %}
+        {% include 'section-floor-settings/html/index.html' %}
+    </header>
+    <section class="content">
+          <div class="container">
+                {% include 'section-floor-layout/html/index.html' %}
+          </div>
+      </section>
+</body>
+
+</html>

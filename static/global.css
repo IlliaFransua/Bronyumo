@@ -112,6 +112,10 @@ a {
   color: black;
 }
 
+header{
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
 h1{
   font-size: 26px;
 }
