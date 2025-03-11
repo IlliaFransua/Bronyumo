@@ -2,14 +2,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const tableLayoutManager = window.tableLayoutManager;
 
     function setupTableCoordinatesSave() {
-        const sendUrl = '/accounts/save-table-layout/'
+        const URL = '/accounts/edit-available-objects-panel/'
         const saveButton = document.querySelector('.section-floor-settings button:last-child');
 
         if (saveButton) {
             saveButton.addEventListener('click', (event) => {
                 const tableCoordinates = tableLayoutManager.getTableCoordinates();
                 const xhr = new XMLHttpRequest();
-                xhr.open('POST', sendUrl, true);
+                xhr.open('POST', URL, true);
 
                 // Set up CSRF token
                 const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]');
