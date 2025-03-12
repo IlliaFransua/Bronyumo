@@ -24,6 +24,15 @@ class PasswordStrengthValidator(BaseValidator):
         """
         if len(value) < 8:
             raise serializers.ValidationError("Пароль должен содержать не менее 8 символов.")
+        if len(value) > 64:
+            raise serializers.ValidationError("Пароль пароль слишком длинный")
         if not any(char.isdigit() for char in value):
             raise serializers.ValidationError("Пароль должен содержать хотя бы одну цифру.")
+        if not any(char.islower() for char in value):
+            raise serializers.ValidationError("Пароль должен содержать хотя бы одну строчную букву.")
+        if not any(char.isupper() for char in value):
+            raise serializers.ValidationError("Пароль должен содержать хотя бы одну прописную букву.")
+        if not any(char in "!@#$%^&*()-_=+[]{}|;:,.<>?/" for char in value):
+            raise serializers.ValidationError("Пароль должен содержать хотя бы один специальный символ.")
+
         return value

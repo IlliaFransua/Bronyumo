@@ -80,9 +80,5 @@ class SignUpSerializer(serializers.Serializer):
             email=validated_data["email"],
             password=validated_data["password"]
         )
-        return {
-            "user_id": user.id,
-            "username": user.username,
-            "email": user.email,
-            "message": "Регистрация успешно завершена."
-        }
+        return user
+
