@@ -1,21 +1,22 @@
 from abc import ABC, abstractmethod
+from typing import Any
 
 
 class BaseValidator(ABC):
     """
-    Базовый абстрактный класс валидатора.
+    Abstract base class for implementing custom validators.
 
-    Этот класс определяет базовую структуру для всех валидаторов,
-    требуя реализации метода `validate()` в подклассах.
+    This class defines the basic structure for validators that check the validity of a given value.
+    Any custom validator should inherit from this class and implement the `validate` method.
     """
 
     @abstractmethod
-    def validate(self, value):
+    def validate(self, value: Any) -> Any:
         """
-        Проверка входного значения.
+        Abstract method that needs to be implemented by subclasses to perform validation.
 
-        Данный метод должен быть переопределен в наследниках.
-        Если значение проходит проверку, оно возвращается.
-        В противном случае выбрасывается исключение.
+        :param value: The value to be validated. The type of this value depends on the specific validator.
+        :return: The validated value if the validation passes.
+        :raises ValidationError: If the validation fails, an exception should be raised.
         """
         pass
