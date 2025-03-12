@@ -102,6 +102,13 @@ DATABASES = {
     }
 }
 
+db_dsn = (
+    f"dbname={os.getenv('DATABASE_NAME')} "
+    f"user={os.getenv('DATABASE_USERNAME')} "
+    f"password={os.getenv('DATABASE_PASSWORD')} "
+    f"host={os.getenv('DATABASE_HOST')} "
+    f"port={os.getenv('DATABASE_PORT')}"
+)
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -144,3 +151,4 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
