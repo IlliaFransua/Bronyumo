@@ -49,6 +49,7 @@ class DatabaseConnection:
         if self.cursor:
             if exc_type is not None:
                 self.conn.rollback()
+                # print(f"Transaction rolled back due to: {exc_val}")
             else:
                 self.conn.commit()
             self.cursor.close()

@@ -1,3 +1,5 @@
+from typing import Optional, Tuple
+
 from apps.accounts.DatabaseConnection import DatabaseConnection
 from datetime import datetime, timedelta
 import uuid
@@ -19,12 +21,9 @@ class CompanySessionManager:
         self.db_dsn = db_dsn
         self.start_session_cleanup(interval=3600)
 
-    def start_session(self, company_id, expires_in=3600):
+    def start_session(self, company_id: int, expires_in: int = 3600) -> Optional[Tuple[uuid.UUID, datetime]]:
         """
         Starts a new session for a given company.
-
-        This method generates a new session ID, sets its expiration time, and inserts the session
-        into the 'company_sessions' table.
 
         :param company_id: The ID of the company for which the session is being created.
         :param expires_in: The session duration in seconds (default is 3600 seconds, or 1 hour).
@@ -40,22 +39,25 @@ class CompanySessionManager:
         """
 
         try:
-            with psycopg2.connect(self.db_dsn) as conn:
-                with conn.cursor() as cursor:
-                    cursor.execute(query, (session_id, company_id, expires_at))
-                    result = cursor.fetchone()  # (UUID,) or None
+            # print(f"Connecting to database with DSN: {self.db_dsn}")
+            with DatabaseConnection(self.db_dsn) as cursor:
+                # print(f"Executing query: {query}")
+                cursor.execute(query, (session_id, company_id, expires_at))
+                result = cursor.fetchone()  # (UUID,) or None
 
-                    if result is None:
-                        # print(f"Error: INSERT query did not return session_id for company_id={company_id}")
-                        return None
+                if result is None:
+                    # print(f"Error: INSERT query did not return session_id for company_id={company_id}")
+                    return None
 
-                    return result[0], expires_at
+                # print(f"Session created: {result['session_id']} with expiration: {expires_at}")
+                cursor.connection.commit()
+                return result['session_id'], expires_at
 
-        except psycopg2.IntegrityError:
-            # print(f"Error: Integrity violation when creating session for company_id={company_id}")
+        except psycopg2.IntegrityError as e:
+            # print(f"Error: Integrity violation when creating session for company_id={company_id}: {str(e)}")
             return None
         except psycopg2.Error as e:
-            # print(f"Database error while creating session: {e}")
+            # print(f"Database error while creating session: {str(e)}")
             return None
 
     def validate_session(self, session_id):
@@ -114,11 +116,9 @@ class CompanySessionManager:
         """
         Removes expired company sessions from the 'company_sessions' table.
 
-        This method deletes all sessions where the expiration time has passed, ensuring session data remains up to date.
-
         :return: The number of expired sessions that were deleted.
         """
-        query = "DELETE FROM company_sessions WHERE expires_at < CURRENT_TIMESTAMP;"
+        query = "DELETE FROM company_sessions WHERE expires_at < CURRENT_TIMESTAMP AT TIME ZONE 'UTC';"
         try:
             with DatabaseConnection(self.db_dsn) as cursor:
                 cursor.execute(query)
