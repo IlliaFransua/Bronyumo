@@ -3,7 +3,9 @@ class TableLayoutManager {
         this.floorImage = document.querySelector('.section-floor-layout-floor-image');
         this.container = document.querySelector('.section-floor-layout');
         this.addBookingButton = document.querySelector('#add-booking-button');
+        this.removeBookingButton = document.querySelector('[id="removeFromBooking"]');
         this.tables = [];
+        this.isRemovalMode = false;
 
         this.initializeEventListeners();
         window.addEventListener('resize', this.repositionTables.bind(this));
@@ -12,6 +14,52 @@ class TableLayoutManager {
     initializeEventListeners() {
         if (this.addBookingButton) {
             this.addBookingButton.addEventListener('click', this.createNewTable.bind(this));
+        }
+
+        if (this.removeBookingButton) {
+            this.removeBookingButton.addEventListener('click', this.toggleRemovalMode.bind(this));
+        }
+    }
+
+    toggleRemovalMode() {
+        this.isRemovalMode = !this.isRemovalMode;
+
+        if (this.isRemovalMode) {
+            this.removeBookingButton.textContent = "EXIT REMOVAL MODE";
+            this.container.style.cursor = 'auto';
+            this.addTableRemovalListeners();
+        } else {
+            this.removeBookingButton.innerHTML = '<img src="../../../static/section-floor-settings/assets/images/cross-vector.png" alt="email-vector"> REMOVE FROM BOOKING';
+            this.container.style.cursor = 'default';
+            this.removeTableRemovalListeners();
+        }
+    }
+
+    addTableRemovalListeners() {
+        this.tables.forEach(table => {
+            table.classList.add('deletable');
+            table.addEventListener('click', this.handleTableRemoval);
+        });
+    }
+
+    removeTableRemovalListeners() {
+        this.tables.forEach(table => {
+            table.classList.remove('deletable');
+            table.removeEventListener('click', this.handleTableRemoval);
+        });
+    }
+
+    handleTableRemoval = (e) => {
+        if (!this.isRemovalMode) return;
+
+        e.stopPropagation();
+        const table = e.currentTarget;
+
+        table.remove();
+
+        const index = this.tables.indexOf(table);
+        if (index > -1) {
+            this.tables.splice(index, 1);
         }
     }
 
@@ -42,6 +90,11 @@ class TableLayoutManager {
         this.container.appendChild(table);
         this.makeDraggable(table);
         this.tables.push(table);
+
+        if (this.isRemovalMode) {
+            table.classList.add('deletable');
+            table.addEventListener('click', this.handleTableRemoval);
+        }
     }
 
     makeDraggable(element) {
@@ -49,6 +102,8 @@ class TableLayoutManager {
         let startX, startY, initialLeft, initialTop;
 
         const startDrag = (e) => {
+            if (this.isRemovalMode) return;
+
             isDragging = true;
 
             e.preventDefault();
@@ -154,6 +209,8 @@ class TableLayoutManager {
         let startX, startY, startWidth, startHeight, startLeft, startTop;
 
         const startResize = (e) => {
+            if (this.isRemovalMode) return;
+
             e.stopPropagation();
             isResizing = true;
 
@@ -277,4 +334,19 @@ class TableLayoutManager {
 
 document.addEventListener('DOMContentLoaded', () => {
     window.tableLayoutManager = new TableLayoutManager();
+});
+
+// Add some CSS styles for the rectangle, that is being deleted
+document.addEventListener('DOMContentLoaded', () => {
+    const style = document.createElement('style');
+    style.textContent = `
+        .deletable {
+            cursor: pointer;
+        }
+        .deletable:hover {
+            background-color: rgba(255, 0, 0, 0.3) !important;
+            border: 2px dashed red !important;
+        }
+    `;
+    document.head.appendChild(style);
 });

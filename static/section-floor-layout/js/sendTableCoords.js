@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         console.error('Response:', xhr.responseText);
                     }
                 };
-
+                // Send the data to the backend
                 xhr.send(JSON.stringify(tableCoordinates));
             });
         } else {
