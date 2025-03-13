@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function sendToBackend(file) {
         //Paste the url to Django view
-        const uploadFileUrl = 'paste/the/url/to/Django/view/'
+        const uploadFileUrl = 'http://127.0.0.1:8000/utils/api/map-upload/';
         const formData = new FormData();
         formData.append('floorPlanImage', file);
 
@@ -57,7 +57,8 @@ document.addEventListener('DOMContentLoaded', function() {
         // Send the file to the backend
         fetch(uploadFileUrl, {
             method: 'POST',
-            body: formData
+            body: formData,
+            credentials: 'include',
         })
         .then(response => {
             if (!response.ok) {

@@ -1,9 +1,15 @@
+import os
+
+from django.utils.decorators import method_decorator
+from django.utils.text import get_valid_filename
 from rest_framework.views import APIView
 from django.core.files.storage import default_storage
 from rest_framework.response import Response
 from rest_framework import status
+from apps.utils.decorators import session_required
 
 
+# @method_decorator(session_required, name='dispatch')
 class MapUploadAPI(APIView):
     """
     Данный API-эндпоинт предназначен для приема изображений в форматах JPG, JPEG и PNG.
@@ -27,6 +33,7 @@ class MapUploadAPI(APIView):
 
         Ожидаемый формат данных:
             - multipart/form-data с полем "file", содержащим изображение.
+            - куки
 
         Ожидаемый результат при успешной загрузке:
             {
@@ -39,7 +46,7 @@ class MapUploadAPI(APIView):
                 "error": <строка>       # Причина отказа. Например, "Недопустимый формат файла".
             }
         """
-        file = request.FILES.get('file')
+        file = request.FILES.get('floorPlanImage')
 
         if not file:
             return Response({"error": "Файл не обнаружен в запросе."}, status=status.HTTP_400_BAD_REQUEST)
@@ -51,11 +58,13 @@ class MapUploadAPI(APIView):
             return Response({"error": "Формат файла не соответствует требованиям. Разрешены только JPG, JPEG и PNG."},
                             status=status.HTTP_400_BAD_REQUEST)
 
-        file_path = f"uploads/maps/{file.name}"
+        file_name = get_valid_filename(file.name)
+        file_path = os.path.join("uploads/maps", file_name)
+
         with default_storage.open(file_path, 'wb+') as destination:
             for chunk in file.chunks():
                 destination.write(chunk)
 
-        file_url = default_storage.url(file_path)
+        file_url = request.build_absolute_uri(default_storage.url(file_path))
         return Response({"file_url": file_url, "message": "Файл успешно загружен."},
                         status=status.HTTP_201_CREATED)

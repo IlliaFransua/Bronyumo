@@ -32,8 +32,5 @@ class EntrepreneurPanelView(View):
         В текущей версии передается список элементов в качестве примера.
         Если необходимо отобразить страницу, предпочтительно использовать `render()`.
         """
-        context = {
-            "items": ["one", "two", "three"],
-        }
 
-        return render(request, "accounts/home.html", context)
+        return render(request, "accounts/EntrepreneurPanelView.html")

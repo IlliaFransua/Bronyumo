@@ -6,7 +6,8 @@ from django.shortcuts import render
 # from apps.main.models import yourModel
 
 
+# @method_decorator(session_required, name='dispatch')
 class SaveMapAPI(View):
     @staticmethod
-    def get(request, booking_hash):
+    def get(request, map_hash):
         pass
