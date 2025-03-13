@@ -38,12 +38,6 @@ class EditAvailableObjectsPanelView(View):
         try:
             session_id: Optional[str] = request.COOKIES.get('session_id')
 
-            if not session_id:
-                return JsonResponse({"error": "Session not found."}, status=status.HTTP_400_BAD_REQUEST)
-
-            if not self.session_manager.validate_session(session_id):
-                return JsonResponse({"error": "Invalid session."}, status=status.HTTP_400_BAD_REQUEST)
-
             company_data: Optional[dict] = self.company_manager.get_company_by_session_id(session_id)
             print(company_data)
 
