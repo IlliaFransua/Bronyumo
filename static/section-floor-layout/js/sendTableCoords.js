@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (saveButton) {
             saveButton.addEventListener('click', (event) => {
                 const tableCoordinates = tableLayoutManager.getTableCoordinates();
+                console.log('Sending data:', tableCoordinates);
+
                 const xhr = new XMLHttpRequest();
                 xhr.open('POST', sendUrl, true);
 
@@ -20,17 +22,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 xhr.setRequestHeader('Content-Type', 'application/json');
                 xhr.onload = function() {
                     if (xhr.status === 200) {
-                        console.log('Extracted coordinates:', tableCoordinates);
-                        console.log(xhr.responseText);
+                        console.log('Success! Server response:', xhr.responseText);
                     } else {
-                        console.error('Error saving coordinates');
+                        console.error('Error saving coordinates. Status:', xhr.status);
+                        console.error('Response:', xhr.responseText);
                     }
                 };
 
-                const payload = JSON.stringify({
-                    table_coordinates: tableCoordinates
-                });
-                xhr.send(payload);
+                xhr.send(JSON.stringify(tableCoordinates));
             });
         } else {
             console.error('Save button not found');

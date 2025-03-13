@@ -259,9 +259,19 @@ class TableLayoutManager {
 
     // Method to get all table coordinates for saving
     getTableCoordinates() {
-        return this.tables.map(table =>
-            JSON.parse(table.dataset.normalizedCoords)
-        );
+        return {
+            path_to_object_map: "paste_the_url", // Replace with your actual URL
+            objects_data: this.tables.map((table, index) => {
+                const coords = JSON.parse(table.dataset.normalizedCoords);
+                return {
+                    object_id: index,
+                    x1: coords.x1,
+                    y1: coords.y1,
+                    x2: coords.x2,
+                    y2: coords.y2
+                };
+            })
+        };
     }
 }
 
