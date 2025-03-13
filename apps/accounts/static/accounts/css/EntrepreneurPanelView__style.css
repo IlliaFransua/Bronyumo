@@ -3,11 +3,13 @@
     height: 6.25rem;
     padding-right: 80px;
     padding-left: 80px;
+    justify-self: center;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    gap: 849px;
 }
 
 .account-nav {
