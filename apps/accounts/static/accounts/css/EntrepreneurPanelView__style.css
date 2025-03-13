@@ -1,0 +1,169 @@
+.account-header {
+    width: 100%;
+    height: 6.25rem;
+    padding-right: 80px;
+    padding-left: 80px;
+    justify-self: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    gap: 849px;
+}
+
+.account-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 16.5rem;
+}
+
+/* Buttons */
+.button-sm__EntrepreneurPanelView {
+    position: relative;
+    border-color: #E9ECEF;
+    background: transparent;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    border-color: #E9ECEF;
+    border-style: solid;
+    background-color: white;
+}
+.button-sm-flg__EntrepreneurPanelView {
+    position: relative;
+    border-color: #E9ECEF;
+    background: transparent;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 0.5rem;
+    border-color: #E9ECEF;
+    border-style: solid;
+    background-color: white;
+}
+.button-md {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 0.5rem;
+    border-color: #E9ECEF;
+    background: transparent;
+    cursor: pointer;
+    position: relative;
+    border-radius: 8px;
+    transition: border-radius 0.2s ease;
+}
+
+.button-md.active {
+    background-color: white;
+    border-radius: 4px 4px 0 0;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+    border-bottom: none;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: white;
+    border: 1px solid #E9ECEF;
+    border-radius: 0 0 4px 4px;
+    padding: 0.5rem 0;
+    z-index: 1000;
+    width: 8rem;
+    right: -0.1rem;
+    top: 100%;
+    margin-top: 0;
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    color: #333;
+    transition: background-color 0.2s;
+}
+
+.dropdown-item:hover {
+    background-color: #f5f5f5;
+}
+
+.dropdown-item img {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+}
+
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2000;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    z-index: 2001;
+}
+
+
+
+
+/* upload-floor-plan */
+.section-upload-floor-plan{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.section-upload-floor-plan__canvas{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+}
+
+.section-upload-floor-plan__canvas h1{
+    color: #212529;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 26px;
+    margin-bottom: 15px;
+}
+
+.section-upload-floor-plan__canvas p{
+    font-size: 14px;
+    color: #343A40;
+    line-height: 26px;
+    margin-bottom: 11px;
+}
+
+.section-upload-floor-plan__canvas button{
+    background-color: #0057FC;
+    color: white;
+    width: 200px;
+    height: 48px;
+    border-color: currentColor;
+    font-size: 14px; 
+    line-height: 24px; 
+    letter-spacing: 0.35px;
+}
+
+.button-lg:active {
+    background-color: #0000e4;
+}

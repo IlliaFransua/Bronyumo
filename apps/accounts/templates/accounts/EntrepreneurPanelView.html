@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EntrepreneurPanelView</title>
+  <link rel="stylesheet" href="/static/global.css">
+  <link rel="stylesheet" href="/apps/accounts/static/accounts/css/EntrepreneurPanelView__style.css">
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <div class="container"
+                style="padding: 0 !important; margin: 0 !important;
+                        max-width: 100% !important;">
+                <div class="account-header">
+                    <div>
+                        <a href="http://google.com"><h1 style="font-weight: 500;">Bronyumo.ua</h1></a>
+                    </div>
+                    <div class="account-nav">
+                        <button class="button-sm__EntrepreneurPanelView" style="border: none; height: 1.9rem">
+                        <img style="height: 1.9rem;"
+                            src="/apps/accounts/static/accounts/images/flag-icon.png"
+                            alt="flag-icon">
+                        </button>
+                        <button class="button-sm-flg__EntrepreneurPanelView">
+                            <img src="/apps/accounts/static/accounts/images/bell-icon.svg" 
+                                alt="user-icon"
+                                style="width: 24px; height: 24px;
+                                position: absolute; right: 6.4px; top: 6.4px;">
+                            <img src="/apps/accounts/static/accounts/images/red-circle-icon.png"
+                                alt="red-circle-icon"
+                                style="width: 8px; height: 8px;
+                                position: absolute; right: 7px; top: 7px;">
+                        </button>
+                        <button class="button-md">
+                            <img style="width: 1.56rem; border-radius: 2px" src="/apps/accounts/static/accounts/images/restaurant-thumb-sm.png" alt="restaurant-thumbnail">
+                            Normal
+                            <img style="width: 1.56rem;" src="/apps/accounts/static/accounts/images/dropdown-icon.png" alt="dropdown-icon">
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- After the file is uploaded, make a redirect -->
+        <section class="content" style="margin: 9px 0 94px 0;">
+            <div class="container">
+                <div class="section-upload-floor-plan">
+                    <div class="section-upload-floor-plan__canvas">
+                        <img src="/apps/accounts/static/accounts/images/test-floor.png" alt="floor-image"
+                        style="width: 45%; margin-bottom: 32px;">
+                        <h1>Upload Your Floor Plan Here!</h1>
+                        <p>Please upload PNG or JPG files</p>
+                        <p>File maximum size should be <strong>50 MB</strong></p>
+                        <button class="button-lg" style="margin-top: 21px">
+                            <img src="/apps/accounts/static/accounts/images/upload-icon.png" alt="upload-icon"
+                            style="width: 20px; height: 20px;">
+                            UPLOAD A FILE
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+  
+  <script src="/apps/accounts/static/accounts/js/Account-header__dropdown.js"></script>
+  <script src="/apps/accounts/static/accounts/js/Account-header__fileUpload.js"></script>
+</body>
+</html>
