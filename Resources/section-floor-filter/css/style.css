@@ -41,7 +41,7 @@ select {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    background-image: url("../assets/images/dropdown-icon.png");
+    background-image: url("../../section-floor-filter/assets/images/dropdown-icon.png");
     background-repeat: no-repeat;
     background-position: right 12px center;
     background-size: 20px;
