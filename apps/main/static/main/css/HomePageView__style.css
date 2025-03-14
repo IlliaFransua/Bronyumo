@@ -1,0 +1,247 @@
+.header {
+  padding: 20px 70px;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.header__container {
+  width: 1300px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__logo,
+.left_footer p {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.header__controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header__controls > *:not(:first-child) {
+  margin-left: 10px;
+}
+
+.header__language {
+  width: 40px;
+  border-radius: 3px;
+  height: auto;
+  object-fit: contain;
+  vertical-align: middle;
+}
+
+.header__button,
+.Why-choose-us__button {
+  background: var(--main-color-black);
+  color: var(--text-color-white);
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.3s ease-in-out;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.header__button:hover {
+  box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.3);
+}
+
+.card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 22px auto 53px auto;
+  gap: 20px;
+}
+
+.card {
+  width: calc(33.333% - 20px);
+  background-color: var(--bg-secondary-color);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.card img {
+  max-width: 100%;
+  max-height: 70%;
+  border-radius: 8px;
+  margin-bottom: 10%;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.card h3 {
+  color: var(--main-color-black);
+}
+
+.card p {
+  color: var(--text-color-grey);
+  margin-bottom: 15%;
+}
+
+.card a {
+  display: block;
+  width: 50%;
+  margin: 0 auto;
+  background: var(--main-color-black);
+  color: var(--text-color-white);
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.3s ease-in-out;
+  text-decoration: none;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.header__button:hover {
+  box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 900px) {
+  .card {
+    width: calc(33.333% - 15px);
+  }
+}
+
+@media (max-width: 600px) {
+  .card {
+    width: calc(33.333% - 10px);
+  }
+}
+
+.First_page_container {
+  background-color: var(--bg-color);
+  margin-bottom: 29px;
+}
+
+.Why-choose-us__container {
+  display: flex;
+  justify-content: center;
+  gap: 200px;
+  background-color: #f7f7f7;
+  width: 100%;
+  padding: 3% 10%;
+  align-items: center;
+}
+
+.Why-choose-us__logo {
+  object-fit: contain;
+  max-width: 625px;
+  color: #212529;
+  font-size: 48px;
+  font-weight: 600;
+}
+
+.Why-choose-us__button {
+  width: 327px;
+  height: 62px;
+  background: #212529;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
+  justify-content: center;
+  align-items: center;
+  display: inline-flex;
+
+  color: white;
+  font-size: 26px;
+  font-family: Inter;
+  font-weight: 500;
+  line-height: 39px;
+}
+
+.Why-choose-us__button:hover {
+  box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.3);
+}
+
+footer {
+  padding: 0;
+}
+footer .container {
+  padding-top: 48px;
+  padding-bottom: 48px;
+}
+
+.container__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--bg-color);
+  align-items: flex-start;
+}
+
+.left_footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 86px;
+}
+
+.left_footer div {
+  display: flex;
+  gap: 32px;
+}
+
+.left_footer p {
+  padding-top: 5%;
+  color: #212529;
+  font-size: 26px;
+  line-height: 39px;
+}
+
+.footer__img {
+  max-width: 24px;
+  height: auto;
+  object-fit: contain;
+  vertical-align: middle;
+}
+
+.right_footer {
+  display: flex;
+  width: 503px;
+  text-align: left;
+  justify-content: space-between;
+}
+
+.right_footer div {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.right_footer a {
+  text-decoration: none;
+  display: inline-block;
+  transition: transform 0.2s ease, color 0.2s ease;
+  color: #454545;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 21px;
+}
+
+.right_footer a:first-child {
+  color: #212529;
+}
+
+.right_footer a:hover {
+  transform: translateY(-3px);
+  color: #4f4e50;
+}
