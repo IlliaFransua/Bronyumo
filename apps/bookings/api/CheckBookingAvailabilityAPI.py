@@ -7,12 +7,12 @@ from rest_framework.response import Response
 
 class CheckBookingAvailabilityAPI(APIView):
     @staticmethod
-    def get(request, booking_hash):
+    def get(request, map_hash):
         # Check booking availability logic
         availability_data = {
             "available": True,
             "message": "Booking is available.",
-            "booking_hash": booking_hash,
+            "map_hash": map_hash,
         }
 
         return Response(availability_data)
