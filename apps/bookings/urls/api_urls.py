@@ -23,7 +23,7 @@ urlpatterns = [
          AddForBookingAPI.as_view(),
          name='add-for-booking-api'),
 
-    path('remove-from-booking/<str:map_hash>/',
+    path('remove-from-booking/<str:map_hash>/<str:booking_object_hash>/',
          RemoveFromBookingAPI.as_view(),
          name='remove-from-booking-api'),
 
