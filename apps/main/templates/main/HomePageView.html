@@ -1,347 +1,345 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HomePageView</title>
-    <link rel="stylesheet" href="/static/global.css" />
-    <link
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HomePageView</title>
+  <link rel="stylesheet" href="{% static 'global.css' %}"/>
+  <link
       rel="stylesheet"
-      href="/apps/main/static/main/css/HomePageView__style.css"
-    />
-  </head>
-  <body>
-    <header class="header">
-      <div class="header__container">
-        <div class="header__logo">Bronyumo.ua</div>
-        <div class="header__controls">
+      href="{% static 'main/css/HomePageView__style.css' %}"
+  />
+</head>
+<body>
+<header class="header">
+  <div class="header__container">
+    <div class="header__logo"><a href="{% url 'home-page-view' %}" class="header__logo">Bronyumo.ua</a></div>
+    <div class="header__controls">
+      <img
+          src="{% static 'main/images/flag-uk.jpg' %}"
+          alt="English"
+          class="header__language"
+      />
+      <a href="{% url 'entrepreneur-page-view' %}" class="header__button"
+      >For entrepreneurs</a
+      >
+    </div>
+  </div>
+</header>
+<main>
+  <section class="First_page_content">
+    <div class="First_page_container">
+      <section class="card-grid">
+        <div class="card">
           <img
-            src="/apps/main/static/main/images/flag-uk.jpg"
-            alt="English"
-            class="header__language"
+              src="{% static 'main/images/business-card.png' %}"
+              alt="Card Image"
           />
-          <a
-            href="/apps/main/templates/main/EntrepreneurPageView.html"
-            class="header__button"
-            >For entrepreneurs</a
+          <h3>Любов та Люди</h3>
+          <p>Київ, вул.Предславинська, 44</p>
+          <a href>
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+            >
+              <path
+                  d="M15.25 14.9178H9.75M0.75 14.9178L5 13.9178L14.2929 4.62493C14.6834 4.2344 14.6834 3.60124 14.2929 3.21071L12.4571 1.37493C12.0666 0.984399 11.4334 0.984399 11.0429 1.37493L1.75 10.6678L0.75 14.9178Z"
+                  stroke="white"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+              />
+            </svg>
+            Book Now</a
           >
         </div>
-      </div>
-    </header>
-    <main>
-      <section class="First_page_content">
-        <div class="First_page_container">
-          <section class="card-grid">
-            <div class="card">
-              <img
-                src="/apps/main/static/main/images/business-card.png"
-                alt="Card Image"
+        <div class="card">
+          <img
+              src="{% static 'main/images/business-card.png' %}"
+              alt="Card Image"
+          />
+          <h3>Любов та Люди</h3>
+          <p>Київ, вул.Предславинська, 44</p>
+          <a href>
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+            >
+              <path
+                  d="M15.25 14.9178H9.75M0.75 14.9178L5 13.9178L14.2929 4.62493C14.6834 4.2344 14.6834 3.60124 14.2929 3.21071L12.4571 1.37493C12.0666 0.984399 11.4334 0.984399 11.0429 1.37493L1.75 10.6678L0.75 14.9178Z"
+                  stroke="white"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
               />
-              <h3>Любов та Люди</h3>
-              <p>Київ, вул.Предславинська, 44</p>
-              <a href>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                >
-                  <path
-                    d="M15.25 14.9178H9.75M0.75 14.9178L5 13.9178L14.2929 4.62493C14.6834 4.2344 14.6834 3.60124 14.2929 3.21071L12.4571 1.37493C12.0666 0.984399 11.4334 0.984399 11.0429 1.37493L1.75 10.6678L0.75 14.9178Z"
-                    stroke="white"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-                Book Now</a
-              >
-            </div>
-            <div class="card">
-              <img
-                src="/apps/main/static/main/images/business-card.png"
-                alt="Card Image"
+            </svg>
+            Book Now</a
+          >
+        </div>
+        <div class="card">
+          <img
+              src="{% static 'main/images/business-card.png' %}"
+              alt="Card Image"
+          />
+          <h3>Любов та Люди</h3>
+          <p>Київ, вул.Предславинська, 44</p>
+          <a href>
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+            >
+              <path
+                  d="M15.25 14.9178H9.75M0.75 14.9178L5 13.9178L14.2929 4.62493C14.6834 4.2344 14.6834 3.60124 14.2929 3.21071L12.4571 1.37493C12.0666 0.984399 11.4334 0.984399 11.0429 1.37493L1.75 10.6678L0.75 14.9178Z"
+                  stroke="white"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
               />
-              <h3>Любов та Люди</h3>
-              <p>Київ, вул.Предславинська, 44</p>
-              <a href>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                >
-                  <path
-                    d="M15.25 14.9178H9.75M0.75 14.9178L5 13.9178L14.2929 4.62493C14.6834 4.2344 14.6834 3.60124 14.2929 3.21071L12.4571 1.37493C12.0666 0.984399 11.4334 0.984399 11.0429 1.37493L1.75 10.6678L0.75 14.9178Z"
-                    stroke="white"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-                Book Now</a
-              >
-            </div>
-            <div class="card">
-              <img
-                src="/apps/main/static/main/images/business-card.png"
-                alt="Card Image"
+            </svg>
+            Book Now</a
+          >
+        </div>
+        <div class="card">
+          <img
+              src="{% static 'main/images/business-card.png' %}"
+              alt="Card Image"
+          />
+          <h3>Любов та Люди</h3>
+          <p>Київ, вул.Предславинська, 44</p>
+          <a href>
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+            >
+              <path
+                  d="M15.25 14.9178H9.75M0.75 14.9178L5 13.9178L14.2929 4.62493C14.6834 4.2344 14.6834 3.60124 14.2929 3.21071L12.4571 1.37493C12.0666 0.984399 11.4334 0.984399 11.0429 1.37493L1.75 10.6678L0.75 14.9178Z"
+                  stroke="white"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
               />
-              <h3>Любов та Люди</h3>
-              <p>Київ, вул.Предславинська, 44</p>
-              <a href>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                >
-                  <path
-                    d="M15.25 14.9178H9.75M0.75 14.9178L5 13.9178L14.2929 4.62493C14.6834 4.2344 14.6834 3.60124 14.2929 3.21071L12.4571 1.37493C12.0666 0.984399 11.4334 0.984399 11.0429 1.37493L1.75 10.6678L0.75 14.9178Z"
-                    stroke="white"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-                Book Now</a
-              >
-            </div>
-            <div class="card">
-              <img
-                src="/apps/main/static/main/images/business-card.png"
-                alt="Card Image"
+            </svg>
+            Book Now</a
+          >
+        </div>
+        <div class="card">
+          <img
+              src="{% static 'main/images/business-card.png' %}"
+              alt="Card Image"
+          />
+          <h3>Любов та Люди</h3>
+          <p>Київ, вул.Предславинська, 44</p>
+          <a href>
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+            >
+              <path
+                  d="M15.25 14.9178H9.75M0.75 14.9178L5 13.9178L14.2929 4.62493C14.6834 4.2344 14.6834 3.60124 14.2929 3.21071L12.4571 1.37493C12.0666 0.984399 11.4334 0.984399 11.0429 1.37493L1.75 10.6678L0.75 14.9178Z"
+                  stroke="white"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
               />
-              <h3>Любов та Люди</h3>
-              <p>Київ, вул.Предславинська, 44</p>
-              <a href>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                >
-                  <path
-                    d="M15.25 14.9178H9.75M0.75 14.9178L5 13.9178L14.2929 4.62493C14.6834 4.2344 14.6834 3.60124 14.2929 3.21071L12.4571 1.37493C12.0666 0.984399 11.4334 0.984399 11.0429 1.37493L1.75 10.6678L0.75 14.9178Z"
-                    stroke="white"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-                Book Now</a
-              >
-            </div>
-            <div class="card">
-              <img
-                src="/apps/main/static/main/images/business-card.png"
-                alt="Card Image"
+            </svg>
+            Book Now</a
+          >
+        </div>
+        <div class="card">
+          <img
+              src="{% static 'main/images/business-card.png' %}"
+              alt="Card Image"
+          />
+          <h3>Любов та Люди</h3>
+          <p>Київ, вул.Предславинська, 44</p>
+          <a href>
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+            >
+              <path
+                  d="M15.25 14.9178H9.75M0.75 14.9178L5 13.9178L14.2929 4.62493C14.6834 4.2344 14.6834 3.60124 14.2929 3.21071L12.4571 1.37493C12.0666 0.984399 11.4334 0.984399 11.0429 1.37493L1.75 10.6678L0.75 14.9178Z"
+                  stroke="white"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
               />
-              <h3>Любов та Люди</h3>
-              <p>Київ, вул.Предславинська, 44</p>
-              <a href>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                >
-                  <path
-                    d="M15.25 14.9178H9.75M0.75 14.9178L5 13.9178L14.2929 4.62493C14.6834 4.2344 14.6834 3.60124 14.2929 3.21071L12.4571 1.37493C12.0666 0.984399 11.4334 0.984399 11.0429 1.37493L1.75 10.6678L0.75 14.9178Z"
-                    stroke="white"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-
-                Book Now</a
-              >
-            </div>
-            <div class="card">
-              <img
-                src="/apps/main/static/main/images/business-card.png"
-                alt="Card Image"
+            </svg>
+            Book Now</a
+          >
+        </div>
+        <div class="card">
+          <img
+              src="{% static 'main/images/business-card.png' %}"
+              alt="Card Image"
+          />
+          <h3>Любов та Люди</h3>
+          <p>Київ, вул.Предславинська, 44</p>
+          <a href>
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+            >
+              <path
+                  d="M15.25 14.9178H9.75M0.75 14.9178L5 13.9178L14.2929 4.62493C14.6834 4.2344 14.6834 3.60124 14.2929 3.21071L12.4571 1.37493C12.0666 0.984399 11.4334 0.984399 11.0429 1.37493L1.75 10.6678L0.75 14.9178Z"
+                  stroke="white"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
               />
-              <h3>Любов та Люди</h3>
-              <p>Київ, вул.Предславинська, 44</p>
-              <a href
-                ><svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                >
-                  <path
-                    d="M15.25 14.9178H9.75M0.75 14.9178L5 13.9178L14.2929 4.62493C14.6834 4.2344 14.6834 3.60124 14.2929 3.21071L12.4571 1.37493C12.0666 0.984399 11.4334 0.984399 11.0429 1.37493L1.75 10.6678L0.75 14.9178Z"
-                    stroke="white"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-                Book Now</a
-              >
-            </div>
-            <div class="card">
-              <img
-                src="/apps/main/static/main/images/business-card.png"
-                alt="Card Image"
+            </svg>
+            Book Now</a
+          >
+        </div>
+        <div class="card">
+          <img
+              src="{% static 'main/images/business-card.png' %}"
+              alt="Card Image"
+          />
+          <h3>Любов та Люди</h3>
+          <p>Київ, вул.Предславинська, 44</p>
+          <a href>
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+            >
+              <path
+                  d="M15.25 14.9178H9.75M0.75 14.9178L5 13.9178L14.2929 4.62493C14.6834 4.2344 14.6834 3.60124 14.2929 3.21071L12.4571 1.37493C12.0666 0.984399 11.4334 0.984399 11.0429 1.37493L1.75 10.6678L0.75 14.9178Z"
+                  stroke="white"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
               />
-              <h3>Любов та Люди</h3>
-              <p>Київ, вул.Предславинська, 44</p>
-              <a href>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                >
-                  <path
-                    d="M15.25 14.9178H9.75M0.75 14.9178L5 13.9178L14.2929 4.62493C14.6834 4.2344 14.6834 3.60124 14.2929 3.21071L12.4571 1.37493C12.0666 0.984399 11.4334 0.984399 11.0429 1.37493L1.75 10.6678L0.75 14.9178Z"
-                    stroke="white"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-                Book Now</a
-              >
-            </div>
-            <div class="card">
-              <img
-                src="/apps/main/static/main/images/business-card.png"
-                alt="Card Image"
+            </svg>
+            Book Now</a
+          >
+        </div>
+        <div class="card">
+          <img
+              src="{% static 'main/images/business-card.png' %}"
+              alt="Card Image"
+          />
+          <h3>Любов та Люди</h3>
+          <p>Київ, вул.Предславинська, 44</p>
+          <a href>
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+            >
+              <path
+                  d="M15.25 14.9178H9.75M0.75 14.9178L5 13.9178L14.2929 4.62493C14.6834 4.2344 14.6834 3.60124 14.2929 3.21071L12.4571 1.37493C12.0666 0.984399 11.4334 0.984399 11.0429 1.37493L1.75 10.6678L0.75 14.9178Z"
+                  stroke="white"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
               />
-              <h3>Любов та Люди</h3>
-              <p>Київ, вул.Предславинська, 44</p>
-              <a href
-                ><svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                >
-                  <path
-                    d="M15.25 14.9178H9.75M0.75 14.9178L5 13.9178L14.2929 4.62493C14.6834 4.2344 14.6834 3.60124 14.2929 3.21071L12.4571 1.37493C12.0666 0.984399 11.4334 0.984399 11.0429 1.37493L1.75 10.6678L0.75 14.9178Z"
-                    stroke="white"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-                Book Now</a
-              >
-            </div>
-            <div class="card">
-              <img
-                src="/apps/main/static/main/images/business-card.png"
-                alt="Card Image"
-              />
-              <h3>Любов та Люди</h3>
-              <p>Київ, вул.Предславинська, 44</p>
-              <a href
-                ><svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                >
-                  <path
-                    d="M15.25 14.9178H9.75M0.75 14.9178L5 13.9178L14.2929 4.62493C14.6834 4.2344 14.6834 3.60124 14.2929 3.21071L12.4571 1.37493C12.0666 0.984399 11.4334 0.984399 11.0429 1.37493L1.75 10.6678L0.75 14.9178Z"
-                    stroke="white"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-                Book Now</a
-              >
-            </div>
-          </section>
-          <section class="First_page_content">
-            <div class="First_page_container">
-              <div class="Why-choose-us__container">
-                <h1 class="Why-choose-us__logo">
-                  Simple bookings — more time for your business!
-                </h1>
-                <a
-                  href="/apps/main/templates/main/EntrepreneurPageView.html"
-                  class="Why-choose-us__button"
-                  >For entrepreneurs</a
-                >
-              </div>
-            </div>
-          </section>
+            </svg>
+            Book Now</a
+          >
         </div>
       </section>
-    </main>
-    <footer>
-      <div
-        style="
+      <section class="First_page_content">
+        <div class="First_page_container">
+          <div class="Why-choose-us__container">
+            <h1 class="Why-choose-us__logo">
+              Simple bookings — more time for your business!
+            </h1>
+            <a
+                href="{% url 'entrepreneur-page-view' %}"
+                class="Why-choose-us__button"
+            >For entrepreneurs</a
+            >
+          </div>
+        </div>
+      </section>
+    </div>
+  </section>
+</main>
+<footer>
+  <div
+      style="
           width: 1160px;
           height: 0px;
           outline: 1px #e6e6e6 solid;
           justify-self: center;
           outline-offset: -0.5px;
         "
-      ></div>
-      <div class="container">
-        <div class="container__footer">
-          <div class="left_footer">
-            <p>Bronyumo.ua</p>
-            <div>
-              <a href="https://uk-ua.facebook.com/" target="_blank"
-                ><img
-                  src="/apps/main/static/main/images/Facebook.png"
-                  class="footer__img"
-              /></a>
-              <a href="https://ua.linkedin.com/" target="_blank"
-                ><img
-                  src="/apps/main/static/main/images/Linkedin.png"
-                  class="footer__img"
-              /></a>
-              <a href="https://www.youtube.com/" target="_blank"
-                ><img
-                  src="/apps/main/static/main/images/Youtube.png"
-                  class="footer__img"
-              /></a>
-              <a href="https://www.instagram.com/" target="_blank"
-                ><img
-                  src="/apps/main/static/main/images/Instagram.png"
-                  class="footer__img"
-              /></a>
-            </div>
-          </div>
-          <div class="right_footer">
-            <div>
-              <a href="#">About us</a>
-              <a href="#">Careers</a>
-              <a href="#">Feedback</a>
-            </div>
-            <div>
-              <a href="#">Contact Us</a>
-              <a href="#">Technologies Used</a>
-              <a href="#">Newsletter Signup</a>
-            </div>
-            <div>
-              <a href="#">FAQ</a>
-              <a href="#">Terms of Service</a>
-              <a href="#">Privacy Policy</a>
-              <a href="#">Partners</a>
-            </div>
-          </div>
+  ></div>
+  <div class="container">
+    <div class="container__footer">
+      <div class="left_footer">
+        <p>Bronyumo.ua</p>
+        <div>
+          <a href="https://uk-ua.facebook.com/" target="_blank"
+          ><img
+              src="{% static 'main/images/Facebook.png' %}"
+              class="footer__img"
+          /></a>
+          <a href="https://ua.linkedin.com/" target="_blank"
+          ><img
+              src="{% static 'main/images/Linkedin.png' %}"
+              class="footer__img"
+          /></a>
+          <a href="https://www.youtube.com/" target="_blank"
+          ><img
+              src="{% static 'main/images/Youtube.png' %}"
+              class="footer__img"
+          /></a>
+          <a href="https://www.instagram.com/" target="_blank"
+          ><img
+              src="{% static 'main/images/Instagram.png' %}"
+              class="footer__img"
+          /></a>
         </div>
       </div>
-    </footer>
-  </body>
+      <div class="right_footer">
+        <div>
+          <a href="#">About us</a>
+          <a href="#">Careers</a>
+          <a href="#">Feedback</a>
+        </div>
+        <div>
+          <a href="#">Contact Us</a>
+          <a href="#">Technologies Used</a>
+          <a href="#">Newsletter Signup</a>
+        </div>
+        <div>
+          <a href="#">FAQ</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Partners</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+</body>
 </html>

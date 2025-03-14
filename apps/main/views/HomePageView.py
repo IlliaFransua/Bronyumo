@@ -31,8 +31,5 @@ class HomePageView(View):
         В текущей версии передается список элементов в качестве примера.
         Если необходимо отобразить страницу, предпочтительно использовать `render()`.
         """
-        context = {
-            "items": ["one", "two", "three"],
-        }
 
-        return render(request, "main/home.html", context)
+        return render(request, "main/HomePageView.html")
