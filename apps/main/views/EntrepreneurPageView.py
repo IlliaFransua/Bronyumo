@@ -1,6 +1,6 @@
-from django.views import View
-from django.http import HttpResponse
 from django.shortcuts import render
+from django.views import View
+
 
 # Example of model import
 # from apps.main.models import yourModer
@@ -31,4 +31,4 @@ class EntrepreneurPageView(View):
         В этом примере возвращается заглушка с путем к HTML-шаблону.
         Если необходимо отобразить страницу, предпочтительно использовать `render()`.
         """
-        return HttpResponse("main/home.html")
+        return render(request, "main/EntrepreneurPageView.html")
