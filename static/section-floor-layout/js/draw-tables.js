@@ -317,15 +317,16 @@ class TableLayoutManager {
     // Method to get all table coordinates for saving
     getTableCoordinates() {
         return {
-            path_to_object_map: "paste_the_url", // Replace with your actual URL
-            objects_data: this.tables.map((table, index) => {
+            map_hash: "???",
+            booking_availability: {},
+            booking_objects: this.tables.map((table, index) => {
                 const coords = JSON.parse(table.dataset.normalizedCoords);
                 return {
-                    object_id: index,
-                    x1: coords.x1,
-                    y1: coords.y1,
-                    x2: coords.x2,
-                    y2: coords.y2
+                    booking_object_hash: "???",
+                    x_min: coords.x1,
+                    x_max: coords.x2,
+                    y_min: coords.y1,
+                    y_max: coords.y2
                 };
             })
         };
