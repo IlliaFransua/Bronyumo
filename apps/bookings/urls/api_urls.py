@@ -18,7 +18,7 @@ urlpatterns = [
     path('upload-and-preserve-bookings/<str:map_hash>/',
          UploadAndPreserveBookingsAPI.as_view(),
          name='upload-and-preserve-bookings-api'),
-#
+
     path('add-for-booking/<str:map_hash>/',
          AddForBookingAPI.as_view(),
          name='add-for-booking-api'),

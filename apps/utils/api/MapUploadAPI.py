@@ -9,7 +9,7 @@ from rest_framework import status
 from apps.utils.decorators import session_required
 
 
-# @method_decorator(session_required, name='dispatch')
+@method_decorator(session_required, name='dispatch')
 class MapUploadAPI(APIView):
     """
     Данный API-эндпоинт предназначен для приема изображений в форматах JPG, JPEG и PNG.
