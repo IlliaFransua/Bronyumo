@@ -8,5 +8,5 @@ from django.shortcuts import render
 
 class UploadAndPreserveBookingsAPI(View):
     @staticmethod
-    def get(request, booking_hash):
+    def get(request, map_hash):
         pass
