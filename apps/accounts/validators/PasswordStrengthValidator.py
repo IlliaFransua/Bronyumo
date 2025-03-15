@@ -1,5 +1,6 @@
-from .BaseValidator import BaseValidator
 from rest_framework import serializers
+
+from .BaseValidator import BaseValidator
 
 
 class PasswordStrengthValidator(BaseValidator):
