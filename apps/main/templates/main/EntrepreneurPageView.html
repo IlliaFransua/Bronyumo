@@ -719,73 +719,64 @@
   </div>
 </footer>
 
-<!-- Modal window Sign Up Form-->
-<div
-    class="dlg-sign-up__backdrop dlg-sign-up__is-hidden"
-    dlg-sign-up__data-modal
->
+<!-- Modal window Sign Up Form -->
+<div class="dlg-sign-up__backdrop dlg-sign-up__is-hidden" dlg-sign-up__data-modal>
   <div class="dlg-sign-up__modal">
-    <button
-        type="button"
-        class="dlg-sign-up__close-btn"
-        dlg-sign-up__data-modal-close
-    >
+    <button type="button" class="dlg-sign-up__close-btn" dlg-sign-up__data-modal-close>
       <svg class="dlg-sign-up__close-btn-icon" width="8" height="8">
-        <use
-            href="{% static 'main/images/symbol-defs-close.svg#icon-close-modal' %}"
-        ></use>
+        <use href="{% static 'main/images/symbol-defs-close.svg' %}#icon-close-modal"></use>
       </svg>
     </button>
-    <form>
+
+    <form id="sign-up-form" method="POST">
       <div class="dlg-sign-up__form-row">
         <div class="dlg-sign-up__form-group dlg-sign-up__form-group-half">
-          <label for="company" class="dlg-sign-up__label"
-          >Company Name</label
-          >
+          <label for="sign-up-company" class="dlg-sign-up__label">Company Name</label>
           <input
               type="text"
-              id="company"
+              id="sign-up-company"
+              name="sign-up-company"
               class="dlg-sign-up__input"
               placeholder="Lila Cake"
-              pattern="[A-Za-z0-9 ]+"
               title="Only letters, numbers, and spaces allowed"
               required
           />
         </div>
         <div class="dlg-sign-up__form-group dlg-sign-up__form-group-half">
-          <label for="address" class="dlg-sign-up__label">Adress</label>
+          <label for="sign-up-address" class="dlg-sign-up__label">Address</label>
           <input
               type="text"
-              id="address"
+              id="sign-up-address"
+              name="sign-up-address"
               class="dlg-sign-up__input"
               placeholder="Київ, вул. Хмельницького, 40/25"
-              pattern="[\w\s,./-]+"
               title="Allowed: letters, numbers, commas, periods, slashes, dashes"
               required
           />
         </div>
       </div>
       <div class="dlg-sign-up__form-group">
-        <label for="email" class="dlg-sign-up__label">Email</label>
+        <label for="sign-up-email" class="dlg-sign-up__label">Email</label>
         <input
             type="email"
-            id="email"
+            id="sign-up-email"
+            name="sign-up-email"
             class="dlg-sign-up__input"
             placeholder="lilacake@someemail.com"
-            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-            title="Please enter a valid email address"
+            autocomplete="email"
             required
         />
       </div>
       <div class="dlg-sign-up__form-group">
-        <label for="password" class="dlg-sign-up__label">Password</label>
+        <label for="sign-up-password" class="dlg-sign-up__label">Password</label>
         <input
             type="password"
-            id="password"
+            id="sign-up-password"
+            name="sign-up-password"
             class="dlg-sign-up__input"
             placeholder="**********"
             pattern=".{8,}"
-            title="Password must be at least 8 characters long"
+            autocomplete="new-password"
             required
         />
       </div>
@@ -793,55 +784,47 @@
     </form>
   </div>
 </div>
-<!-- Modal window Sign In Form-->
-<div
-    class="dlg-sign-in__backdrop dlg-sign-in__is-hidden"
-    dlg-sign-in__data-modal
->
+
+<!-- Modal window Sign In Form -->
+<div class="dlg-sign-in__backdrop dlg-sign-in__is-hidden" dlg-sign-in__data-modal>
   <div class="dlg-sign-in__modal">
-    <button
-        type="button"
-        class="dlg-sign-in__close-btn"
-        dlg-sign-in__data-modal-close
-    >
+    <button type="button" class="dlg-sign-in__close-btn" dlg-sign-in__data-modal-close>
       <svg class="dlg-sign-in__close-btn-icon" width="8" height="8">
-        <use
-            href="{% static 'main/images/symbol-defs-close.svg#icon-close-modal' %}"
-        ></use>
+        <use href="{% static 'main/images/symbol-defs-close.svg' %}#icon-close-modal"></use>
       </svg>
     </button>
-    <form>
+
+    <form id="sign-in-form" method="POST">
       <div class="dlg-sign-in__form-group">
-        <label for="email" class="dlg-sign-in__label">Email Address</label>
+        <label for="sign-in-email" class="dlg-sign-in__label">Email</label>
         <input
             type="email"
-            id="email"
+            id="sign-in-email"
+            name="sign-in-email"
             class="dlg-sign-in__input"
-            placeholder="lilacake@gmail.com"
-            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-            title="Please enter a valid email address"
+            placeholder="lilacake@someemail.com"
+            autocomplete="email"
             required
         />
       </div>
       <div class="dlg-sign-in__form-group">
-        <label for="password" class="dlg-sign-in__label">Password</label>
+        <label for="sign-in-password" class="dlg-sign-in__label">Password</label>
         <input
             type="password"
-            id="password"
+            id="sign-in-password"
+            name="sign-in-password"
             class="dlg-sign-in__input"
             placeholder="**********"
-            pattern=".{8,}"
-            title="Password must be at least 8 characters long"
             required
         />
       </div>
-      <button type="submit" class="dlg-sign-in__Sbmt-Btn">Log In</button>
+      <button type="submit" class="dlg-sign-in__Sbmt-Btn">Sign In</button>
     </form>
   </div>
 </div>
 
 <script src="{% static 'main/js/toggleFrequentlyAskedQuestions.js' %}"></script>
-<script src="{% static 'main/js/Open-close__Sign-Up-Form.js' %}"></script>
-<script src="{% static 'main/js/Open-close__Sign-In-Form.js' %}"></script>
+<script src="{% static 'main/js/Sign-Up-Form.js' %}"></script>
+<script src="{% static 'main/js/Sign-In-Form.js' %}"></script>
 </body>
 </html>

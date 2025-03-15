@@ -1,5 +1,6 @@
-from apps.accounts.DatabaseConnection import DatabaseConnection
 import psycopg2
+
+from apps.accounts.DatabaseConnection import DatabaseConnection
 
 
 class CompanyManager:
@@ -170,7 +171,7 @@ class CompanyManager:
                     company_id = cursor.fetchone()  # (8,) or None
 
                     if company_id:
-                        return company_id[0]
+                        return int(company_id[0])
                     else:
                         # print("Error: INSERT request did not return ID.")
                         return None

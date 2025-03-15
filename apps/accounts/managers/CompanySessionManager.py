@@ -1,12 +1,14 @@
-from typing import Optional, Tuple
-
-from apps.accounts.DatabaseConnection import DatabaseConnection
-from datetime import datetime, timedelta
-import uuid
-import psycopg2
-import pytz
 import threading
 import time
+import uuid
+from datetime import datetime, timedelta
+from typing import Optional, Tuple
+
+import psycopg2
+import pytz
+
+from apps.accounts.DatabaseConnection import DatabaseConnection
+
 
 class CompanySessionManager:
     def __init__(self, db_dsn):
@@ -133,6 +135,7 @@ class CompanySessionManager:
 
         :param interval: The interval (in seconds) between each cleanup. Default is 3600 seconds (1 hour).
         """
+
         def cleanup_task():
             while True:
                 self.clean_expired_sessions()
@@ -162,4 +165,20 @@ class CompanySessionManager:
                 return cursor.rowcount > 0
         except psycopg2.Error as e:
             # print(f"Error refreshing session: {e}")
+            return False
+
+    def delete_session_by_id(self, session_id: str) -> bool:
+        """
+        Deletes a session from the 'company_sessions' table based on the provided session_id.
+
+        :param session_id: The unique identifier of the session to be deleted.
+        :return: True if the session was successfully deleted, False otherwise.
+        """
+        query = "DELETE FROM company_sessions WHERE session_id = %s;"
+        try:
+            with DatabaseConnection(self.db_dsn) as cursor:
+                cursor.execute(query, (session_id,))
+                return cursor.rowcount > 0  # Returns True if any row was deleted
+        except psycopg2.Error as e:
+            # print(f"Error deleting session: {e}")
             return False
