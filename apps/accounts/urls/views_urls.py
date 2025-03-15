@@ -1,4 +1,5 @@
 from django.urls import path
+
 from apps.accounts.views import EditAvailableObjectsPanelView, EntrepreneurPanelView, ReservationsPanelView
 
 urlpatterns = [
@@ -6,9 +7,13 @@ urlpatterns = [
          EntrepreneurPanelView.as_view(),
          name='entrepreneur-panel-view'),
 
-    path('edit-available-objects-panel/<str:booking_hash>/',
+    path('edit-available-objects-panel/',
          EditAvailableObjectsPanelView.as_view(),
          name='edit-available-objects-panel-view'),
+
+    path('edit-available-objects-panel/<str:map_hash>/',
+         EditAvailableObjectsPanelView.as_view(),
+         name='edit-available-objects-panel-view-with-hash'),
 
     path('reservations-panel/<str:booking_hash>/',
          ReservationsPanelView.as_view(),

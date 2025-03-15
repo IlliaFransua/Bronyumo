@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const uploadButton = document.querySelector('.button-lg');
 
     const fileInput = document.createElement('input');
@@ -7,13 +7,15 @@ document.addEventListener('DOMContentLoaded', function() {
     fileInput.style.display = 'none';
     document.body.appendChild(fileInput);
 
-    uploadButton.addEventListener('click', function() {
+    uploadButton.addEventListener('click', function () {
         fileInput.click();
     });
 
-    fileInput.addEventListener('change', function(event) {
+    fileInput.addEventListener('change', function (event) {
         const file = event.target.files[0];
-        if (!file) {return;}
+        if (!file) {
+            return;
+        }
 
         const fileType = file.type.toLowerCase();
         if (fileType !== 'image/png' && fileType !== 'image/jpeg') {
@@ -39,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function sendToBackend(file) {
         //Paste the url to Django view
-        const uploadFileUrl = 'http://127.0.0.1:8000/utils/api/map-upload/';
+        const uploadFileUrl = '/utils/api/map-upload/';
         const formData = new FormData();
         formData.append('floorPlanImage', file);
 
@@ -60,21 +62,21 @@ document.addEventListener('DOMContentLoaded', function() {
             body: formData,
             credentials: 'include',
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log('Success:', data);
-            uploadStatus.textContent = 'Successfully sent to server!';
-            uploadStatus.style.color = 'green';
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            uploadStatus.textContent = 'Failed to send to server. ' + error.message;
-            uploadStatus.style.color = 'red';
-        });
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Success:', data);
+                uploadStatus.textContent = 'Successfully sent to server!';
+                uploadStatus.style.color = 'green';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                uploadStatus.textContent = 'Failed to send to server. ' + error.message;
+                uploadStatus.style.color = 'red';
+            });
     }
 });
