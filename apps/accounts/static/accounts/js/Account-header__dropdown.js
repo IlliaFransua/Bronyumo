@@ -10,13 +10,13 @@ function setupDropdownMenu() {
     dropdownMenu.style.borderColor = "#E9ECEF"
     dropdownMenu.style.borderWidth = "2px"
 
-    // Create menu items
+    // Define menu items
     const menuItems = [
         // { text: 'Settings', icon: settingsIcon },
         {text: 'Logout', icon: logoutIcon}
     ];
 
-    // Function to handle logout
+    // Function to handle user logout
     const logout = async () => {
         try {
             const response = await fetch('/accounts/api/logout/', {
@@ -26,7 +26,6 @@ function setupDropdownMenu() {
 
             if (response.ok) {
                 const result = await response.json();
-                // alert(result.message);
                 window.location.href = '/';
             } else {
                 const error = await response.json();
@@ -37,12 +36,13 @@ function setupDropdownMenu() {
         }
     };
 
-    // Add menu items to dropdown
+    // Populate dropdown menu with items
     menuItems.forEach(item => {
         const menuItem = document.createElement('a');
         menuItem.href = '#';
         menuItem.className = 'dropdown-item';
 
+        // Add icon if available
         if (item.icon) {
             const icon = document.createElement('img');
             icon.src = item.icon;
@@ -50,9 +50,11 @@ function setupDropdownMenu() {
             menuItem.appendChild(icon);
         }
 
+        // Add text label
         const text = document.createTextNode(item.text);
         menuItem.appendChild(text);
 
+        // Attach logout functionality to "Logout" menu item
         if (item.text === 'Logout') {
             menuItem.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -63,10 +65,10 @@ function setupDropdownMenu() {
         dropdownMenu.appendChild(menuItem);
     });
 
-    // Important: Add the dropdown to the button container for proper positioning
+    // Attach dropdown menu to the button container
     dropdownButton.appendChild(dropdownMenu);
 
-    // Toggle dropdown visibility on button click
+    // Toggle dropdown visibility when clicking the button
     let isDropdownOpen = false;
 
     dropdownButton.addEventListener('click', function (e) {
@@ -77,7 +79,7 @@ function setupDropdownMenu() {
         dropdownButton.style.borderBottomRightRadius = "0px";
     });
 
-    // Close dropdown when clicking outside
+    // Close dropdown when clicking outside of it
     document.addEventListener('click', function () {
         if (isDropdownOpen) {
             dropdownMenu.style.display = 'none';
@@ -86,7 +88,6 @@ function setupDropdownMenu() {
     });
 }
 
-// Modal functionality
 function openModal() {
     document.getElementById('modalOverlay').style.display = 'block';
     document.getElementById('modalDialog').style.display = 'block';
@@ -97,7 +98,7 @@ function closeModal() {
     document.getElementById('modalDialog').style.display = 'none';
 }
 
-// Initialize all components when the DOM is fully loaded
+// Initialize components when the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', function () {
     setupDropdownMenu();
 });

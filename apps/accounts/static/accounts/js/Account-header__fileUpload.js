@@ -1,16 +1,21 @@
+// Wait for the DOM to fully load before executing the script
 document.addEventListener('DOMContentLoaded', function () {
+    // Select the upload button
     const uploadButton = document.querySelector('.button-lg');
 
+    // Create a hidden file input for image uploads
     const fileInput = document.createElement('input');
     fileInput.type = 'file';
     fileInput.accept = '.png,.jpg,.jpeg';
     fileInput.style.display = 'none';
     document.body.appendChild(fileInput);
 
+    // Open file dialog when the upload button is clicked
     uploadButton.addEventListener('click', function () {
         fileInput.click();
     });
 
+    // Handle file selection
     fileInput.addEventListener('change', function (event) {
         const file = event.target.files[0];
         if (!file) {
@@ -39,24 +44,27 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 
+    // Function to upload file to the backend
     function sendToBackend(file) {
-        //Paste the url to Django view
         const uploadFileUrl = '/utils/api/map-upload/';
         const formData = new FormData();
         formData.append('floorPlanImage', file);
 
+        // Get the container for upload status messages
         const canvasDiv = document.querySelector('.section-upload-floor-plan__canvas');
         const uploadStatus = document.createElement('p');
         uploadStatus.id = 'upload-status';
 
+        // Remove existing status message if present
         const existingStatus = document.getElementById('upload-status');
         if (existingStatus) {
             canvasDiv.removeChild(existingStatus);
         }
 
+        // Append new upload status message
         canvasDiv.appendChild(uploadStatus);
 
-        // Send the file to the backend
+        // Send the file via POST request
         fetch(uploadFileUrl, {
             method: 'POST',
             body: formData,

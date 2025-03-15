@@ -10,24 +10,30 @@ from apps.accounts.managers import CompanySessionManager
 
 class LogoutAPI(APIView):
     """
-    API для завершения сессии (логинут).
+    API for session termination (logout).
     """
 
     def __init__(self, **kwargs: Optional[dict]) -> None:
         """
-        Инициализация API для логаута.
+        Initializes the logout API.
 
-        :param kwargs: Дополнительные параметры, переданные родительскому классу.
+        Parameters:
+            kwargs (Optional[dict]): Additional parameters passed to the parent class.
         """
         super().__init__(**kwargs)
         self.session_manager = CompanySessionManager(db_dsn=db_dsn)
 
     def get(self, request) -> JsonResponse:
         """
-        Метод для завершения сессии.
+        Handles the GET request for logging out.
 
-        Проверяет наличие сессионного ID в куки и завершает сессию, если ID найден.
-        Возвращает ответ с успешным завершением или ошибкой.
+        Checks for the session ID in cookies and terminates the session if found.
+
+        Parameters:
+            request: The HTTP request object.
+
+        Returns:
+            JsonResponse: A success message if logout is successful, otherwise an error message.
         """
         try:
             session_id: Optional[str] = request.COOKIES.get('session_id')
