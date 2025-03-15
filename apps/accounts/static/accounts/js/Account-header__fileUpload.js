@@ -1,21 +1,16 @@
-// Wait for the DOM to fully load before executing the script
 document.addEventListener('DOMContentLoaded', function () {
-    // Select the upload button
     const uploadButton = document.querySelector('.button-lg');
 
-    // Create a hidden file input for image uploads
     const fileInput = document.createElement('input');
     fileInput.type = 'file';
     fileInput.accept = '.png,.jpg,.jpeg';
     fileInput.style.display = 'none';
     document.body.appendChild(fileInput);
 
-    // Open file dialog when the upload button is clicked
     uploadButton.addEventListener('click', function () {
         fileInput.click();
     });
 
-    // Handle file selection
     fileInput.addEventListener('change', function (event) {
         const file = event.target.files[0];
         if (!file) {
@@ -39,32 +34,23 @@ document.addEventListener('DOMContentLoaded', function () {
             size: `${(file.size / 1024 / 1024).toFixed(2)} MB`
         });
 
-        // Send the file to the backend
         sendToBackend(file);
     });
 
 
-    // Function to upload file to the backend
     function sendToBackend(file) {
         const uploadFileUrl = '/utils/api/map-upload/';
         const formData = new FormData();
         formData.append('floorPlanImage', file);
 
-        // Get the container for upload status messages
         const canvasDiv = document.querySelector('.section-upload-floor-plan__canvas');
-        const uploadStatus = document.createElement('p');
-        uploadStatus.id = 'upload-status';
-
-        // Remove existing status message if present
-        const existingStatus = document.getElementById('upload-status');
-        if (existingStatus) {
-            canvasDiv.removeChild(existingStatus);
+        let uploadStatus = document.getElementById('upload-status');
+        if (!uploadStatus) {
+            uploadStatus = document.createElement('p');
+            uploadStatus.id = 'upload-status';
+            canvasDiv.appendChild(uploadStatus);
         }
 
-        // Append new upload status message
-        canvasDiv.appendChild(uploadStatus);
-
-        // Send the file via POST request
         fetch(uploadFileUrl, {
             method: 'POST',
             body: formData,
@@ -72,7 +58,9 @@ document.addEventListener('DOMContentLoaded', function () {
         })
             .then(response => {
                 if (!response.ok) {
-                    throw new Error('Network response was not ok');
+                    return response.json().then(errorData => {
+                        throw new Error(errorData.error || 'Network response was not ok');
+                    });
                 }
                 return response.json();
             })
@@ -80,11 +68,18 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.log('Success:', data);
                 uploadStatus.textContent = 'Successfully sent to server!';
                 uploadStatus.style.color = 'green';
+                if (data.redirect_url) {
+                    console.log('Redirect URL:', data.redirect_url);
+                    window.location.href = data.redirect_url;
+                } else {
+                    location.reload();
+                }
             })
             .catch(error => {
                 console.error('Error:', error);
                 uploadStatus.textContent = 'Failed to send to server. ' + error.message;
                 uploadStatus.style.color = 'red';
+                alert('Error: ' + error.message);
             });
     }
 });

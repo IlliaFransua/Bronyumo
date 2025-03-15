@@ -1,33 +1,27 @@
 from typing import Optional
 
-from django.core.exceptions import ObjectDoesNotExist
-from django.http.response import JsonResponse
-from django.shortcuts import render
-from django.utils.decorators import method_decorator
-from django.views import View
-
 from Bronyumo.settings import db_dsn
 from apps.accounts.managers import CompanyManager, MapManager, CompanySessionManager
 from apps.utils.decorators import session_required
-
-
-# Example of model import
-# from apps.main.models import yourModer
+from django.core.exceptions import ObjectDoesNotExist
+from django.shortcuts import render, redirect
+from django.utils.decorators import method_decorator
+from django.views import View
 
 
 @method_decorator(session_required, name='dispatch')
 class EntrepreneurPanelView(View):
     """
-    Данный класс обрабатывает HTTP-запросы, связанные со стартовой
-    панелью управления предпринимателя, когда карта ещё не загружена.
-    Использует метод GET для рендеринга HTML-шаблона с переданными параметрами.
+    This class handles HTTP requests related to the entrepreneur's
+    dashboard when the map has not yet been uploaded.
+    It uses the GET method to render an HTML template with the provided parameters.
 
-    Основные функции:
-    - Получение GET-запроса от клиента.
-    - Формирование контекста с данными.
-    - Генерация HTML-ответа с подготовленной информацией.
+    Main functions:
+    - Receiving a GET request from the client.
+    - Forming the context with data.
+    - Generating an HTML response with the prepared information.
 
-    Метод `get()` работает в статическом режиме. Создание экземпляра класса не требуется.
+    The `get()` method operates in a static mode. Creating an instance of the class is not required.
     """
 
     def __init__(self, **kwargs: Optional[dict]) -> None:
@@ -47,26 +41,45 @@ class EntrepreneurPanelView(View):
 
     def get(self, request, status=None):
         """
-        Ожидаемые параметры:
-            request (HttpRequest): HTTP-запрос, полученный от клиента.
+        Expected parameters:
+            request (HttpRequest): The HTTP request received from the client.
 
-        Ожидаемый результат:
-            HTML-страница, содержащая переданный контекст.
+        Expected result:
+            An HTML page containing the provided context.
 
-        В текущей версии передается список элементов в качестве примера.
-        Если необходимо отобразить страницу, предпочтительно использовать `render()`.
+        In the current version, a list of items is passed as an example.
+        If the page needs to be displayed, it is preferable to use `render()`.
         """
         try:
             session_id: Optional[str] = request.COOKIES.get('session_id')
 
             company_data: Optional[dict] = self.company_manager.get_company_by_session_id(session_id)
+            if not company_data:
+                return render(request, "accounts/EntrepreneurPanelView.html", {
+                    "error": "Company data not found."
+                }, status=status.HTTP_404_NOT_FOUND)
 
-            return render(request, "accounts/EntrepreneurPanelView.html", {"company_name": company_data.get("name")})
+            company_id = company_data.get("id")
+            first_map = self.map_manager.get_first_map_hash_by_company_id(company_id)
 
-        except ObjectDoesNotExist as e:
-            return JsonResponse({"error": "Company data not found."}, status=status.HTTP_404_NOT_FOUND)
+            if first_map:
+                return redirect(f"/edit-available-objects-panel/{first_map}/")
+
+            return render(request, "accounts/EntrepreneurPanelView.html", {
+                "company_name": company_data.get("name")
+            })
+
+        except ObjectDoesNotExist:
+            return render(request, "accounts/EntrepreneurPanelView.html", {
+                "error": "Company data not found."
+            }, status=status.HTTP_404_NOT_FOUND)
+
         except KeyError as e:
-            return JsonResponse({"error": f"Missing key: {str(e)}."}, status=status.HTTP_400_BAD_REQUEST)
+            return render(request, "accounts/EntrepreneurPanelView.html", {
+                "error": f"Missing key: {str(e)}."
+            }, status=status.HTTP_400_BAD_REQUEST)
+
         except Exception as e:
-            return JsonResponse({"error": "An unexpected error occurred."},
-                                status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            return render(request, "accounts/EntrepreneurPanelView.html", {
+                "error": f"An unexpected error occurred: {e}"
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
