@@ -1,70 +1,84 @@
 import os
-
-from django.utils.decorators import method_decorator
-from django.utils.text import get_valid_filename
-from rest_framework.views import APIView
+from typing import Optional
+import uuid
+from django.http import JsonResponse
 from django.core.files.storage import default_storage
-from rest_framework.response import Response
+from django.core.files.base import ContentFile
+from django.utils.decorators import method_decorator
+from django.views import View
 from rest_framework import status
+from rest_framework.views import APIView
+from django.core.exceptions import ObjectDoesNotExist
+
+from Bronyumo.settings import db_dsn
+from apps.accounts.managers import CompanyManager, CompanySessionManager
+from apps.utils.managers import MapManager
 from apps.utils.decorators import session_required
 
 
-# @method_decorator(session_required, name='dispatch')
+@method_decorator(session_required, name='dispatch')
 class MapUploadAPI(APIView):
-    """
-    Данный API-эндпоинт предназначен для приема изображений в форматах JPG, JPEG и PNG.
-    Использует стандартные методы валидации и проверки данных.
+    def __init__(self, **kwargs: Optional[dict]) -> None:
+        super().__init__(**kwargs)
+        self.map_manager = MapManager(db_dsn=db_dsn)
+        self.company_manager = CompanyManager(db_dsn=db_dsn)
+        self.session_manager = CompanySessionManager(db_dsn=db_dsn)
 
-    Основные параметры работы:
-    - Прием POST-запросов, содержащих изображение.
-    - Анализ расширения и размера загружаемого файла.
-    - Потоковая передача данных для минимизации потребления ресурсов.
-    - Сохранение изображения в локальном хранилище.
-    - Возвращение подтверждения успешной загрузки или отчета об ошибке.
+    def post(self, request, *args, **kwargs):
+        #print("Start debugging...", flush=True)
+        try:
+            session_id: Optional[str] = request.COOKIES.get('session_id')
+            company_data: Optional[dict] = self.company_manager.get_company_by_session_id(session_id)
 
-    Метод post работает в статическом режиме. Создание дополнительного экземпляра не требуется. Эффективность максимальна.
-    """
+            if not company_data:
+                return JsonResponse({"error": "Company not found."}, status=status.HTTP_400_BAD_REQUEST)
 
-    @staticmethod
-    def post(request):
-        """
-        Параметры:
-            request (Request): Входные данные, содержащие загружаемый файл.
+            company_id = company_data.get("id")
 
-        Ожидаемый формат данных:
-            - multipart/form-data с полем "file", содержащим изображение.
-            - куки
+            # Отримуємо файл із запиту
+            uploaded_file = request.FILES.get('floorPlanImage')
+            if not uploaded_file:
+                return JsonResponse({"error": "No file provided."}, status=status.HTTP_400_BAD_REQUEST)
 
-        Ожидаемый результат при успешной загрузке:
-            {
-                "file_url": <строка>,   # Ссылка на загруженный файл.
-                "message": "Файл успешно загружен."
-            }
+            # Make dir for file
+            upload_dir = f'uploads/maps/{company_id}/'
 
-        В случае ошибки:
-            {
-                "error": <строка>       # Причина отказа. Например, "Недопустимый формат файла".
-            }
-        """
-        file = request.FILES.get('floorPlanImage')
+            # creating unique file name
+            file_extension = os.path.splitext(uploaded_file.name)[1]
+            unique_filename = str(uuid.uuid4()) + file_extension
+            file_path = os.path.join(upload_dir, unique_filename)
 
-        if not file:
-            return Response({"error": "Файл не обнаружен в запросе."}, status=status.HTTP_400_BAD_REQUEST)
+            print(f"File extension: {file_path}")
 
-        allowed_extensions = ['jpg', 'jpeg', 'png']
-        extension = file.name.split('.')[-1].lower()
+            # check file exist loop
+            counter = 0
+            while default_storage.exists(file_path) and counter < 100:
+                unique_filename = str(uuid.uuid4()) + file_extension
+                file_path = os.path.join(upload_dir, unique_filename)
+                counter += 1
+            if(counter == 100):
+                return JsonResponse({"error": f"can't create unique name for file"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            # save file
+            default_storage.save(file_path, ContentFile(uploaded_file.read()))
 
-        if extension not in allowed_extensions:
-            return Response({"error": "Формат файла не соответствует требованиям. Разрешены только JPG, JPEG и PNG."},
-                            status=status.HTTP_400_BAD_REQUEST)
+            # Додаємо запис у таблицю maps
+            print(f"File successfully saved at: {file_path}")  # Файл збережено
+            try:
+                map_hash = self.map_manager.save_map_route(file_path, company_id)
+                print(f"Map saved to DB with hash: {map_hash}")  # Якщо успішно
+            except Exception as e:
+                print(f"Database save error: {e}")  # Вивід помилки
+                return JsonResponse({"error": f"Database save error: {str(e)}"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-        file_name = get_valid_filename(file.name)
-        file_path = os.path.join("uploads/maps", file_name)
 
-        with default_storage.open(file_path, 'wb+') as destination:
-            for chunk in file.chunks():
-                destination.write(chunk)
+            # Повертаємо map_hash
+            return JsonResponse({"map_hash": str(map_hash)}, status=status.HTTP_201_CREATED)
 
-        file_url = request.build_absolute_uri(default_storage.url(file_path))
-        return Response({"file_url": file_url, "message": "Файл успешно загружен."},
-                        status=status.HTTP_201_CREATED)
+        except ObjectDoesNotExist as e:
+            return JsonResponse({"error": "Company data not found."}, status=status.HTTP_404_NOT_FOUND)
+        except KeyError as e:
+            return JsonResponse({"error": f"Missing key: {str(e)}."}, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            return JsonResponse({"error": "An unexpected error occurred."}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
