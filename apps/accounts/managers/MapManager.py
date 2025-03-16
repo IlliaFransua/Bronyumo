@@ -41,3 +41,32 @@ class MapManager:
             raise e
         except Exception as e:
             raise e
+    def check_map_hash_existence(self, map_hash: str) -> bool:
+        """
+        Checks if the provided map_hash exists in the database.
+
+        :param map_hash: The unique identifier of the map.
+        :return: True if the map_hash exists, False otherwise.
+        """
+        query = """
+                SELECT EXISTS (
+                    SELECT 1
+                    FROM maps
+                    WHERE map_hash = %s
+                );
+                """
+        try:
+            with DatabaseConnection(self.db_dsn) as cursor:
+                cursor.execute(query, (map_hash,))
+                result = cursor.fetchone()
+
+                if result:
+                    return result["exists"]
+                else:
+                    return False
+        except psycopg2.DatabaseError as e:
+            raise e
+        except psycopg2.InterfaceError as e:
+            raise e
+        except Exception as e:
+            raise e

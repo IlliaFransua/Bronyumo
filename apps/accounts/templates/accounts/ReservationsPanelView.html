@@ -1,14 +1,12 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ReservationsPanelView</title>
-    <link rel="stylesheet" href="/static/global.css" />
-    <link
-      rel="stylesheet"
-      href="/apps/accounts/static/accounts/css/ReservationsPanelView__style.css"
-    />
+    <link rel="stylesheet" href="{% static 'global.css' %}"/>
+    <link rel="stylesheet" href="{% static 'accounts/css/ReservationsPanelView__style.css' %}">
   </head>
   <body>
     <header>
@@ -33,13 +31,13 @@
             >
               <img
                 style="height: 1.9rem"
-                src="/apps/accounts/static/accounts/images/flag-icon.png"
+                src=" {% static 'accounts/images/flag-icon.png' %}"
                 alt="flag-icon"
               />
             </button>
             <button class="button-sm-flg__EntrepreneurPanelView">
               <img
-                src="/apps/accounts/static/accounts/images/bell-icon.svg"
+                src="{% static 'accounts/images/bell-icon.svg' %}"
                 alt="user-icon"
                 style="
                   width: 24px;
@@ -50,7 +48,7 @@
                 "
               />
               <img
-                src="/apps/accounts/static/accounts/images/red-circle-icon.png"
+                src="{% static 'accounts/images/red-circle-icon.png' %}"
                 alt="red-circle-icon"
                 style="
                   width: 8px;
@@ -64,13 +62,13 @@
             <button class="button-md">
               <img
                 style="width: 1.56rem; border-radius: 2px"
-                src="/apps/accounts/static/accounts/images/restaurant-thumb-sm.png"
+                src="{% static 'accounts/images/restaurant-thumb-sm.png' %}"
                 alt="restaurant-thumbnail"
               />
               Normal
               <img
                 style="width: 1.56rem"
-                src="/apps/accounts/static/accounts/images/dropdown-icon.png"
+                src="{% static 'accounts/images/dropdown-icon.png' %}"
                 alt="dropdown-icon"
               />
             </button>
@@ -90,13 +88,13 @@
                   <span class="table__header-item-group">
                     <button class="table__header-item-group-button">
                       <img
-                        src="/apps/accounts/static/accounts/images/sort.svg"
+                        src="{% static 'accounts/images/sort.svg' %}"
                         alt="sort"
                       />
                     </button>
                     <button class="table__header-item-group-button">
                       <img
-                        src="/apps/accounts/static/accounts/images/filter.svg"
+                        src="{% static 'accounts/images/filter.svg' %}"
                         alt="filter"
                       />
                     </button>
@@ -109,7 +107,7 @@
                   <span class="table__header-item-group">
                     <button class="table__header-item-group-button">
                       <img
-                        src="/apps/accounts/static/accounts/images/sort.svg"
+                        src="{% static 'accounts/images/sort.svg' %}"
                         alt="sort"
                       />
                     </button>
@@ -122,7 +120,7 @@
                   <span class="table__header-item-group">
                     <button class="table__header-item-group-button">
                       <img
-                        src="/apps/accounts/static/accounts/images/sort.svg"
+                        src="{% static 'accounts/images/sort.svg' %}"
                         alt="sort"
                       />
                     </button>
@@ -135,7 +133,7 @@
                   <span class="table__header-item-group">
                     <button class="table__header-item-group-button">
                       <img
-                        src="/apps/accounts/static/accounts/images/sort.svg"
+                        src="{% static 'accounts/images/sort.svg' %}"
                         alt="sort"
                       />
                     </button>
@@ -148,7 +146,7 @@
                   <span class="table__header-item-group">
                     <button class="table__header-item-group-button">
                       <img
-                        src="/apps/accounts/static/accounts/images/sort.svg"
+                        src="{% static 'accounts/images/sort.svg' %}"
                         alt="sort"
                       />
                     </button>
@@ -158,7 +156,26 @@
               <th class="table__header-item"></th>
             </tr>
           </thead>
-          <tbody class="table__body" id="tableBody"></tbody>
+          <tbody class="table__body" id="tableBody">
+            {%for booking in bookings%}
+            <tr class="table__body-row">
+              <td class="table__body-row-col">{{booking.booking_object_hash}}</td>
+              <td class="table__body-row-col">{{booking.full_name}}</td>
+              <td class="table__body-row-col">{{booking.email}}</td>
+              <td class="table__body-row-col">{{booking.date}}</td>
+              <td class="table__body-row-col">{{booking.start_time}}</td>
+              <td class="table__body-row-col">{{booking.end_time}}</td>
+              <td class="table__body-row-col">
+                <button class="table__body-row-col-button">
+                  <img src="{% static 'accounts/images/arrow.svg' %}" alt="arrow">
+                </button>
+                <button class="table__body-row-col-button">
+                  <img src="{% static 'accounts/images/basket.svg' %}" alt="basket">
+                </button>
+              </td>
+            </tr>
+            {%endfor%}
+          </tbody>
         </table>
         <section class="pagination">
           <div class="pagination__group">
@@ -236,7 +253,7 @@
         <button class="modal__close" id="modalClose">&times;</button>
         <h2 class="modal__title">Booked table</h2>
         <img
-          src="/apps/accounts/static/accounts/images/floor-plan.png"
+          src="{% static 'accounts/images/floor-plan.png' %}"
           alt="Floor Plan"
           class="modal__image"
         />
@@ -276,9 +293,8 @@
       </div>
     </div>
 
-    <script src="/apps/accounts/static/accounts/js/Processing-table-reservations.js"></script>
-    <script src="/apps/accounts/static/accounts/js/modal-reservation.js"></script>
-    <script src="/apps/accounts/static/accounts/js/Account-header__dropdown.js"></script>
-    <script src="/apps/accounts/static/accounts/js/open-close-dlg-del-entry.js"></script>
+    <script src="{% static 'accounts/js/modal-reservation.js' %}"></script>
+    <script src="{% static 'accounts/js/Account-header__dropdown.js' %}"></script>
+    <script src="{% static 'accounts/js/open-close-dlg-del-entry.js' %}"></script>
   </body>
 </html>
