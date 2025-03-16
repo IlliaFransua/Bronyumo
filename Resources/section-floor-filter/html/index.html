@@ -3,38 +3,52 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="../../../static/global.css">
+  <title>Some NonExisting Company & Co</title>
   <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../global.css">
 </head>
 <body>
-  <div class="wrapper">
-      <header>
-        <div class="container">
-            <!-- Header content will be here -->
-        </div>
-      </header>
+  <div class="container">
+    <h1>Paste The Company Here</h1>
 
-      <section class="content">
-          <div class="container">
-                <!-- Section content will be here -->
-          </div>
-      </section>
+    <div class="form-row">
+      <div class="form-group">
+        <p for="month">Month</p>
+        <select id="month" name="month">
+          <!-- Will be populated by JavaScript -->
+        </select>
+      </div>
 
-      <footer>
-          <div class="container">
-                <!-- Footer content will be here -->
-          </div>
-      </footer>
+      <div class="form-group">
+        <p for="day">Day</p>
+        <select id="day" name="day">
+          <!-- Will be populated by JavaScript -->
+        </select>
+      </div>
+
+      <div class="form-group">
+        <p for="year">Year</p>
+        <select id="year" name="year">
+          <!-- Will be populated by JavaScript -->
+        </select>
+      </div>
+
+      <div class="form-group">
+        <p for="startTime">Start Time</p>
+        <select id="startTime" name="startTime">
+          <!-- Will be populated by JavaScript -->
+        </select>
+      </div>
+
+      <div class="form-group">
+        <p for="duration">Duration</p>
+        <select id="duration" name="duration">
+          <!-- Will be populated by JavaScript -->
+        </select>
+      </div>
+    </div>
   </div>
 
-<div id="modalOverlay" class="modal-overlay"></div>
-<div id="modalDialog" class="modal">
-  <!-- Dialog content will be here -->
-  <button onclick="closeModal();">Close</button>
-</div>
-
-<script src="../js/script.js"></script>
-
+  <script src="../js/dropdown.js"></script>
 </body>
 </html>
