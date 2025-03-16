@@ -1,5 +1,6 @@
-import psycopg2
+from typing import Optional
 
+import psycopg2
 from apps.accounts.DatabaseConnection import DatabaseConnection
 
 
@@ -53,7 +54,7 @@ class CompanyManager:
             # print(f"Error retrieving company by email: {e}")
             return None
 
-    def get_company_by_session_id(self, session_id: str) -> dict or None:
+    def get_company_by_session_id(self, session_id: str) -> Optional[dict]:
         """
         Retrieves company details based on a given session ID.
 

@@ -63,7 +63,7 @@ class EntrepreneurPanelView(View):
             first_map = self.map_manager.get_first_map_hash_by_company_id(company_id)
 
             if first_map:
-                return redirect(f"/edit-available-objects-panel/{first_map}/")
+                return redirect(f"/accounts/edit-available-objects-panel/{first_map}/")
 
             return render(request, "accounts/EntrepreneurPanelView.html", {
                 "company_name": company_data.get("name")

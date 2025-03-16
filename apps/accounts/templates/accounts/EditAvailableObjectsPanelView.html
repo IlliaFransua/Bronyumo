@@ -1,204 +1,374 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EditAvailableObjectsPanelView</title>
-  <link rel="stylesheet" href="/static/global.css">
-  <link rel="stylesheet" href="/apps/accounts/static/accounts/css/EditAvailableObjectsPanelView__style.css">
+  <link rel="stylesheet" href="{% static 'accounts/css/EditAvailableObjectsPanelView__style.css' %}">
+  <link rel="stylesheet" href="{% static 'global.css' %}">
+  <link rel="stylesheet" href="{% static 'accounts/css/EditAvailableObjectsPanelView__draw__style_style.css' %}">
+  {#  <link rel="stylesheet" href="{% static 'accounts/css/Booking-time.css' %}">#}
 </head>
 <body>
-    <div class="wrapper">
-        <header>
-            <div class="container"
-            style="padding: 0 !important; margin: 0 !important;
+<div class="wrapper">
+  <header>
+    <div class="container"
+         style="padding: 0 !important; margin: 0 !important;
                     max-width: 100% !important;">
-            <div class="account-header">
-                <div>
-                    <a href="http://google.com"><h1 style="font-weight: 500;">Bronyumo.ua</h1></a>
-                </div>
-                <div class="account-nav">
-                    <button class="button-sm__EntrepreneurPanelView" style="border: none; height: 1.9rem">
-                    <img style="height: 1.9rem;"
-                        src="/apps/accounts/static/accounts/images/flag-icon.png"
-                        alt="flag-icon">
-                    </button>
-                    <button class="button-sm-flg__EntrepreneurPanelView">
-                        <img src="/apps/accounts/static/accounts/images/bell-icon.svg" 
-                            alt="user-icon"
-                            style="width: 24px; height: 24px;
-                            position: absolute; right: 6.4px; top: 6.4px;">
-                        <img src="/apps/accounts/static/accounts/images/red-circle-icon.png"
-                            alt="red-circle-icon"
-                            style="width: 8px; height: 8px;
-                            position: absolute; right: 7px; top: 7px;">
-                    </button>
-                    <button class="button-md">
-                        <img style="width: 1.56rem; border-radius: 2px" src="/apps/accounts/static/accounts/images/restaurant-thumb-sm.png" alt="restaurant-thumbnail">
-                        Normal
-                        <img style="width: 1.56rem;" src="/apps/accounts/static/accounts/images/dropdown-icon.png" alt="dropdown-icon">
-                    </button>
-                </div>
-            </div>
+      <div class="account-header">
+        <div>
+          <a href="http://google.com"><h1 style="font-weight: 500;">Bronyumo.ua</h1></a>
         </div>
-            <div class="section-floor-settings">
-                <button class="button-lg"
-                        style="border-color: #8E8E8E;
-                              color: dimgray;
-                              font-weight: bold"
-                        onclick="shareBookingLink">
-                    <img src="/apps/accounts/static/accounts/images/email-vector.png" alt="email-vector">
-                    SHARE BOOKING LINK
-                </button>
-                <button type="button"
-                        id="openModalBtn"
-                        class="button-lg"
-                        style="border-color: #FF1F25;
+        <div class="account-nav">
+          <button class="button-sm__EntrepreneurPanelView" style="border: none; height: 1.9rem">
+            <img style="height: 1.9rem;"
+                 src="{% static 'accounts/images/flag-icon.png' %}"
+                 alt="flag-icon">
+          </button>
+          <button class="button-sm-flg__EntrepreneurPanelView">
+            <img src="{% static 'accounts/images/bell-icon.svg' %}"
+                 alt="user-icon"
+                 style="width: 24px; height: 24px;
+                            position: absolute; right: 6.4px; top: 6.4px;">
+            <img src="{% static 'accounts/images/red-circle-icon.png' %}"
+                 alt="red-circle-icon"
+                 style="width: 8px; height: 8px;
+                            position: absolute; right: 7px; top: 7px;">
+          </button>
+          <button class="button-md">
+            <img style="width: 1.56rem; border-radius: 2px"
+                 src="{% static 'accounts/images/restaurant-thumb-sm.jpeg' %}"
+                 alt="restaurant-thumbnail">
+            {{ company_name }}
+            <img style="width: 1.56rem;" src="{% static 'accounts/images/dropdown-icon.png' %}" alt="dropdown-icon">
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="section-floor-settings">
+      <button class="button-lg" id="shareBookingLink_1234" onclick="openBookingLink()"
+              style="border-color: #8E8E8E; color: dimgray; font-weight: bold">
+        <img src="{% static 'accounts/images/email-vector.png' %}" alt="email-vector">
+        SHARE BOOKING LINK
+      </button>
+      <button type="button"
+              id="openModalBtn"
+              class="button-lg"
+              style="border-color: #FF1F25;
                               color: #FF1F25;
                               font-weight: bold"
-                              onclick="deleteLayout">
-                    <img src="/apps/accounts/static/accounts/images/trashbin-vector.png" alt="email-vector">
-                    DELETE THE LAYOUT
-                </button>
-                <button class="button-lg"
-                        id="add-booking-button"
-                        style="border-color: #206CFC;
+              onclick="deleteLayout">
+        <img src="{% static 'accounts/images/trashbin-vector.png' %}" alt="email-vector">
+        DELETE THE LAYOUT
+      </button>
+      <button class="button-lg"
+              id="add-booking-button"
+              style="border-color: #206CFC;
                               color: #206CFC;
                               font-weight: bold"
-                              onclick="addForBooking">
-                    <img src="/apps/accounts/static/accounts/images/plus-vector.png" alt="email-vector">
-                    ADD FOR BOOKING
-                </button>
-                <button class="button-lg"
-                        style="border-color: #FF9D30;
-                              color: #FF9D30;
-                              font-weight: bold"
-                              onclick="removeFromBooking">
-                    <img src="/apps/accounts/static/accounts/images/cross-vector.png" alt="email-vector">
-                    REMOVE FROM BOOKING
-                </button>
-                <button class="button-lg"
-                        style="border-color: #56BA28;
+              onclick="bookingManager.createOverlay()">
+        <img src="{% static 'accounts/images/plus-vector.png' %}" alt="email-vector">
+        ADD FOR BOOKING
+      </button>
+      <button class="button-lg" style="border-color: #FF9D30; color: #FF9D30; font-weight: bold"
+              onclick="openWorkingHoursModal();">
+        <img src="{% static 'accounts/images/time.png' %}" alt="email-vector">
+        UPDATE BOOKING TIME
+      </button>
+      <button class="button-lg"
+              style="border-color: #56BA28;
                                color: #56BA28;
                                font-weight: bold"
-                               onclick="saveChanges">
-                    <img src="/apps/accounts/static/accounts/images/accept-vector.png" alt="email-vector">
-                    SAVE
-                </button>
-            </div>
-          </header>
-  
-        <section class="content">
-            <div class="container">
-                <div class="section-floor-layout">
-                    <img class="section-floor-layout-floor-image"
-                         src="/apps/accounts/static/accounts/images/test-floor.png"
-                         alt="test-floor-image"
-                    >
-                </div>
-            </div>
-        </section>
-    </div>
-  
-  <!-- Modal window 1 Set New Layout Image Dialog-->
-  <div class="new-layout-img__backdrop new-layout-img__is-hidden" id="modal1">
-    <div class="new-layout-img__modal">
-      <button type="button" class="new-layout-img__close-btn" id="closeModal1">
-        <svg class="new-layout-img__close-btn-icon" width="8" height="8">
-          <use href="/apps/accounts/static/accounts/images/symbol-defs-close.svg#icon-close-modal"></use>
-        </svg>
+              onclick="saveBookingObjects()">
+        <img src="{% static 'accounts/images/accept-vector.png' %}" alt="email-vector">
+        SAVE
       </button>
-      <div class="new-layout-img__text">
-        <h2 class="new-layout-img__title"><span>Upload a new layout image </span><span class="new-layout-img__title-up">AND</span></h2>
-        <button class="new-layout-img__btn" id="openModal2Btn">
-          <div class="new-layout-img__btn-text">
-            Save the marked table boundaries
-          </div>
-        </button>
-        <button class="new-layout-img__btn" id="deleteAllBtn">
-          <div class="new-layout-img__btn-text">
-            Delete all marked table boundaries and future reservations for them
-          </div>
-        </button>
-      </div>
+    </div>
+  </header>
+
+  <div class="section-floor-layout">
+    <img class="section-floor-layout-floor-image"
+         src="{% static 'gif/raccoon-dance.gif' %}"
+         alt="test-floor-image"
+    >
+  </div>
+</div>
+
+<!-- Modal window 1 Set New Layout Image Dialog-->
+<div class="new-layout-img__backdrop new-layout-img__is-hidden" id="modal1">
+  <div class="new-layout-img__modal">
+    <button type="button" class="new-layout-img__close-btn" id="closeModal1">
+      <svg class="new-layout-img__close-btn-icon" width="8" height="8">
+        <use href="{% static 'accounts/images/symbol-defs-close.svg' %} #icon-close-modal"></use>
+      </svg>
+    </button>
+    <div class="new-layout-img__text">
+      <h2 class="new-layout-img__title"><span>Upload a new layout image </span><span class="new-layout-img__title-up">AND</span>
+      </h2>
+      <button class="new-layout-img__btn" id="openModal2Btn">
+        <div class="new-layout-img__btn-text">
+          Save the marked table boundaries
+        </div>
+      </button>
+      <button class="new-layout-img__btn" id="deleteAllBtn">
+        <div class="new-layout-img__btn-text">
+          Delete all marked table boundaries and future reservations for them
+        </div>
+      </button>
     </div>
   </div>
+</div>
 
-  <!-- Modal window 2 Set New Layout Image Confirmation Dialog 1-->
-  <div class="new-layout-img__backdrop new-layout-img__is-hidden" id="modal2">
-    <div class="new-layout-img__modal">
-      <div class="new-Lyt-Img-Conf-Dlg__text">
-        <h2 class="new-layout-img__title">Are you sure you want to upload a new layout image <strong>and</strong> save the marked table boundaries?</h2>
-        <button class="new-Lyt-Img-Conf-Dlg__btn1" id="option1Btn">
-          <div class="new-layout-img__btn-text">Confirm</div>
-        </button>
-        <button class="new-Lyt-Img-Conf-Dlg__btn2" id="cancelOptionBtn">
-          <div class="new-layout-img__btn-text">Cancel</div>
-        </button>
-      </div>
+<!-- Modal window 2 Set New Layout Image Confirmation Dialog 1-->
+<div class="new-layout-img__backdrop new-layout-img__is-hidden" id="modal2">
+  <div class="new-layout-img__modal">
+    <div class="new-Lyt-Img-Conf-Dlg__text">
+      <h2 class="new-layout-img__title">Are you sure you want to upload a new layout image <strong>and</strong> save the
+        marked table boundaries?</h2>
+      <button class="new-Lyt-Img-Conf-Dlg__btn1" id="option1Btn">
+        <div class="new-layout-img__btn-text">Confirm</div>
+      </button>
+      <button class="new-Lyt-Img-Conf-Dlg__btn2" id="cancelOptionBtn">
+        <div class="new-layout-img__btn-text">Cancel</div>
+      </button>
     </div>
   </div>
+</div>
 
-  <!-- Modal window 3 Set New Layout Image Confirmation Dialog 2-->
-  <div class="new-layout-img__backdrop new-layout-img__is-hidden" id="modal3">
-    <div class="new-layout-img__modal">
-      <div class="new-Lyt-Img-Conf-Dlg__text">
-        <h2 class="new-layout-img__title3">
-          Are you sure you want to upload a new layout image <strong>and </strong>delete all marked table boundaries and future reservations for them?
-        </h2>
-        <button class="new-Lyt-Img-Conf-Dlg__btn1" id="option1BtnModal3">
-          <div class="new-layout-img__btn-text">Confirm</div>
-        </button>
-        <button class="new-Lyt-Img-Conf-Dlg__btn2" id="cancelDeleteBtn">
-          <div class="new-layout-img__btn-text">Cancel</div>
-        </button>
-      </div>
+<!-- Modal window 3 Set New Layout Image Confirmation Dialog 2-->
+<div class="new-layout-img__backdrop new-layout-img__is-hidden" id="modal3">
+  <div class="new-layout-img__modal">
+    <div class="new-Lyt-Img-Conf-Dlg__text">
+      <h2 class="new-layout-img__title3">
+        Are you sure you want to upload a new layout image <strong>and </strong>delete all marked table boundaries and
+        future reservations for them?
+      </h2>
+      <button class="new-Lyt-Img-Conf-Dlg__btn1" id="option1BtnModal3">
+        <div class="new-layout-img__btn-text">Confirm</div>
+      </button>
+      <button class="new-Lyt-Img-Conf-Dlg__btn2" id="cancelDeleteBtn">
+        <div class="new-layout-img__btn-text">Cancel</div>
+      </button>
     </div>
   </div>
-    <!-- Modal window dialog-add-for-booking-->
-    <div id="modalOverlay" class="modal-overlay"></div>
-    <div id="modalDialog" class="dialog-add-for-booking_modal">
-      <div class="dialog-add-for-booking_inner-wrapper">
-        <p class="dialog-add-for-booking_text">Operating hours</p>
-        <form class="dialog-add-for-booking_forms" method="POST">
-          <div class="dialog-add-for-booking_form-group">
-            <label class="dialog-add-for-booking_label" for="text">Monday<span class="dialog-add-for-booking_red-star">*</span></label>
-            <input type="text" class="dialog-add-for-booking_input" id="dialog-add-for-booking_Monday" name="dialog-add-for-booking_time" placeholder="08:00-22:00">
-          </div>
-          <div class="dialog-add-for-booking_form-group">
-            <label class="dialog-add-for-booking_label" for="text">Tuesday<span class="dialog-add-for-booking_red-star">*</span></label>
-            <input type="text" class="dialog-add-for-booking_input" id="dialog-add-for-booking_Tuesday" name="dialog-add-for-booking_time" placeholder="08:00-22:00">
-          </div>
-          <div class="dialog-add-for-booking_form-group">
-            <label class="dialog-add-for-booking_label" for="text">Wednesday<span class="dialog-add-for-booking_red-star">*</span></label>
-            <input type="text" class="dialog-add-for-booking_input" id="dialog-add-for-booking_Wednesday" name="dialog-add-for-booking_time" placeholder="08:00-22:00">
-          </div>
-          <div class="dialog-add-for-booking_form-group">
-            <label class="dialog-add-for-booking_label" for="text">Thursday<span class="dialog-add-for-booking_red-star">*</span></label>
-            <input type="text" class="dialog-add-for-booking_input" id="dialog-add-for-booking_Thursday" name="dialog-add-for-booking_time" placeholder="08:00-22:00"></input>
-          </div>
-          <div class="dialog-add-for-booking_form-group">
-            <label class="dialog-add-for-booking_label" for="text">Friday<span class="dialog-add-for-booking_red-star">*</span></label>
-            <input type="text" class="dialog-add-for-booking_input" id="dialog-add-for-booking_Friday" name="dialog-add-for-booking_time" placeholder="08:00-22:00">
-          </div>
-          <div class="dialog-add-for-booking_form-group">
-            <label class="dialog-add-for-booking_label" for="text">Saturday<span class="dialog-add-for-booking_red-star">*</span></label>
-            <input type="text" class="dialog-add-for-booking_input" id="dialog-add-for-booking_Saturday" name="dialog-add-for-booking_time" placeholder="08:00-22:00">
-          </div>
-          <div class="dialog-add-for-booking_form-group">
-            <label class="dialog-add-for-booking_label" for="text">Sunday<span class="dialog-add-for-booking_red-star">*</span></label>
-            <input type="text" class="dialog-add-for-booking_input" id="dialog-add-for-booking_Sunday" name="dialog-add-for-booking_time" placeholder="08:00-22:00"></input>
-          </div>
-        </form>
-        <span class="dialog-add-for-booking_close-button" onclick="closeModal();">Add for booking</span>
-      </div>
-    </div>
+</div>
 
-  <script src="/apps/accounts/static/accounts/js/Account-header__dropdown.js"></script>
-  <script src="/apps/accounts/static/accounts/js/Account-header__fileUpload.js"></script>
-  <script src="/apps/accounts/static/accounts/js/Section-floor-settings.js"></script>
-  <script src="/apps/accounts/static/accounts/js/open-close-modal-windows.js"></script>
-  <script src="/apps/accounts/static/accounts/js/dialog-add-for-booking__script.js"></script>
+<!-- Подтверждение удаления -->
+<div class="new-layout-img__backdrop new-layout-img__is-hidden" id="modalDeleteObject">
+  <div class="new-layout-img__modal">
+    <div class="new-Lyt-Img-Conf-Dlg__text">
+      <h2 class="new-layout-img__title3">
+        Do you want to delete the selected object?
+      </h2>
+      <button class="new-Lyt-Img-Conf-Dlg__btn1" id="openFinalDeleteObject">
+        <div class="new-layout-img__btn-text">Yes</div>
+      </button>
+      <button class="new-Lyt-Img-Conf-Dlg__btn2" id="canselDeleteObject">
+        <div class="new-layout-img__btn-text">Cancel</div>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Финальное подтверждение -->
+<div class="new-layout-img__backdrop new-layout-img__is-hidden" id="modalFinalDelete">
+  <div class="new-layout-img__modal">
+    <div class="new-Lyt-Img-Conf-Dlg__text">
+      <h2 class="new-layout-img__title3">
+        Are you sure you want to delete the selected object?
+      </h2>
+      <button class="new-Lyt-Img-Conf-Dlg__btn1" id="deleteFinalDelete"
+              onclick="bookingManager.deleteSelectedOverlay()">
+        <div class="new-layout-img__btn-text">Confirm</div>
+      </button>
+      <button class="new-Lyt-Img-Conf-Dlg__btn2" id="closeModalFinalDelete">
+        <div class="new-layout-img__btn-text">Cancel</div>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Модальное окно для отображения ссылки -->
+<div class="new-layout-img__backdrop new-layout-img__is-hidden" id="modalShareLink_1234">
+  <div class="new-layout-img__modal">
+    <button type="button" class="new-layout-img__close-btn" id="closeModalShareLink_1234">
+      <svg class="new-layout-img__close-btn-icon" width="8" height="8">
+        <use href="{% static 'accounts/images/symbol-defs-close.svg' %} #icon-close-modal"></use>
+      </svg>
+    </button>
+    <div class="new-layout-img__text">
+      <h2 class="new-layout-img__title">Share this link with your clients!</h2>
+      <p>Copy the link below and share it with your clients:</p>
+      <input type="text" id="bookingLinkInput_1234" value="" readonly>
+      <button class="new-Lyt-Img-Conf-Dlg__btn2" id="copyLinkButton_1234" onclick="copyBookingLink()">
+        <div class="new-layout-img__btn-text" style="white-space: nowrap;">Copy Link</div>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Установка времени работы для каждого дня недели -->
+<div class="new-layout-img__backdrop new-layout-img__is-hidden" id="modalSetWorkingHours">
+  <div class="new-layout-img__modal">
+    <div class="new-Lyt-Img-Conf-Dlg__text">
+      <h2 class="new-layout-img__title3">
+        Set Working Hours
+      </h2>
+      <form class="dialog-add-for-booking_forms" method="POST">
+        <!-- Понедельник -->
+        <div class="dialog-add-for-booking_form-group">
+          <label class="dialog-add-for-booking_label" for="dialog-add-for-booking_Monday_from">Monday <span
+              class="dialog-add-for-booking_red-star">*</span></label>
+          <div class="dialog-add-for-booking_input-group">
+            <input type="time" class="dialog-add-for-booking_input" id="dialog-add-for-booking_Monday_from"
+                   name="dialog-add-for-booking_Monday_time_from" value="08:00">
+            <span class="time-separator">-</span>
+            <input type="time" class="dialog-add-for-booking_input" id="dialog-add-for-booking_Monday_to"
+                   name="dialog-add-for-booking_Monday_time_to" value="22:00">
+            <label class="dialog-add-for-booking_checkbox-label">
+              <input type="checkbox" id="dialog-add-for-booking_Monday_closed" name="monday_closed"
+                     onchange="toggleInput('Monday')">
+              Closed
+            </label>
+          </div>
+        </div>
+
+        <!-- Вторник -->
+        <div class="dialog-add-for-booking_form-group">
+          <label class="dialog-add-for-booking_label" for="dialog-add-for-booking_Tuesday_from">Tuesday <span
+              class="dialog-add-for-booking_red-star">*</span></label>
+          <div class="dialog-add-for-booking_input-group">
+            <input type="time" class="dialog-add-for-booking_input" id="dialog-add-for-booking_Tuesday_from"
+                   name="dialog-add-for-booking_Tuesday_time_from" value="08:00">
+            <span class="time-separator">-</span>
+            <input type="time" class="dialog-add-for-booking_input" id="dialog-add-for-booking_Tuesday_to"
+                   name="dialog-add-for-booking_Tuesday_time_to" value="22:00">
+            <label class="dialog-add-for-booking_checkbox-label">
+              <input type="checkbox" id="dialog-add-for-booking_Tuesday_closed" name="tuesday_closed"
+                     onchange="toggleInput('Tuesday')">
+              Closed
+            </label>
+          </div>
+        </div>
+
+        <!-- Среда -->
+        <div class="dialog-add-for-booking_form-group">
+          <label class="dialog-add-for-booking_label" for="dialog-add-for-booking_Wednesday_from">Wednesday <span
+              class="dialog-add-for-booking_red-star">*</span></label>
+          <div class="dialog-add-for-booking_input-group">
+            <input type="time" class="dialog-add-for-booking_input" id="dialog-add-for-booking_Wednesday_from"
+                   name="dialog-add-for-booking_Wednesday_time_from" value="08:00">
+            <span class="time-separator">-</span>
+            <input type="time" class="dialog-add-for-booking_input" id="dialog-add-for-booking_Wednesday_to"
+                   name="dialog-add-for-booking_Wednesday_time_to" value="22:00">
+            <label class="dialog-add-for-booking_checkbox-label">
+              <input type="checkbox" id="dialog-add-for-booking_Wednesday_closed" name="wednesday_closed"
+                     onchange="toggleInput('Wednesday')">
+              Closed
+            </label>
+          </div>
+        </div>
+
+        <!-- Четверг -->
+        <div class="dialog-add-for-booking_form-group">
+          <label class="dialog-add-for-booking_label" for="dialog-add-for-booking_Thursday_from">Thursday <span
+              class="dialog-add-for-booking_red-star">*</span></label>
+          <div class="dialog-add-for-booking_input-group">
+            <input type="time" class="dialog-add-for-booking_input" id="dialog-add-for-booking_Thursday_from"
+                   name="dialog-add-for-booking_Thursday_time_from" value="08:00">
+            <span class="time-separator">-</span>
+            <input type="time" class="dialog-add-for-booking_input" id="dialog-add-for-booking_Thursday_to"
+                   name="dialog-add-for-booking_Thursday_time_to" value="22:00">
+            <label class="dialog-add-for-booking_checkbox-label">
+              <input type="checkbox" id="dialog-add-for-booking_Thursday_closed" name="thursday_closed"
+                     onchange="toggleInput('Thursday')">
+              Closed
+            </label>
+          </div>
+        </div>
+
+        <!-- Пятница -->
+        <div class="dialog-add-for-booking_form-group">
+          <label class="dialog-add-for-booking_label" for="dialog-add-for-booking_Friday_from">Friday <span
+              class="dialog-add-for-booking_red-star">*</span></label>
+          <div class="dialog-add-for-booking_input-group">
+            <input type="time" class="dialog-add-for-booking_input" id="dialog-add-for-booking_Friday_from"
+                   name="dialog-add-for-booking_Friday_time_from" value="08:00">
+            <span class="time-separator">-</span>
+            <input type="time" class="dialog-add-for-booking_input" id="dialog-add-for-booking_Friday_to"
+                   name="dialog-add-for-booking_Friday_time_to" value="22:00">
+            <label class="dialog-add-for-booking_checkbox-label">
+              <input type="checkbox" id="dialog-add-for-booking_Friday_closed" name="friday_closed"
+                     onchange="toggleInput('Friday')">
+              Closed
+            </label>
+          </div>
+        </div>
+
+        <!-- Суббота -->
+        <div class="dialog-add-for-booking_form-group">
+          <label class="dialog-add-for-booking_label" for="dialog-add-for-booking_Saturday_from">Saturday <span
+              class="dialog-add-for-booking_red-star">*</span></label>
+          <div class="dialog-add-for-booking_input-group">
+            <input type="time" class="dialog-add-for-booking_input" id="dialog-add-for-booking_Saturday_from"
+                   name="dialog-add-for-booking_Saturday_time_from" value="08:00">
+            <span class="time-separator">-</span>
+            <input type="time" class="dialog-add-for-booking_input" id="dialog-add-for-booking_Saturday_to"
+                   name="dialog-add-for-booking_Saturday_time_to" value="22:00">
+            <label class="dialog-add-for-booking_checkbox-label">
+              <input type="checkbox" id="dialog-add-for-booking_Saturday_closed" name="saturday_closed"
+                     onchange="toggleInput('Saturday')">
+              Closed
+            </label>
+          </div>
+        </div>
+
+        <!-- Воскресенье -->
+        <div class="dialog-add-for-booking_form-group">
+          <label class="dialog-add-for-booking_label" for="dialog-add-for-booking_Sunday_from">Sunday <span
+              class="dialog-add-for-booking_red-star">*</span></label>
+          <div class="dialog-add-for-booking_input-group">
+            <input type="time" class="dialog-add-for-booking_input" id="dialog-add-for-booking_Sunday_from"
+                   name="dialog-add-for-booking_Sunday_time_from" value="08:00">
+            <span class="time-separator">-</span>
+            <input type="time" class="dialog-add-for-booking_input" id="dialog-add-for-booking_Sunday_to"
+                   name="dialog-add-for-booking_Sunday_time_to" value="22:00">
+            <label class="dialog-add-for-booking_checkbox-label">
+              <input type="checkbox" id="dialog-add-for-booking_Sunday_closed" name="sunday_closed"
+                     onchange="toggleInput('Sunday')">
+              Closed
+            </label>
+          </div>
+        </div>
+      </form>
+      <button class=" new-Lyt-Img-Conf-Dlg__btn1" onclick="closeWorkingHoursModal();">
+        <div class="new-layout-img__btn-text">Close</div>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script src="
+        {% static 'accounts/js/Share-booking-link.js' %}"></script>
+<script>
+    window.logoutIcon = "{% static 'accounts/images/logout-icon.png' %}";
+    window.booking_objects = {{ booking_objects|safe }};
+    window.map_hash = getMapHash();
+</script>
+<script src="
+        {% static 'accounts/js/Booking-time.js' %}"></script>
+<script src="{% static 'accounts/js/open-close-dialog-delete-object.js' %}"></script>
+<script src="{% static 'accounts/js/open-close-modal-windows.js' %}"></script>
+<script src="{% static 'accounts/js/Download_map_data.js' %}"></script>
+<script src="{% static 'accounts/js/Account-header__dropdown.js' %}"></script>
+<script src="{% static 'accounts/js/Section-floor-settings.js' %}"></script>
+<script src="{% static 'accounts/js/BookingManager.js' %}"></script>
+<script src="{% static 'accounts/js/parse_working_hours.js' %}"></script>
+<script>
+    window.booking_availability = getWorkingHours();
+</script>
+<script src="{% static 'accounts/js/save-booking-objects.js' %}"></script>
 
 </body>
 </html>

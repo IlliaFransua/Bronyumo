@@ -28,6 +28,7 @@
     border-style: solid;
     background-color: white;
 }
+
 .button-sm-flg__EntrepreneurPanelView {
     position: relative;
     border-color: #E9ECEF;
@@ -40,6 +41,7 @@
     border-style: solid;
     background-color: white;
 }
+
 .button-md {
     display: flex;
     align-items: center;
@@ -56,7 +58,7 @@
 .button-md.active {
     background-color: white;
     border-radius: 4px 4px 0 0;
-    box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
     border-bottom: none;
 }
 
@@ -119,36 +121,46 @@
 
 /* section-floor-settings */
 .section-floor-settings {
-    width: 90rem;
+    width: 100%;
     height: 4.75rem;
     justify-self: center;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
 }
 
 /*section-floor-layout*/
 
-.section-floor-layout{
+.section-floor-layout {
     background-color: #f0f3f4;
-    width: 70%;
-    padding: 1rem;
+    /*width: 70%;*/
+    width: 1100px;
+    /*height: 1100px;*/
+    /*padding: 1rem;*/
     justify-self: center;
+    display: flex;
+    justify-content: center;
 }
 
-.section-floor-layout-floor-image{
-    width: 100%;
+.section-floor-layout-floor-image {
+    /*width: 100%;*/
+    width: 1100px;
+    /*height: 1100px;*/
+    /*max-height: 100%;*/
+    object-fit: contain;
+    display: block;
 }
 
 /*Set New Layout Image Dialogs*/
 :root {
     --modal-color: #F5F4FA;
     --title-color-new-layout-img: #212529;
-    --modal-close-btn-icon:#2E2F42;
-    --btn-color-new-layout-img:#393F44;
+    --modal-close-btn-icon: #2E2F42;
+    --btn-color-new-layout-img: #393F44;
     --acent-color-btn-new-Lyt-Img-Conf-Dlg: #939296;
 }
+
 body.modal-open {
     overflow: hidden;
 }
@@ -178,28 +190,28 @@ body.modal-open {
 }
 
 .new-layout-img__text {
-    flex-direction: column; 
-    align-items: center; 
-    gap: 15px; 
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
     display: flex;
 }
 
 .new-layout-img__title {
-    width: 275px; 
+    width: 275px;
     text-align: center;
-    color: var(--title-color-new-layout-img); 
-    line-height: 36px; 
+    color: var(--title-color-new-layout-img);
+    line-height: 36px;
     font-weight: 500;
 }
 
 .new-layout-img__title-up {
     font-weight: 700;
-}  
+}
 
 .new-layout-img__btn {
-    padding: 10px; 
-    background: var(--title-color-new-layout-img); 
-    border-radius: 8px; 
+    padding: 10px;
+    background: var(--title-color-new-layout-img);
+    border-radius: 8px;
     border-width: 0px;
 }
 
@@ -210,9 +222,9 @@ body.modal-open {
 }
 
 .new-layout-img__btn-text {
-    color: var(--text-color-white); 
-    font-size: 16px; 
-    line-height: 24px; 
+    color: var(--text-color-white);
+    font-size: 16px;
+    line-height: 24px;
 }
 
 .new-layout-img__close-btn {
@@ -253,18 +265,19 @@ body.modal-open {
 }
 
 /*Modal window 2 Set New Layout Image Confirmation Dialog 1 */
-.new-Lyt-Img-Conf-Dlg__text{
-    flex-direction: column; 
-    align-items: center; 
-    gap: 30px; 
+.new-Lyt-Img-Conf-Dlg__text {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
     display: flex;
 }
+
 .new-Lyt-Img-Conf-Dlg__btn1 {
     width: 224px;
     border-width: 0px;
-    padding: 10px 81px; 
-    background: var(--acent-color-btn-new-Lyt-Img-Conf-Dlg); 
-    border-radius: 8px; 
+    padding: 10px 81px;
+    background: var(--acent-color-btn-new-Lyt-Img-Conf-Dlg);
+    border-radius: 8px;
 }
 
 .new-Lyt-Img-Conf-Dlg__btn1:hover,
@@ -276,9 +289,9 @@ body.modal-open {
 .new-Lyt-Img-Conf-Dlg__btn2 {
     width: 224px;
     border-width: 0px;
-    padding: 10px 81px; 
-    background: var(--title-color-new-layout-img); 
-    border-radius: 8px; 
+    padding: 10px 81px;
+    background: var(--title-color-new-layout-img);
+    border-radius: 8px;
 }
 
 .new-Lyt-Img-Conf-Dlg__btn2:hover,
@@ -288,11 +301,11 @@ body.modal-open {
 }
 
 /*Modal window 3 Set New Layout Image Confirmation Dialog 2*/
-.new-layout-img__title3{
+.new-layout-img__title3 {
     width: 290px;
     text-align: center;
-    color: var(--title-color-new-layout-img); 
-    line-height: 36px; 
+    color: var(--title-color-new-layout-img);
+    line-height: 36px;
     font-weight: 500;
 }
 
@@ -301,16 +314,18 @@ body.modal-open {
 :root {
     --bggffgg-color: #fff;
     --text-color__dlg-add-for-Bkng: #212529;
-    --placeholder-color__dlg-add-for-Bkng: #343A40; 
+    --placeholder-color__dlg-add-for-Bkng: #343A40;
     --accent-red__dlg-add-for-Bkng: #FF1F25;
     --hover-color__dlg-add-for-Bkng: #cacaca;
 }
-.modal-overlay{
+
+.modal-overlay {
     z-index: inherit;
 
 }
+
 /* MODAL-BASE */
-.dialog-add-for-booking_modal{
+.dialog-add-for-booking_modal {
     display: none;
     position: fixed;
     top: 50%;
@@ -334,6 +349,7 @@ body.modal-open {
     align-items: center;
     justify-content: space-between;
 }
+
 /* / MODAL-BASE */
 
 /* TEXT-HEADER */
@@ -343,31 +359,63 @@ body.modal-open {
     font-weight: 500;
     line-height: 36px;
 }
+
 /* / TEXT-HEADER */
 
 /* FORM */
-.dialog-add-for-booking_forms {
-    width: 637px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 16px;
-}
 .dialog-add-for-booking_form-group {
-    height: 70px;
-    width: 165px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.dialog-add-for-booking_label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.dialog-add-for-booking_input-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.dialog-add-for-booking_input {
+    flex: 1; /* Растягивает поля времени */
+    min-width: 120px; /* Чтобы не схлопывались */
+}
+
+.time-separator {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.dialog-add-for-booking_checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+
+.dialog-add-for-booking_forms > * {
+    margin-bottom: 10px;
+}
+
+.dialog-add-for-booking_form-group {
+    height: auto;
+    width: auto;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
+
 .dialog-add-for-booking_label {
     color: var(--text-color__dlg-add-for-Bkng);
     font-size: 16px;
     font-weight: 500;
     line-height: 24px;
 }
+
 .dialog-add-for-booking_input {
     border-color: rgb(173, 181, 189);
     padding: 12px;
@@ -375,19 +423,22 @@ body.modal-open {
     border-radius: 8px;
     border: 1px #CED4DA solid;
 }
-.dialog-add-for-booking_input::placeholder{
-    color: var(--placeholder-color__dlg-add-for-Bkng); 
-    font-size: 14px; 
+
+.dialog-add-for-booking_input::placeholder {
+    color: var(--placeholder-color__dlg-add-for-Bkng);
+    font-size: 14px;
     font-family: "Inter", sans-serif;
 }
+
 .dialog-add-for-booking_red-star {
     color: var(--accent-red__dlg-add-for-Bkng);
 }
+
 /* / FORM */
 
 /* CLOSE-BUTTON */
 .dialog-add-for-booking_close-button {
-    background-color: rgb(21,25, 29);
+    background-color: rgb(21, 25, 29);
     height: 56px;
     width: 637px;
     padding: 16px 32px 16px 32px;
@@ -404,4 +455,5 @@ body.modal-open {
     color: var(--hover-color__dlg-add-for-Bkng);
     background-color: rgb(10, 10, 10);
 }
+
 /* / CLOSE-BUTTON */

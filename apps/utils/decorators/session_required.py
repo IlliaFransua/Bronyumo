@@ -1,7 +1,10 @@
 from functools import wraps
-from django.http import HttpResponse
-from apps.accounts.managers import CompanySessionManager
+
 from Bronyumo.settings import db_dsn
+from apps.accounts.managers import CompanySessionManager
+from django.http.response import HttpResponseRedirect
+from django.urls import reverse
+
 
 def session_required(view_func):
     """
@@ -12,6 +15,7 @@ def session_required(view_func):
     :param view_func: The view function to be wrapped and protected by the session check.
     :return: A wrapped version of the original view function that requires a valid session.
     """
+
     @wraps(view_func)
     def _wrapped_view(request, *args, **kwargs):
         """
@@ -28,12 +32,12 @@ def session_required(view_func):
         session_id = request.COOKIES.get('session_id')
 
         if session_id is None:
-            return HttpResponse("Session not found. Please log in.", status=403)
+            return HttpResponseRedirect(reverse('entrepreneur-page-view'))
 
         session_manager = CompanySessionManager(db_dsn=db_dsn)
 
         if not session_manager.validate_session(session_id):
-            return HttpResponse("Session is invalid or expired.", status=403)
+            return HttpResponseRedirect(reverse('entrepreneur-page-view'))
 
         if session_manager.refresh_session(session_id):
             response = view_func(request, *args, **kwargs)

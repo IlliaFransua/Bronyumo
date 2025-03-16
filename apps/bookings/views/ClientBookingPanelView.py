@@ -1,6 +1,6 @@
-from django.views import View
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.views import View
+
 
 # Example of model import
 # from apps.main.models import yourModer
@@ -8,10 +8,10 @@ from django.shortcuts import render
 
 class ClientBookingPanelView(View):
     @staticmethod
-    def get(request, booking_hash):
+    def get(request, map_hash):
         """
         Handle GET requests.
 
         This method processes GET requests and returns an HTML page.
         """
-        return HttpResponse(f"Booking Hash: {booking_hash}")
+        return HttpResponse(f"Map Hash: {map_hash}")

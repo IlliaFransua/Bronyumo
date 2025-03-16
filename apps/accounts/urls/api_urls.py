@@ -1,6 +1,5 @@
+from apps.accounts.api import SignUpAPI, SignInAPI, LogoutAPI, GetBookingObjectsAPI, GetMapImageAPI
 from django.urls import path
-
-from apps.accounts.api import SignUpAPI, SignInAPI, LogoutAPI
 
 urlpatterns = [
     path('sign-up/',
@@ -14,4 +13,12 @@ urlpatterns = [
     path('logout/',
          LogoutAPI.as_view(),
          name='logout-api'),
+
+    path('get_map_image/<str:map_hash>/',
+         GetMapImageAPI.as_view(),
+         name='get-map-request-path-with-map-image'),
+
+    path('get_booking_objects/<str:map_hash>/',
+         GetBookingObjectsAPI.as_view(),
+         name='get-map-request-path-with-booking-objects-api'),
 ]
