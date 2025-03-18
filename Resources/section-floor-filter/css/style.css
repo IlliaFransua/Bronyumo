@@ -1,0 +1,55 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+h1 {
+    font-weight: normal;
+    font-family: "Inter", sans-serif;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+p {
+    font-size: 14px;
+    margin: 0 0 10px 0;
+    font-family: "Inter", sans-serif;
+}
+
+select {
+    width: 150px;
+    height: 40px;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: white;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("../../section-floor-filter/assets/images/dropdown-icon.png");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 20px;
+    cursor: pointer;
+}
+
+select:focus {
+    outline: none;
+    border: none;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
