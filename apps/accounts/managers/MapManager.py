@@ -168,9 +168,9 @@ class MapManager:
                 booking_object_hash = cursor.fetchone()
                 if booking_object_hash is None:
                     raise ValueError("Не удалось создать объект бронирования — запрос не вернул хеш.")
-                return booking_object_hash[0]
+                return booking_object_hash.get('booking_object_hash')
         except Exception as e:
-            print(f"Ошибка при создании объекта бронирования: {e}")
+            print(f"Ошибка при создании объекта бронирования: {e.__class__.__name__}: {e}")
             raise e
 
     def save_or_update_booking_object(self, map_hash: str, x_min: float, x_max: float, y_min: float, y_max: float,
