@@ -44,44 +44,6 @@ class BookingManager {
     }
   }
 
-  deleteSelectedOverlay() {
-    const selectedOverlay = this.imageContainer.querySelector('.overlay-box.selected-existing');
-
-    if (selectedOverlay) {
-      const bookingHash = selectedOverlay.getAttribute('data-booking-hash');
-
-      fetch(`/bookings/api/delete-booking-object/${window.shareBookingLinkManager.getMapHash()}/${bookingHash}/`, {
-        method: 'DELETE',
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-        .then(response => response.json())
-        .then(data => {
-          if (data.message) {
-            window.booking_objects = window.booking_objects.filter(obj => obj.booking_object_hash !== bookingHash);
-            console.log('Удален объект с хешом:', bookingHash);
-
-            selectedOverlay.remove();
-            this.overlays = this.overlays.filter(item => item !== selectedOverlay);
-
-            this.clearSelection();
-
-            closeModal(modals.modalFinalDelete);
-          } else {
-            alert('Ошибка: объект не был удален.');
-          }
-        })
-        .catch(error => {
-          console.error('Ошибка при отправке запроса:', error);
-          alert('Ошибка: не удалось удалить объект.');
-        });
-    } else {
-      console.log('No selected overlay found');
-    }
-  }
-
   printOverlays() {
     this.overlays.forEach(overlay => {
       const bookingHash = overlay.getAttribute('data-booking-hash');
@@ -90,7 +52,7 @@ class BookingManager {
   }
 
   loadBookingObjectsFromWindow() {
-    if (!window.shareBookingLinkManager.getMapHash() && !Array.isArray(window.booking_objects)) {
+    if (!parseMapHash() && !Array.isArray(window.booking_objects)) {
       console.error('Ошибка: данные в window.booking_objects отсутствуют или неверного формата');
       return;
     }
@@ -141,86 +103,7 @@ class BookingManager {
     this.imageContainer.appendChild(overlay);
     this.overlays.push(overlay);
   }
-
-
-  createOverlay() {
-    const overlay = document.createElement('div');
-    overlay.classList.add('overlay-box');
-    overlay.style.position = 'absolute';
-    overlay.style.width = '100px';
-    overlay.style.height = '100px';
-    overlay.style.background = 'rgba(32, 108, 252, 0.4)';
-    overlay.style.cursor = 'grab';
-    overlay.style.borderRadius = '8px';
-    overlay.style.userSelect = 'none';
-    overlay.style.border = '3px solid #206CFC';
-
-    const containerRect = this.imageContainer.getBoundingClientRect();
-    const x_min = ((containerRect.width / 2) - 50) / containerRect.width;
-    const y_min = ((containerRect.height / 2) - 50) / containerRect.height;
-    const x_max = ((containerRect.width / 2) + 50) / containerRect.width;
-    const y_max = ((containerRect.height / 2) + 50) / containerRect.height;
-
-    overlay.style.left = `${(containerRect.width / 2) - 50}px`;
-    overlay.style.top = `${(containerRect.height / 2) - 50}px`;
-
-    overlay.addEventListener('click', (e) => {
-      e.stopPropagation();
-      this.selectOverlay(overlay);
-    });
-
-    const booking_availability = workingHoursManager.getWorkingHours();
-
-    fetch(`/bookings/api/add-for-booking/${window.shareBookingLinkManager.getMapHash()}/`, {
-      method: 'POST',
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({x_min, x_max, y_min, y_max, booking_availability})
-    })
-      .then(response => response.json())
-      .then(data => {
-        if (data.booking_object_hash) {
-          overlay.setAttribute('data-booking-hash', data.booking_object_hash);
-
-          if (!window.booking_objects) {
-            window.booking_objects = [];
-          }
-
-          const newObject = {
-            booking_object_hash: data.booking_object_hash,
-            x_min,
-            x_max,
-            y_min,
-            y_max
-          };
-
-          window.booking_objects.push(newObject);
-
-          this.imageContainer.appendChild(overlay);
-          this.overlays.push(overlay);
-          this.selectOverlay(overlay);
-
-          console.log('Добавлен новый объект:', newObject);
-          this.printOverlays()
-        } else {
-          console.error('Ошибка: в ответе нет booking_object_hash', data);
-        }
-      })
-      .catch(error => {
-        console.error('Ошибка при отправке запроса:', error);
-      });
-  }
-
-  selectOverlay(overlay) {
-    this.clearSelection();
-    overlay.classList.add('selected');
-    this.addResizeHandles(overlay);
-    this.addResizeBars(overlay);
-    this.setupDrag(overlay);
-  }
-
+  
   selectOverlayExisting(overlay) {
     this.clearSelection();
     overlay.classList.add('selected-existing');
@@ -537,7 +420,3 @@ class BookingManager {
     });
   }
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-  window.bookingManager = new BookingManager('.section-floor-layout-floor-image');
-});

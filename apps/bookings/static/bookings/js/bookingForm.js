@@ -135,6 +135,7 @@ document.addEventListener('DOMContentLoaded', function () {
     populateDropdown('day', days);
   }
 });
+
 document.addEventListener('DOMContentLoaded', function () {
   document.getElementById('year').addEventListener('change', ScanAndParseData);
   document.getElementById('month').addEventListener('change', ScanAndParseData);
@@ -143,7 +144,7 @@ document.addEventListener('DOMContentLoaded', function () {
   document.getElementById('duration').addEventListener('change', ScanAndParseData);
 });
 
-function ScanAndParseData() {
+async function ScanAndParseData() {
   if (isDateValid() && isTimeValid()) {
     let duration = document.getElementById('duration').value;
     let month = document.getElementById('month').selectedIndex;
@@ -166,6 +167,13 @@ function ScanAndParseData() {
     };
 
     console.log('ScanAndParseData', data);
+
+    const fromTime = new Date(data.from);
+    const toTime = new Date(data.to);
+
+    window.booking_objects = await window.objectsMapLoaderAPI.loadAvailableObjects(fromTime.toISOString(), toTime.toISOString());
+    console.log('Loaded booking objects:', window.booking_objects);
+
     return data;
   } else {
     return null;
@@ -182,20 +190,20 @@ function formatUTCDate(date) {
 
 function isDateValid() {
   const year = parseInt(document.getElementById('year').value);
-  const month = document.getElementById('month').selectedIndex;
+  const month = document.getElementById('month').selectedIndex; // індекс від 0 (січень) до 11 (грудень)
   const day = parseInt(document.getElementById('day').value);
 
   const selectedDate = new Date(year, month, day);
   const today = new Date();
-  today.setDate(today.getDate() + 3);
-  today.setHours(0, 0, 0, 0);
+  today.setDate(today.getDate() + 3);  // Додаємо 3 дні до вибраної дати
+  today.setHours(0, 0, 0, 0); // Обнуляємо час для коректного порівняння
 
   if (selectedDate < today) {
-    console.log('❌ You can make a reservation only on the third day after today\'s date!');
-    alert('You can make a reservation only on the third day after today\'s date!');
+    console.log('❌ Оформити бронювання можна тільки на третій день після сьогоднішньої дати!');
+    alert('Оформити бронювання можна тільки на третій день після сьогоднішньої дати!');
     return false;
   } else {
-    console.log('✅ The date is correct!');
+    console.log('✅ Дата коректна!');
     return true;
   }
 }
@@ -211,11 +219,11 @@ function isTimeValid() {
   const endMinute = startMinute;
 
   if (endHour > 22 || (endHour === 22 && endMinute > 0)) {
-    console.log('❌ The time interval can be from 8:00 to 22:00!');
-    alert('The time interval can be from 8:00 to 22:00!');
+    console.log('❌ Часовий проміжок може бути від 8:00 до 22:00!');
+    alert('Часовий проміжок може бути від 8:00 до 22:00!');
     return false;
   } else {
-    console.log('✅ The time is correct!');
+    console.log('✅ Час коректний!');
     return true;
   }
 }

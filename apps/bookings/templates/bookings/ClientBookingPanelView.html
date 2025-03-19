@@ -1,0 +1,184 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Some NonExisting Company & Co</title>
+  <link rel="stylesheet" href="{% static 'bookings/css/ClientBookingPanelView.css' %}">
+  <link rel="stylesheet" href="{% static 'bookings/css/Modal.css' %}">
+  <link rel="stylesheet" href="{% static 'global.css' %}">
+</head>
+<body>
+<div class="container">
+  <h1>Paste The Company Here</h1>
+
+  <div class="form-row">
+    <div class="form-group">
+      <p for="month">Month</p>
+      <select id="month" name="month">
+        <!-- Will be populated by JavaScript -->
+      </select>
+    </div>
+
+    <div class="form-group">
+      <p for="day">Day</p>
+      <select id="day" name="day">
+        <!-- Will be populated by JavaScript -->
+      </select>
+    </div>
+
+    <div class="form-group">
+      <p for="year">Year</p>
+      <select id="year" name="year">
+        <!-- Will be populated by JavaScript -->
+      </select>
+    </div>
+
+    <div class="form-group">
+      <p for="startTime">Start Time</p>
+      <select id="startTime" name="startTime">
+        <!-- Will be populated by JavaScript -->
+      </select>
+    </div>
+
+    <div class="form-group">
+      <p for="duration">Duration</p>
+      <select id="duration" name="duration">
+        <!-- Will be populated by JavaScript -->
+      </select>
+    </div>
+  </div>
+</div>
+
+<div class="section-floor-layout">
+  <img class="section-floor-layout-floor-image"
+       src="{% static 'gif/raccoon-dance.gif' %}"
+       alt="test-floor-image"
+  >
+</div>
+
+<div id="modal" class="modal">
+  <form class="modal-form">
+    <input type="hidden" id="booking_objects_hash" name="booking_objects_hash" value="your_booking_objects_hash_here">
+
+    <label for="first_name">First Name</label>
+    <input type="text" id="first_name" name="first_name" placeholder="First Name">
+
+    <label for="last_name">Last Name</label>
+    <input type="text" id="last_name" name="last_name" placeholder="Last Name">
+
+    <label for="email">Email Address</label>
+    <input type="email" id="email" name="email" placeholder="Email Address">
+
+    <label for="phone">Phone Number</label>
+    <input type="text" id="phone" name="phone" placeholder="Phone Number">
+
+    <button type="submit">Submit</button>
+  </form>
+</div>
+
+<script>
+  function parseMapHash() {
+    const pathSegments = window.location.pathname.split("/").filter(Boolean);
+    return pathSegments[pathSegments.length - 1];
+  }
+
+  window.isSubmitting = false;
+
+  function submitBookingForm(booking_object_hash, data) {
+    if (!window.isSubmitting) return;
+
+    fetch(`/bookings/api/create-booking/${parseMapHash()}/${booking_object_hash}/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Success:', data);
+        alert("Booking created successfully!");
+        closeModal(document.getElementById('modal'));
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        alert("Failed to create booking.");
+      })
+      .finally(() => {
+        window.isSubmitting = false;
+      });
+  }
+
+  function createBookingForm(booking_object_hash) {
+    const modal = document.getElementById('modal');
+    const form = document.querySelector('.modal-form');
+
+    modal.style.display = 'flex';
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+      const data = {};
+      formData.forEach((value, key) => {
+        data[key] = value;
+      });
+
+      data["booking_objects_hash"] = booking_object_hash;
+
+      console.log('Booking Data:', data);
+
+      submitBookingForm(booking_object_hash, data);
+    });
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeModal(modal);
+      }
+    });
+  }
+
+  function closeModal(modal) {
+    console.log('Closing modal...');
+    modal.style.display = 'none';
+  }
+
+</script>
+<script>
+  window.mapImageLoader = null;
+  window.bookingManager = null;
+  window.objectsMapLoaderAPI = null;
+  window.booking_objects = null;
+</script>
+<script src="{% static 'bookings/js/BookingManager.js' %}"></script>
+<script src="{% static 'bookings/js/ObjectsMapLoaderAPI.js' %}"></script>
+<script src="{% static 'bookings/js/MapImageLoader.js' %}"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", async () => {
+    window.mapImageLoader = new MapImageLoader();
+    await window.mapImageLoader.start();
+
+    window.objectsMapLoaderAPI = new ObjectsMapLoaderAPI();
+    window.bookingManager = new BookingManager('.section-floor-layout-floor-image');
+
+    try {
+      const fromTime = new Date(Date.UTC(2025, 0, 1));
+      const toTime = new Date(Date.UTC(2026, 11, 31, 23, 59, 59));
+      window.booking_objects = await window.objectsMapLoaderAPI.loadAvailableObjects(fromTime.toISOString(), toTime.toISOString());
+
+      console.log("Загруженные объекты", JSON.stringify(window.booking_objects));
+
+      console.log("Доступные объекты", JSON.stringify(window.booking_objects));
+
+      window.bookingManager.loadBookingObjectsFromWindow();
+    } catch (error) {
+      console.error("Ошибка при загрузке объектов:", error);
+    }
+  });
+</script>
+<script src="{% static 'bookings/js/bookingForm.js' %}"></script>
+
+</body>
+</html>

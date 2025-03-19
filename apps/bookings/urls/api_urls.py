@@ -8,7 +8,7 @@ urlpatterns = [
          CheckBookingAvailabilityAPI.as_view(),
          name='check-booking-availability-api'),
 
-    path('create-booking/<str:map_hash>/',
+    path('create-booking/<str:map_hash>/<str:booking_objects_hash>/',
          CreateBookingAPI.as_view(),
          name='create-booking-api'),
 
@@ -43,10 +43,6 @@ urlpatterns = [
     path('check-booking-availability/<str:map_hash>/',
          CheckBookingAvailabilityAPI.as_view(),
          name='check-booking-availability-api'),
-
-    path('create-booking/<str:map_hash>/',
-         CreateBookingAPI.as_view(),
-         name='create-booking-api'),
 
     path('delete-booking-entry/<str:map_hash>/',
          DeleteBookingEntryAPI.as_view(),

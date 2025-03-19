@@ -1,5 +1,6 @@
 import json
 from builtins import str, bool
+from datetime import datetime
 from typing import List, Dict
 
 import psycopg2
@@ -16,6 +17,36 @@ class MapManager:
         :param db_dsn: The database connection string (Data Source Name).
         """
         self.db_dsn = db_dsn
+
+    def save_booking_record(self, booking_object_hash: str, first_name: str, last_name: str, email: str, phone: str,
+                            booking_period: dict) -> None:
+        """
+        Saves a booking record to the database.
+
+        :param booking_object_hash: The hash of the booking object.
+        :param first_name: The first name of the person making the booking.
+        :param last_name: The last name of the person making the booking.
+        :param email: The email of the person making the booking.
+        :param phone: The phone number of the person making the booking.
+        :param booking_period: The booking period in JSON format.
+        """
+        query = """
+        INSERT INTO booking_records (booking_object_hash, first_name, last_name, email, phone, booking_period)
+        VALUES (%s, %s, %s, %s, %s, %s);
+        """
+        try:
+            with DatabaseConnection(self.db_dsn) as cursor:
+                cursor.execute(query, (
+                    booking_object_hash,
+                    first_name,
+                    last_name,
+                    email,
+                    phone,
+                    json.dumps(booking_period)
+                ))
+        except Exception as e:
+            print(f"Error while saving booking record: {e}")
+            raise e
 
     def check_booking_object_belongs_to_map(self, map_hash: str, booking_object_hash: str) -> bool:
         """
@@ -286,6 +317,54 @@ class MapManager:
             raise e
         except psycopg2.InterfaceError as e:
             raise e
+        except Exception as e:
+            raise e
+
+    def get_available_booking_objects(self, map_hash: str, from_time: datetime, to_time: datetime) -> List[Dict]:
+        """
+        Retrieves all available booking objects for the given map_hash within the specified time range.
+
+        Parameters:
+            map_hash (str): The unique identifier (hash) of the map.
+            from_time (datetime): The start of the desired booking period.
+            to_time (datetime): The end of the desired booking period.
+
+        Returns:
+            List[Dict]: A list of dictionaries containing details of available booking objects.
+        """
+        if not self.check_map_hash_existence(map_hash):
+            raise ValueError(f"Map with hash {map_hash} does not exist.")
+
+        query = """
+            SELECT bo.booking_object_hash, bo.x_min, bo.x_max, bo.y_min, bo.y_max, bo.booking_availability
+            FROM booking_objects bo
+            WHERE bo.map_hash = %s
+            AND NOT EXISTS (
+                SELECT 1
+                FROM booking_records br
+                WHERE br.booking_object_hash = bo.booking_object_hash
+                AND (br.booking_period->>'from')::timestamp < %s
+                AND (br.booking_period->>'to')::timestamp > %s
+            );
+        """
+        try:
+            with DatabaseConnection(self.db_dsn) as cursor:
+                cursor.execute(query, (map_hash, to_time, from_time))
+                results = cursor.fetchall()
+
+                available_objects = [
+                    {
+                        "booking_object_hash": str(row["booking_object_hash"]),
+                        "x_min": row["x_min"],
+                        "x_max": row["x_max"],
+                        "y_min": row["y_min"],
+                        "y_max": row["y_max"],
+                        "booking_availability": row["booking_availability"]
+                    }
+                    for row in results
+                ]
+
+                return available_objects
         except Exception as e:
             raise e
 
