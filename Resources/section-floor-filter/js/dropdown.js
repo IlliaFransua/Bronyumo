@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const durationSettings = {
         minDuration: 1,
-        maxDuration: 4,
+        maxDuration: 8,
         interval: 1,
         defaultDuration: 2,
         suffix: ' hour',
@@ -177,7 +177,7 @@ class Time_manager {
     }
 
     static isTimeValid() {
-        //Check if time selected is in correct range, range got from backend
+        //Check if time selected is in correct range
         // also can be used for checking reservation time
         const startTime = document.getElementById('startTime').value;
         const duration = parseInt(document.getElementById('duration').value.split(' ')[0]);
