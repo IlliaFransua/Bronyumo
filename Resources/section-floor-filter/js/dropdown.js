@@ -138,86 +138,95 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function () {
 
     // Додаємо обробники подій для перевірки при зміні значень
-    document.getElementById('year').addEventListener('change', ScanAndParseData);
-    document.getElementById('month').addEventListener('change', ScanAndParseData);
-    document.getElementById('day').addEventListener('change', ScanAndParseData);
-    document.getElementById('startTime').addEventListener('change', ScanAndParseData);
-    document.getElementById('duration').addEventListener('change', ScanAndParseData);
+    document.getElementById('year').addEventListener('change', Time_manager.ScanAndParseData);
+    document.getElementById('month').addEventListener('change', Time_manager.ScanAndParseData);
+    document.getElementById('day').addEventListener('change', Time_manager.ScanAndParseData);
+    document.getElementById('startTime').addEventListener('change', Time_manager.ScanAndParseData);
+    document.getElementById('duration').addEventListener('change', Time_manager.ScanAndParseData);
 });
-function ScanAndParseData() {
-    if(isDateValid() && isTimeValid()) {
-    let duration = document.getElementById('duration').value;
-    let month = document.getElementById('month').selectedIndex;
-    let day = document.getElementById('day').value;
-    let year = document.getElementById('year').value;
-    let startTime = document.getElementById('startTime').value;
 
-    hours = duration.split(' ')[0];
-    startTime = document.getElementById('startTime').value;
-    let from = new Date(parseInt(year), month, parseInt(day), parseInt(startTime.split(':')[0]), parseInt(startTime.split(':')[1]));
-    let to = new Date(parseInt(year), month, parseInt(day), parseInt(startTime.split(':')[0]) + parseInt(hours), parseInt(startTime.split(':')[1]));
-
-    correct_format_from = formatUTCDate(from);
-    correct_format_to = formatUTCDate(to);
-    console.log('from:', from);
-    console.log('to:', to);
-    let data = {
-        to: correct_format_to,
-        from: correct_format_from,
-    };
-
-    console.log('ScanAndParseData', data);
-    return data;
+class Time_manager {
+    static formatUTCDate(date) {
+        //returns correct format of UTC date in string
+        return date.getUTCFullYear() + "-" +
+            String(date.getUTCMonth() + 1).padStart(2, '0') + "-" +
+            String(date.getUTCDate()).padStart(2, '0') + " " +
+            String(date.getUTCHours()).padStart(2, '0') + ":" +
+            String(date.getUTCMinutes()).padStart(2, '0');
     }
-    else {
-        return null;
+
+    static isDateValid() {
+        //Check if date selected after 3 days from now
+        const year = parseInt(document.getElementById('year').value);
+        const month = document.getElementById('month').selectedIndex; // індекс від 0 (січень) до 11 (грудень)
+        const day = parseInt(document.getElementById('day').value);
+    
+        const selectedDate = new Date(year, month, day);
+        const today = new Date();
+        today.setDate(today.getDate() + 3);  // Додаємо 3 дні до вибраної дати
+        today.setHours(0, 0, 0, 0); // Обнуляємо час для коректного порівняння
+    
+        if (selectedDate < today) {
+            console.log('❌ Оформити бронювання можна тільки на третій день після сьогоднішньої дати!');
+            alert('Оформити бронювання можна тільки на третій день після сьогоднішньої дати!');
+            return false;
+        } else {
+            console.log('✅ Дата коректна!');
+            return true;
+        }
     }
-}
 
-function formatUTCDate(date) {
-    return date.getUTCFullYear() + "-" +
-        String(date.getUTCMonth() + 1).padStart(2, '0') + "-" +
-        String(date.getUTCDate()).padStart(2, '0') + " " +
-        String(date.getUTCHours()).padStart(2, '0') + ":" +
-        String(date.getUTCMinutes()).padStart(2, '0');
-}
-
-function isDateValid() {
-    const year = parseInt(document.getElementById('year').value);
-    const month = document.getElementById('month').selectedIndex; // індекс від 0 (січень) до 11 (грудень)
-    const day = parseInt(document.getElementById('day').value);
-
-    const selectedDate = new Date(year, month, day);
-    const today = new Date();
-    today.setDate(today.getDate() + 3);  // Додаємо 3 дні до вибраної дати
-    today.setHours(0, 0, 0, 0); // Обнуляємо час для коректного порівняння
-
-    if (selectedDate < today) {
-        console.log('❌ Оформити бронювання можна тільки на третій день після сьогоднішньої дати!');
-        alert('Оформити бронювання можна тільки на третій день після сьогоднішньої дати!');
-        return false;
-    } else {
-        console.log('✅ Дата коректна!');
-        return true;
+    static isTimeValid() {
+        //Check if time selected is in correct range, range got from backend
+        // also can be used for checking reservation time
+        const startTime = document.getElementById('startTime').value;
+        const duration = parseInt(document.getElementById('duration').value.split(' ')[0]);
+        const startHour = parseInt(startTime.split(':')[0]);
+        const startMinute = parseInt(startTime.split(':')[1]);
+    
+        const endHour = startHour + duration;
+        const endMinute = startMinute;
+    
+        if (endHour > 22 || (endHour === 22 && endMinute > 0)) {
+            console.log('❌ Часовий проміжок може бути від 8:00 до 22:00!');
+            alert('Часовий проміжок може бути від 8:00 до 22:00!');
+            return false;
+        } else {
+            console.log('✅ Час коректний!');
+            return true;
+        }
     }
-}
 
-function isTimeValid() {
-
-    const startTime = document.getElementById('startTime').value;
-    const duration = parseInt(document.getElementById('duration').value.split(' ')[0]);
-    const startHour = parseInt(startTime.split(':')[0]);
-    const startMinute = parseInt(startTime.split(':')[1]);
-
-    const endHour = startHour + duration;
-    const endMinute = startMinute;
-
-    if (endHour > 22 || (endHour === 22 && endMinute > 0)) {
-        console.log('❌ Часовий проміжок може бути від 8:00 до 22:00!');
-        alert('Часовий проміжок може бути від 8:00 до 22:00!');
-        return false;
-    } else {
-        console.log('✅ Час коректний!');
-        return true;
+    static ScanAndParseData() {
+        // this function scan date from dropdowns and parse it to UTC format
+        // return object with 'from' and 'to' keys with UTC date format
+        if(Time_manager.isDateValid() && Time_manager.isTimeValid()) {
+        let duration = document.getElementById('duration').value;
+        let month = document.getElementById('month').selectedIndex;
+        let day = document.getElementById('day').value;
+        let year = document.getElementById('year').value;
+        let startTime = document.getElementById('startTime').value;
+    
+        let hours = duration.split(' ')[0];
+        startTime = document.getElementById('startTime').value;
+        let from = new Date(parseInt(year), month, parseInt(day), parseInt(startTime.split(':')[0]), parseInt(startTime.split(':')[1]));
+        let to = new Date(parseInt(year), month, parseInt(day), parseInt(startTime.split(':')[0]) + parseInt(hours), parseInt(startTime.split(':')[1]));
+    
+        let correct_format_from = Time_manager.formatUTCDate(from);
+        let correct_format_to = Time_manager.formatUTCDate(to);
+        console.log('from:', from);
+        console.log('to:', to);
+        let data = {
+            to: correct_format_to,
+            from: correct_format_from,
+        };
+    
+        console.log('ScanAndParseData', data);
+        return data;
+        }
+        else {
+            return null;
+        }
     }
+
 }
