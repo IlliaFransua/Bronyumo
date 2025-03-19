@@ -8,3 +8,4 @@ from .SaveBookingObjectsAPI import SaveBookingObjectsAPI
 from .ShareBookingAPI import ShareBookingAPI
 from .UploadAndDeleteBookingsAPI import UploadAndDeleteBookingsAPI
 from .UploadAndPreserveBookingsAPI import UploadAndPreserveBookingsAPI
+from .WorkingHoursManager import WorkingHoursManager

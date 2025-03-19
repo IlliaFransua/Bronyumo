@@ -42,4 +42,5 @@ function closeWorkingHoursModal() {
   modal.classList.add('new-layout-img__is-hidden');
   // overlay.classList.add('new-layout-img__is-hidden');
   workingHoursManager.refreshWorkingHours();
+  window.workingHoursManager.saveWorkingHours();
 }

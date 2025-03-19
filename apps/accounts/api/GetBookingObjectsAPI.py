@@ -69,6 +69,7 @@ class GetBookingObjectsAPI(APIView):
                 "map_hash": map_hash,
                 "booking_objects": booking_objects
             }
+            print(JsonResponse(response_data, status=status.HTTP_200_OK))
             return JsonResponse(response_data, status=status.HTTP_200_OK)
 
         except Exception as e:

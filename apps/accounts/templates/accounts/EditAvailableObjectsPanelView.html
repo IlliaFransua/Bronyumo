@@ -350,12 +350,16 @@
 </div>
 
 <script>
+  window.shareBookingLinkManager = null
+</script>
+<script src="{% static 'accounts/js/ShareBookingLinkManager.js' %}"></script>
+<script>
   window.workingHoursManager = null
 </script>
 <script src="{% static 'accounts/js/WorkingHoursManager.js' %}"></script>
 <script src="{% static 'accounts/js/workingHoursModal.js' %}"></script>
 
-<script src="{% static 'accounts/js/Share-booking-link.js' %}"></script>
+
 <script>
   window.logoutIcon = "{% static 'accounts/images/logout-icon.png' %}";
   window.booking_objects = {{ booking_objects|safe }};

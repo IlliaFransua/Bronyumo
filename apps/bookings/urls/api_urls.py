@@ -1,6 +1,6 @@
 from apps.bookings.api import CheckBookingAvailabilityAPI, CreateBookingAPI, UploadAndDeleteBookingsAPI, \
     UploadAndPreserveBookingsAPI, AddForBookingAPI, RemoveFromBookingAPI, ShareBookingAPI, DeleteBookingEntryAPI, \
-    DeleteBookingObjectAPI, SaveBookingObjectsAPI
+    DeleteBookingObjectAPI, SaveBookingObjectsAPI, WorkingHoursManager
 from django.urls import path
 
 urlpatterns = [
@@ -51,4 +51,12 @@ urlpatterns = [
     path('delete-booking-entry/<str:map_hash>/',
          DeleteBookingEntryAPI.as_view(),
          name='delete-booking-entry-api'),
+
+    path('object-working-hours-on-map/<str:map_hash>/<str:booking_object_hash>/',
+         WorkingHoursManager.as_view(),
+         name='object-working-hours-on-map'),
+
+    path('object-working-hours-on-map/<str:map_hash>/',
+         WorkingHoursManager.as_view(),
+         name='object-working-hours-on-map'),
 ]

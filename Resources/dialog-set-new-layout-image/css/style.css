@@ -1,8 +1,8 @@
 :root {
     --modal-color: #F5F4FA;
     --title-color-new-layout-img: #212529;
-    --modal-close-btn-icon:#2E2F42;
-    --btn-color-new-layout-img:#393F44;
+    --modal-close-btn-icon: #2E2F42;
+    --btn-color-new-layout-img: #393F44;
     --acent-color-btn-new-Lyt-Img-Conf-Dlg: #939296;
 }
 
@@ -106,16 +106,17 @@
 }
 
 /*Модальне вікно 2 Set New Layout Image Confirmation Dialog 1 */
-.new-Lyt-Img-Conf-Dlg__text{
+.new-Lyt-Img-Conf-Dlg__text {
     flex-direction: column;
     align-items: center;
     gap: 30px;
     display: flex;
 }
+
 .new-Lyt-Img-Conf-Dlg__btn1 {
     width: 224px;
     border-width: 0px;
-    padding: 10px 81px;
+    padding: 10px 8px;
     background: var(--acent-color-btn-new-Lyt-Img-Conf-Dlg);
     border-radius: 8px;
 }
@@ -141,7 +142,7 @@
 }
 
 /*Модальне вікно 3 Set New Layout Image Confirmation Dialog 2*/
-.new-layout-img__title3{
+.new-layout-img__title3 {
     width: 290px;
     text-align: center;
     color: var(--title-color-new-layout-img);

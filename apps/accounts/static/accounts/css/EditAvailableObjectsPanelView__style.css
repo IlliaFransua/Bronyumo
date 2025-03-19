@@ -275,7 +275,7 @@ body.modal-open {
 .new-Lyt-Img-Conf-Dlg__btn1 {
     width: 224px;
     border-width: 0px;
-    padding: 10px 81px;
+    padding: 10px 8px;
     background: var(--acent-color-btn-new-Lyt-Img-Conf-Dlg);
     border-radius: 8px;
 }
