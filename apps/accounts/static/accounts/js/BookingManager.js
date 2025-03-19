@@ -45,7 +45,7 @@ class BookingManager {
   }
 
   deleteSelectedOverlay() {
-    const selectedOverlay = this.imageContainer.querySelector('.overlay-box.selected');
+    const selectedOverlay = this.imageContainer.querySelector('.overlay-box.selected-existing');
 
     if (selectedOverlay) {
       const bookingHash = selectedOverlay.getAttribute('data-booking-hash');

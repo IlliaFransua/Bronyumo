@@ -11,7 +11,7 @@ urlpatterns = [
          EditAvailableObjectsPanelView.as_view(),
          name='edit-available-objects-panel-view-with-hash'),
 
-    path('reservations-panel/<str:booking_hash>/',
+    path('reservations-panel/<str:map_hash>/',
          ReservationsPanelView.as_view(),
          name='reservations-panel-view'),
 ]

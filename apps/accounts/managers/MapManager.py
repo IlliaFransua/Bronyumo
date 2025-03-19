@@ -1,4 +1,5 @@
 import json
+from builtins import str, bool
 from typing import List, Dict
 
 import psycopg2
@@ -298,11 +299,15 @@ class MapManager:
         Returns:
             List[Dict]: A list of dictionaries, each containing details of a booking object.
         """
+        # Проверяем существование карты перед выполнением запроса на бронирования
+        if not self.check_map_hash_existence(map_hash):
+            raise ValueError(f"Map with hash {map_hash} does not exist.")
+
         query = """
                 SELECT booking_object_hash, x_min, x_max, y_min, y_max, booking_availability
                 FROM booking_objects
                 WHERE map_hash = %s;
-                """
+        """
         try:
             with DatabaseConnection(self.db_dsn) as cursor:
                 cursor.execute(query, (map_hash,))
@@ -321,8 +326,57 @@ class MapManager:
                 ]
 
                 return booking_objects
+        except Exception as e:
+            raise e
+
+    def get_map_image_path(self, map_hash: str) -> str or None:
+        """
+        Retrieves the image_path for the given map_hash.
+
+        Parameters:
+            map_hash (str): The unique identifier of the map.
+
+        Returns:
+            str or None: The image path as a string, or None if not found.
+        """
+        query = "SELECT image_path FROM maps WHERE map_hash = %s;"
+        try:
+            with DatabaseConnection(self.db_dsn) as cursor:
+                cursor.execute(query, (map_hash,))
+                result = cursor.fetchone()
+                return result["image_path"] if result else None
         except Exception:
             raise
+
+    def check_map_hash_existence(self, map_hash: str) -> bool:
+        """
+        Checks if the provided map_hash exists in the database.
+
+        :param map_hash: The unique identifier of the map.
+        :return: True if the map_hash exists, False otherwise.
+        """
+        query = """
+                SELECT EXISTS (
+                    SELECT 1
+                    FROM maps
+                    WHERE map_hash = %s
+                );
+        """
+        try:
+            with DatabaseConnection(self.db_dsn) as cursor:
+                cursor.execute(query, (map_hash,))
+                result = cursor.fetchone()
+
+                if result:
+                    return result["exists"]
+                else:
+                    return False
+        except psycopg2.DatabaseError as e:
+            raise e
+        except psycopg2.InterfaceError as e:
+            raise e
+        except Exception as e:
+            raise e
 
     def map_belongs_to_company(self, map_hash: str, company_id: int) -> bool:
         """
@@ -346,24 +400,5 @@ class MapManager:
                 cursor.execute(query, (map_hash, company_id))
                 result = cursor.fetchone()
                 return bool(result)
-        except Exception:
-            raise
-
-    def get_map_image_path(self, map_hash: str) -> str or None:
-        """
-        Retrieves the image_path for the given map_hash.
-
-        Parameters:
-            map_hash (str): The unique identifier of the map.
-
-        Returns:
-            str or None: The image path as a string, or None if not found.
-        """
-        query = "SELECT image_path FROM maps WHERE map_hash = %s;"
-        try:
-            with DatabaseConnection(self.db_dsn) as cursor:
-                cursor.execute(query, (map_hash,))
-                result = cursor.fetchone()
-                return result["image_path"] if result else None
         except Exception:
             raise
