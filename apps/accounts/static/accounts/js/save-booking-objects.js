@@ -1,7 +1,7 @@
 function saveBookingObjects() {
-  const bookingObjects = window.booking_objects;
-  const mapHash = window.map_hash;
-  const bookingAvailability = window.booking_availability;
+  const bookingObjects = window.bookingManager.getCurrentOverlays();
+  const mapHash = window.shareBookingLinkManager.getMapHash();
+  const bookingAvailability = window.workingHoursManager.getRefreshedWorkingHours();
 
   const requestData = {
     booking_availability: bookingAvailability,
@@ -18,16 +18,16 @@ function saveBookingObjects() {
   })
     .then(response => response.json())
     .then(data => {
-      console.log("Ответ от сервера:", data);
+      console.log("Response from the server:", data);
       if (data.message) {
         alert(data.message);
       } else if (data.error) {
-        alert("Ошибка: " + data.error);
+        alert("Error: " + data.error);
       }
     })
     .catch(error => {
-      console.error("Ошибка при отправке данных:", error);
-      alert("Произошла ошибка при отправке данных.");
+      console.error("Error sending data:", error);
+      alert("Error occurred while sending data.");
     });
 }
 

@@ -2,6 +2,8 @@ import json
 from typing import List, Dict
 
 import psycopg2
+from psycopg2.extras import execute_values
+
 from apps.accounts.DatabaseConnection import DatabaseConnection
 
 
@@ -136,85 +138,66 @@ class MapManager:
             print(f"Error updating booking hours for all objects: {e}")
             raise e
 
-    def update_booking_object(self, booking_object: Dict, booking_availability: Dict[str, list]) -> str:
-        """
-        Updates the booking object.
+    import json
 
-        :param booking_object: The booking object with its data.
-        :param booking_availability: The availability of the object.
-        :return: The hash of the updated booking object.
+    def update_booking_objects(self, map_hash: str, booking_objects: list) -> list:
         """
-        query = """
-        UPDATE booking_objects
-        SET x_min = %s, x_max = %s, y_min = %s, y_max = %s, booking_availability = %s
-        WHERE booking_object_hash = %s
-        RETURNING booking_object_hash;
-        """
-        try:
-            with DatabaseConnection(self.db_dsn) as cursor:
-                cursor.execute(query, (
-                    booking_object['x_min'],
-                    booking_object['x_max'],
-                    booking_object['y_min'],
-                    booking_object['y_max'],
-                    json.dumps(booking_availability),
-                    booking_object['booking_object_hash']
-                ))
-                result = cursor.fetchone()
-                if result:
-                    cursor.connection.commit()
-                    return str(result['booking_object_hash'])
-                else:
-                    raise Exception(f"Failed to update object hash {booking_object['booking_object_hash']}")
-        except Exception as e:
-            print(f"Error while updating the booking object: {e}")
-            raise e
-
-    def update_booking_objects(self, map_hash: str, new_objects: List[Dict]) -> None:
-        """
-        Updates the booking objects for the specified map:
-        - Removes objects that are not in the new list.
-        - Updates the coordinates of existing objects.
-        - Adds new objects.
+        Updates multiple booking objects for the given map.
 
         :param map_hash: The hash of the map.
-        :param new_objects: The new list of objects with coordinates and hashes.
+        :param booking_objects: List of booking objects with their data.
+        :return: List of updated booking object hashes.
         """
+        print(f"Получает map_hash (type({map_hash})): ", map_hash)
+        print(f"Получает booking_objects (type({booking_objects})): ", booking_objects)
+
+        query = """
+        UPDATE booking_objects AS bo
+        SET x_min = %s,
+            x_max = %s,
+            y_min = %s,
+            y_max = %s,
+            booking_availability = %s
+        WHERE bo.map_hash = %s AND bo.booking_object_hash = %s
+        RETURNING bo.booking_object_hash;
+        """
+
+        updated_hashes = []
+
         try:
-            existing_objects = self.get_booking_objects_by_map_hash(map_hash)
+            with DatabaseConnection(self.db_dsn) as cursor:
+                for obj in booking_objects:
+                    # Если нет данных доступности, не обновляем поле booking_availability
+                    availability_json = None
+                    if 'booking_availability' in obj:
+                        availability_json = json.dumps(obj['booking_availability'])
 
-            new_objects_dict = {obj['booking_object_hash']: obj for obj in new_objects}
-            existing_objects_dict = {obj['booking_object_hash']: obj for obj in existing_objects}
+                    # Проверка координат и данных
+                    print(f"Обновляем объект: {obj['booking_object_hash']}, координаты: "
+                          f"x_min={obj['x_min']}, x_max={obj['x_max']}, y_min={obj['y_min']}, y_max={obj['y_max']}")
 
-            # 1. Removes objects that are not in the new list
-            for booking_object_hash, existing_obj in existing_objects_dict.items():
-                if booking_object_hash not in new_objects_dict:
-                    self.delete_booking_object(map_hash, booking_object_hash)
-                    print(f"Object {booking_object_hash} was not deleted.")
-
-            # 2. Update existing objects (coordinates and availability)
-            for booking_object_hash, new_obj in new_objects_dict.items():
-                if booking_object_hash in existing_objects_dict:
-                    existing_obj = existing_objects_dict[booking_object_hash]
-                    if (existing_obj["x_min"] != new_obj["x_min"] or
-                            existing_obj["x_max"] != new_obj["x_max"] or
-                            existing_obj["y_min"] != new_obj["y_min"] or
-                            existing_obj["y_max"] != new_obj["y_max"]):
-                        self.update_booking_object(booking_object_hash, new_obj)
-                        print(f"Object {booking_object_hash} was not updated.")
-                else:
-                    self.create_booking_object(
+                    # Выполнение запроса
+                    cursor.execute(query, (
+                        obj['x_min'],
+                        obj['x_max'],
+                        obj['y_min'],
+                        obj['y_max'],
+                        availability_json if availability_json else None,
                         map_hash,
-                        new_obj["x_min"],
-                        new_obj["x_max"],
-                        new_obj["y_min"],
-                        new_obj["y_max"],
-                        new_obj["booking_availability"]
-                    )
-                    print(f"Object {booking_object_hash} has been added.")
+                        obj['booking_object_hash']
+                    ))
+
+                    result = cursor.fetchone()
+                    if result:
+                        updated_hashes.append(result['booking_object_hash'])
+                    else:
+                        print(f"Failed to update object hash {obj['booking_object_hash']}")
+
+                print("Updated booking object hashes:", updated_hashes)
+                return updated_hashes
 
         except Exception as e:
-            print(f"There was an error updating the reservation objects: {e}")
+            print(f"Error while updating booking objects: {e}")
             raise e
 
     def create_booking_object(self, map_hash: str, x_min: float, x_max: float, y_min: float, y_max: float,
@@ -248,57 +231,6 @@ class MapManager:
                 return booking_object_hash.get('booking_object_hash')
         except Exception as e:
             print(f"Error while creating a booking object: {e.__class__.__name__}: {e}")
-            raise e
-
-    def save_or_update_booking_object(self, map_hash: str, x_min: float, x_max: float, y_min: float, y_max: float,
-                                      booking_availability: Dict[str, list]) -> str:
-        """
-        Saves or updates the booking object.
-
-        :param map_hash: The hash of the map.
-        :param x_min, x_max, y_min, y_max: The coordinates of the object.
-        :param booking_availability: The availability of the object.
-        :return: The hash of the booking object.
-        """
-        if not isinstance(booking_availability, dict):
-            raise ValueError("booking_availability должен быть словарем.")
-
-        query = """
-        UPDATE booking_objects
-        SET x_min = %s, x_max = %s, y_min = %s, y_max = %s, booking_availability = %s
-        WHERE map_hash = %s
-        RETURNING booking_object_hash;
-        """
-        try:
-            availability_json = json.dumps(booking_availability)
-
-            with DatabaseConnection(self.db_dsn) as cursor:
-                print("Executing query:", query)
-                print("With parameters:", (x_min, x_max, y_min, y_max, availability_json, map_hash))
-                cursor.execute(query, (
-                    x_min,
-                    x_max,
-                    y_min,
-                    y_max,
-                    availability_json,
-                    map_hash
-                ))
-                result = cursor.fetchone()
-
-                print("Result of query:", result)
-
-                if result:
-                    booking_object_hash = str(result['booking_object_hash'])
-                    print(f"Updated object: {booking_object_hash}")
-                    return booking_object_hash
-                else:
-                    print(f"Object with map_hash {map_hash} not found, creating a new one.")
-                    return self.create_booking_object(map_hash, x_min, x_max, y_min, y_max, booking_availability)
-        except ValueError as ve:
-            print(f"Data conversion error: {ve}")
-            raise ve
-        except Exception as e:
-            print(f"Error while saving or updating the booking object: {e}")
             raise e
 
     def delete_booking_object(self, map_hash: str, booking_object_hash: str) -> bool:

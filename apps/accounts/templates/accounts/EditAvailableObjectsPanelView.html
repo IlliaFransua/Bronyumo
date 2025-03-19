@@ -350,33 +350,24 @@
 </div>
 
 <script>
-  window.shareBookingLinkManager = null
+  window.logoutIcon = "{% static 'accounts/images/logout-icon.png' %}";
+  window.shareBookingLinkManager = null;
+  window.workingHoursManager = null;
+  window.booking_objects = {{ booking_objects|safe }};
+  console.log(window.booking_objects)
 </script>
 <script src="{% static 'accounts/js/ShareBookingLinkManager.js' %}"></script>
-<script>
-  window.workingHoursManager = null
-</script>
 <script src="{% static 'accounts/js/WorkingHoursManager.js' %}"></script>
 <script src="{% static 'accounts/js/workingHoursModal.js' %}"></script>
-
-
-<script>
-  window.logoutIcon = "{% static 'accounts/images/logout-icon.png' %}";
-  window.booking_objects = {{ booking_objects|safe }};
-  window.map_hash = getMapHash();
-</script>
 <script src="{% static 'accounts/js/deleteObjectModal.js' %}"></script>
 <script src="{% static 'accounts/js/modalManager.js' %}"></script>
+
+<script src="{% static 'accounts/js/BookingManager.js' %}"></script>
 <script src="{% static 'accounts/js/mapDataLoader.js' %}"></script>
 <script src="{% static 'accounts/js/dropdownMenu.js' %}"></script>
 <script src="{% static 'accounts/js/buttonClickLogger.js' %}"></script>
-<script src="{% static 'accounts/js/BookingManager.js' %}"></script>
 
 <script src="{% static 'accounts/js/save-booking-objects.js' %}"></script>
 
-
-{#<script>#}
-{#    window.booking_availability = getWorkingHours();#}
-{#</script>#}
 </body>
 </html>
