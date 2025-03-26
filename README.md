@@ -1,6 +1,6 @@
 # Bronyumo
 
-This repository contains the **Bronyumo** project. Follow this guide to set up your development environment, install the needed tools, set up PostgreSQL, and run the server.
+This repository contains the **Bronyumo** project, a simple platform for booking restaurant tables, featuring an intuitive interface with detailed info and an interactive map for listing table locations. Follow this guide to set up your development environment, install the needed tools, set up PostgreSQL, and run the server.
 
 For the visual design of the project, check the [Figma model](https://www.figma.com/design/XMX1W4mwttgUy8L0a4kzQe/Bronyumo.ua?node-id=0-1&t=R0HweH7mP9Udk7mT-1).
 
