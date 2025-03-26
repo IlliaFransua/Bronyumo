@@ -2,6 +2,8 @@
 
 This repository contains the **Bronyumo** project. Follow this guide to set up your development environment, install the needed tools, set up PostgreSQL, and run the server.
 
+For the visual design of the project, check the [Figma model](https://www.figma.com/design/XMX1W4mwttgUy8L0a4kzQe/Bronyumo.ua?node-id=0-1&t=R0HweH7mP9Udk7mT-1).
+
 ## 1. Prerequisites
 
 Make sure you have the following installed:
@@ -188,11 +190,7 @@ DATABASE_PORT=5432
 
 Make sure to update the values as necessary for your environment.
 
-## 6. Design and Mockups
-
-For the visual design of the project, check the [Figma model](https://www.figma.com/design/XMX1W4mwttgUy8L0a4kzQe/Bronyumo.ua?node-id=0-1&t=R0HweH7mP9Udk7mT-1).
-
-## 7. Installing Dependencies
+## 6. Installing Dependencies
 
 With the virtual environment activated, run:
 
@@ -200,7 +198,7 @@ With the virtual environment activated, run:
 pip install -r requirements.txt
 ```
 
-## 8. Running the Server
+## 7. Running the Server
 
 Start the server by running:
 
@@ -211,7 +209,7 @@ python manage.py runserver
 Then open your browser and go to:  
 [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
 
-## 9. Shutting Down
+## 8. Shutting Down
 
 When you are done, deactivate the virtual environment with:
 
